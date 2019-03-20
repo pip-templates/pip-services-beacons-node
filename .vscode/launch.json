@@ -1,0 +1,26 @@
+{
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "Launch service",
+                "program": "${workspaceRoot}/bin/service.js",
+                "sourceMaps": true
+            },
+            {
+                "name": "Run mocha",
+                "type": "node",
+                "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+                "request": "launch",
+                "stopOnEntry": false,
+                "args": ["-t", "10000", "-R", "spec", "-u", "tdd", "--recursive", "./obj/test"],
+                "cwd": "${workspaceRoot}",
+                "runtimeArgs": ["--nolazy"],
+                "runtimeExecutable": null,
+                "env": { "NODE_ENV": "production" },
+                "sourceMaps": true,
+                "outDir": "${workspaceRoot}/obj"
+            }
+        ]
+    }
