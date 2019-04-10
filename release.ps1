@@ -7,10 +7,6 @@ $ErrorActionPreference = "Stop"
 $component = Get-Content -Path "component.json" | ConvertFrom-Json
 $package = Get-Content -Path "package.json" | ConvertFrom-Json
 
-Write-Host $env:NPM_TOKEN
-Get-Content -Path "~/.npmrc"
-npm whoami
-
 if ($component.version -ne $package.version) {
     throw "Versions in component.json and package.json do not match"
 }
