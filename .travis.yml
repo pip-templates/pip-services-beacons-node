@@ -14,13 +14,14 @@ if: tag IS blank
 
 before_install:
   - sed -i -e "s/\"build\":\s[0-9]*/\"build\":"' '"$TRAVIS_BUILD_NUMBER/" component.json
+  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
 
 install:
   - curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
   - curl https://packages.microsoft.com/config/ubuntu/14.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list
   - sudo apt-get update
   - sudo apt-get install -y powershell
-  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
+  # - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
 
 script: 
   # - ./build.ps1
