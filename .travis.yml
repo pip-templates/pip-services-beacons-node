@@ -23,11 +23,11 @@ install:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
 
 script: 
-  - ./build.ps1
-  - ./test.ps1
-  - ./package.ps1
-  - ./tag.ps1
-  - ./publish.ps1
+  # - ./build.ps1
+  # - ./test.ps1
+  # - ./package.ps1
+  # - ./tag.ps1
+  # - ./publish.ps1
   - ./release.ps1
 
 after_script:
