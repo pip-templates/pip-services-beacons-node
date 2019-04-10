@@ -1,6 +1,6 @@
 {
-    "name": "beacons",
-    "registry": "myregistry:5000",
+    "name": "pip-templates-microservice-node",
+    "registry": "pipdevs",
     "version": "1.0.0",
     "build": "0"
 }

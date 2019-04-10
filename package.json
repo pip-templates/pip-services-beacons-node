@@ -1,5 +1,5 @@
 {
-  "name": "beacons",
+  "name": "pip-templates-microservice-node",
   "version": "1.0.0",
   "main": "./obj/src/index.js",
   "typings": "./obj/src/index.d.ts",
