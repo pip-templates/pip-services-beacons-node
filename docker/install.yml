@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: pip-templates
+  name: pip-templates-microservice-node-deploy
+  labels:
+    product_pip-templates-microservice-node: "true"
+spec:
+  replicas: 1
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        product_pip-templates-microservice-node: "true"
+    spec:
+      containers:
+      - name: pip-templates-microservice-node-pod
+        image: pip-devs/pip-templates-microservice-node:1.0.0-1-rc
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: pip-templates
+  name: pip-templates-microservice-node-svc
+  labels: 
+    product_pip-templates-microservice-node: "true"
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    nodePort: 30022
+    protocol: TCP
+  selector:
+    product_pip-templates-microservice-node: "true"
