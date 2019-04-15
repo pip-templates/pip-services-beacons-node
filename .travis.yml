@@ -26,7 +26,7 @@ install:
   - chmod +x ./kubectl
   - sudo mv ./kubectl /usr/local/bin/kubectl
   - sudo mkdir ~/.kube
-  - curl 'https://$GITHUB_API_KEY@raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config' > ~/.kube/config
+  - curl 'https://raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config?token=$GITHUB_API_KEY' > ~/.kube/config
   # - curl -s ~/.kube/config https://$GITHUB_API_KEY@raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config
   # - echo config > ~/.kube/config
   # - echo ${KUBE_CONFIG} > ~/.kube/config
