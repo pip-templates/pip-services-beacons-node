@@ -17,7 +17,7 @@ before_install:
 
 install:
   - curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-  - curl https://packages.microsoft.com/config/ubuntu/14.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list
+  - curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list
   - sudo apt-get update
   - sudo apt-get install -y powershell
   - sudo apt install docker.io -y
@@ -25,9 +25,10 @@ install:
   - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   - chmod +x ./kubectl
   - sudo mv ./kubectl /usr/local/bin/kubectl
-  - curl 'https://raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config?token=${KUBE_CONFIG_TOKEN}' > config
   - sudo mkdir ~/.kube
-  - sudo cp config ~/.kube/config  
+  - ыгвщ ls -al ~/.kube
+  - curl 'https://raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config?token=${KUBE_CONFIG_TOKEN}' > ~/.kube/config
+  # - sudo cp config ~/.kube/config  
   - kubectl get nodes
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
