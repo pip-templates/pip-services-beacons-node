@@ -25,11 +25,9 @@ install:
   - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   - chmod +x ./kubectl
   - sudo mv ./kubectl /usr/local/bin/kubectl
+  - curl 'https://raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config?token=${KUBE_CONFIG_TOKEN}' > config
   - sudo mkdir ~/.kube
-  - curl 'https://raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config?token=${KUBE_CONFIG_TOKEN}' > ~/.kube/config
-  # - curl -s ~/.kube/config https://$GITHUB_API_KEY@raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config
-  # - echo config > ~/.kube/config
-  # - echo ${KUBE_CONFIG} > ~/.kube/config
+  - sudo cp config ~/.kube/config  
   - kubectl get nodes
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
