@@ -29,7 +29,7 @@ install:
   - curl -s ~/.kube/config https://$GITHUB_API_KEY@raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config
   # - echo config > ~/.kube/config
   # - echo ${KUBE_CONFIG} > ~/.kube/config
-  - kubectl get nodes
+  # - kubectl get nodes
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
 script: 
