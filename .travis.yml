@@ -26,8 +26,8 @@ install:
   - chmod +x ./kubectl
   - sudo mv ./kubectl /usr/local/bin/kubectl
   - sudo mkdir ~/.kube
-  - curl -s config https://$GITHUB_API_KEY@raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config
-  - echo config > ~/.kube/config
+  - curl -s ~/.kube/config https://$GITHUB_API_KEY@raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config
+  # - echo config > ~/.kube/config
   # - echo ${KUBE_CONFIG} > ~/.kube/config
   - kubectl get nodes
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
