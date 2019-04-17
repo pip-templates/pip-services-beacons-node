@@ -20,16 +20,16 @@ install:
   - curl https://packages.microsoft.com/config/ubuntu/14.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list
   - sudo apt-get update
   - sudo apt-get install -y powershell
-  - sudo apt install docker.io -y
-  - sudo usermod -a -G docker $(id -un)
-  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-  - chmod +x ./kubectl
-  - sudo mv ./kubectl /usr/local/bin/kubectl
-  - sudo mkdir ~/.kube
-  - sudo curl 'https://raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config?token=$KUBE_CONFIG_TOKEN' > ~/.kube/config
-  - sudo ls -al ~/.kube
+  # - sudo apt install docker.io -y
+  # - sudo usermod -a -G docker $(id -un)
+  # - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+  # - chmod +x ./kubectl
+  # - sudo mv ./kubectl /usr/local/bin/kubectl
+  # - sudo mkdir ~/.kube
+  # - sudo curl 'https://raw.githubusercontent.com/EgorNuzhnykh/pip-templates-deploy/master/config?token=$KUBE_CONFIG_TOKEN' > ~/.kube/config
+  # - sudo ls -al ~/.kube
   # - sudo cp config ~/.kube/config  
-  - kubectl get nodes
+  # - kubectl get nodes
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
 script: 
@@ -42,11 +42,11 @@ script:
 
 after_script:
   - ./clean.ps1
-  - rm -rf ./tasks
-  - git clone git@github.com:pip-templates/pip-templates-devops-buildtasks.git tasks
-  - echo "Deploy into staging environment"
-  - ./tasks/deploy.ps1
-  - ./tasks/validate.ps1
-  - ./tasks/promote.ps1
-  - ./tasks/rollback.ps1
-  - ./tasks/clean.ps1
+  # - rm -rf ./tasks
+  # - git clone git@github.com:pip-templates/pip-templates-devops-buildtasks.git tasks
+  # - echo "Deploy into staging environment"
+  # - ./tasks/deploy.ps1
+  # - ./tasks/validate.ps1
+  # - ./tasks/promote.ps1
+  # - ./tasks/rollback.ps1
+  # - ./tasks/clean.ps1
