@@ -3,10 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_mongodb_node_1 = require("pip-services3-mongodb-node");
-const BeaconsMongoDbSchema_1 = require("./BeaconsMongoDbSchema");
 class BeaconsMongoDbPersistence extends pip_services3_mongodb_node_1.IdentifiableMongoDbPersistence {
     constructor() {
-        super('beacons', BeaconsMongoDbSchema_1.BeaconsMongoDbSchema());
+        super('beacons');
         this._maxPageSize = 1000;
     }
     composeFilter(filter) {
@@ -39,8 +38,8 @@ class BeaconsMongoDbPersistence extends pip_services3_mongodb_node_1.Identifiabl
         let criteria = {
             udi: udi
         };
-        this._model.findOne(criteria, (err, item) => {
-            item = this.convertFromPublic(item);
+        this._collection.findOne(criteria, (err, item) => {
+            item = this.convertToPublic(item);
             if (item != null)
                 this._logger.trace(correlationId, "Found beacon by %s", udi);
             else
