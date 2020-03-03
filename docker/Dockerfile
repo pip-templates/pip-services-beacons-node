@@ -1,9 +1,6 @@
 # Start with the Node.js 8 image
 FROM node:8
 
-# Install development tools
-RUN npm install typescript -g
-
 # Set a working directory
 WORKDIR /app
 
