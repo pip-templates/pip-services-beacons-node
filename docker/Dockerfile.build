@@ -1,19 +1,20 @@
+# Start with the Node.js 8 image
 FROM node:8
 
 # Install development tools
 RUN npm install typescript -g
 
-# set working directory
+# Set a working directory
 WORKDIR /app
 
-# Copy project file
+# Copy the project file
 COPY package*.json ./
 
-# install ALL node_modules, including 'devDependencies'
+# Install ALL node_modules, including 'devDependencies'
 RUN npm install
 
-# copy all project
+# Copy the entire project
 COPY . .
 
-# compile source code
+# Compile the source code
 RUN tsc

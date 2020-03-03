@@ -1,18 +1,23 @@
+# Start with the Node.js 8 image
 FROM node:8
 
-# set working directory
+# Install development tools
+RUN npm install typescript -g
+
+# Set a working directory
 WORKDIR /app
 
-# Copy project file
+# Copy the project file
 COPY package*.json ./
 
-# install ALL node_modules, including 'devDependencies'
+# Install ALL node_modules, including 'devDependencies'
 RUN npm install
 
-# copy all project
+# Copy the entire project
 COPY . .
- 
+
+# Specify the command for running tests
 CMD [ "npm", "test" ]
 
-# Remove npmrc file because env variable NPM_TOKEN is set for travis projects
+# Remove the npmrc file, because env variable NPM_TOKEN is set for travis projects
 RUN rm -f ./.npmrc
