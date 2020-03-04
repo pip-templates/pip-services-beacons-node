@@ -16,12 +16,14 @@ suite('BeaconsCouchbasePersistence', ()=> {
         let couchbaseUser = process.env['COUCHBASE_USER'] || 'Administrator';
         let couchbasePass = process.env['COUCHBASE_PASS'] || 'password';
         let couchbaseBucket = process.env['COUCHBASE_BUCKET'] || 'test';
+        let couchbaseCollection = process.env['COUCHBASE_COLLECTION'] || 'beacons';
         // Exit if couchbase connection is not set
         if (couchbaseUri == null && couchbaseHost == null)
             return;
 
         var dbConfig = ConfigParams.fromTuples(
             'bucket', couchbaseBucket,
+            'collection', couchbaseCollection,
             'options.auto_create', true,
             'connection.uri', couchbaseUri,
             'connection.host', couchbaseHost,

@@ -6,7 +6,6 @@ const pip_services3_commons_node_2 = require("pip-services3-commons-node");
 const pip_services3_couchbase_node_1 = require("pip-services3-couchbase-node");
 class BeaconsCouchbasePersistence extends pip_services3_couchbase_node_1.IdentifiableCouchbasePersistence {
     constructor() {
-        // Todo: is the 'bucket' set during configuration?
         super('test', 'beacons');
         this._maxPageSize = 1000;
     }

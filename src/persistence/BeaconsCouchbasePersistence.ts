@@ -13,7 +13,6 @@ export class BeaconsCouchbasePersistence
     implements IBeaconsPersistence {
 
     constructor() {
-        // Todo: is the 'bucket' set during configuration?
         super('test', 'beacons');
         this._maxPageSize = 1000;
     }
