@@ -62,11 +62,11 @@ export class BeaconsCouchbasePersistence
         super.getPageByFilter(correlationId, this.composeFilter(filter), paging, null, null, callback);
     }
 
-    // Todo: check that this works
+    // Todo: getting "undefined" as a result, instead of a beacons
     public getOneByUdi(correlationId: string, udi: string, callback: (err: any, item: BeaconV1) => void): void {
-        let blist: BeaconV1[] = [];
-        let error = null;
-        super.getListByFilter(correlationId, "udi='" + udi + "'", null, null, (cerr, clist) => { error = cerr; blist = clist; });;
-        callback(error, blist[0]);
+        let blist: BeaconV1[];
+        let error: any;
+        super.getListByFilter(correlationId, "udi='" + udi + "'", null, null, (err, items) => { error = err; blist = items; });
+        callback(error, blist ? blist[0] : null);
     }
 }
