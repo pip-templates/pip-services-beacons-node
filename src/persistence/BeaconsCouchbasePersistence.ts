@@ -64,9 +64,9 @@ export class BeaconsCouchbasePersistence
 
     // Todo: check that this works
     public getOneByUdi(correlationId: string, udi: string, callback: (err: any, item: BeaconV1) => void): void {
-        let dpage = new DataPage<BeaconV1>();
+        let blist: BeaconV1[] = [];
         let error = null;
-        super.getPageByFilter(correlationId, "udi='" + udi + "'", null, null, null, (cerr, cdpage) => { error = cerr; dpage = cdpage; });
-        callback(error, dpage.data[0]);
+        super.getListByFilter(correlationId, "udi='" + udi + "'", null, null, (cerr, clist) => { error = cerr; blist = clist; });;
+        callback(error, blist[0]);
     }
 }

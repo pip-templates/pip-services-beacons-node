@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
-const pip_services3_commons_node_2 = require("pip-services3-commons-node");
 const pip_services3_couchbase_node_1 = require("pip-services3-couchbase-node");
 class BeaconsCouchbasePersistence extends pip_services3_couchbase_node_1.IdentifiableCouchbasePersistence {
     constructor() {
@@ -45,10 +44,11 @@ class BeaconsCouchbasePersistence extends pip_services3_couchbase_node_1.Identif
     }
     // Todo: check that this works
     getOneByUdi(correlationId, udi, callback) {
-        let dpage = new pip_services3_commons_node_2.DataPage();
+        let blist = [];
         let error = null;
-        super.getPageByFilter(correlationId, "udi='" + udi + "'", null, null, null, (cerr, cdpage) => { error = cerr; dpage = cdpage; });
-        callback(error, dpage.data[0]);
+        super.getListByFilter(correlationId, "udi='" + udi + "'", null, null, (cerr, clist) => { error = cerr; blist = clist; });
+        ;
+        callback(error, blist[0]);
     }
 }
 exports.BeaconsCouchbasePersistence = BeaconsCouchbasePersistence;
