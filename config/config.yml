@@ -11,15 +11,15 @@
 # Perfomance counter that post values to log
 - descriptor: "pip-services:counters:log:default:1.0"
 
-{{^if MONGO_ENABLED}}{{^if FILE_ENABLED}}
-# Memory persistence
+{{#if MEMORY_ENABLED}}
+# In-memory persistence. Use only for testing!
 - descriptor: "beacons:persistence:memory:default:1.0"
-{{/if}}{{/if}}
+{{/if}}
 
 {{#if FILE_ENABLED}}
 # File persistence
 - descriptor: "beacons:persistence:file:default:1.0"
-  path: {{FILE_PATH}}{{^if FILE_PATH}}"./data/beacons.json"{{/if}}
+  path: {{FILE_PATH}}{{#unless FILE_PATH}}"./data/beacons.json"{{/unless}}
 {{/if}}
 
 {{#if MONGO_ENABLED}}
@@ -27,10 +27,28 @@
 - descriptor: "beacons:persistence:mongodb:default:1.0"
   connection:
     uri: {{MONGO_SERVICE_URI}}
-    host: {{MONGO_SERVICE_HOST}}{{^if MONGO_SERVICE_HOST}}"localhost"{{/if}}
-    port: {{MONGO_SERVICE_PORT}}{{^if MONGO_SERVICE_PORT}}27017{{/if}}
-    database: {{MONGO_DB}}{{^if MONGO_DB}}"test"{{/if}}
+    host: {{MONGO_SERVICE_HOST}}{{#unless MONGO_SERVICE_HOST}}"localhost"{{/unless}}
+    port: {{MONGO_SERVICE_PORT}}{{#unless MONGO_SERVICE_PORT}}27017{{/unless}}
+    database: {{MONGO_DB}}{{#unless MONGO_DB}}"test"{{/unless}}
 {{/if}}
+
+{{#if COUCHBASE_ENABLED}}
+# Couchbase Persistence
+- descriptor: "beacons:persistence:couchbase:default:1.0"
+  bucket: {{COUCHBASE_BUCKET}}{{#unless COUCHBASE_BUCKET}}test{{/unless}}
+  connection:
+    uri: {{{COUCHBASE_SERVICE_URI}}}
+    host: {{{COUCHBASE_SERVICE_HOST}}}{{#unless COUCHBASE_SERVICE_HOST}}localhost{{/unless}}
+    port: {{COUCHBASE_SERVICE_PORT}}{{#unless COUCHBASE_SERVICE_PORT}}8091{{/unless}}
+  credential:
+    username: {{COUCHBASE_USER}}{{#unless COUCHBASE_USER}}Administrator{{/unless}}
+    password: {{COUCHBASE_PASS}}{{#unless COUCHBASE_PASS}}password{{/unless}}
+{{/if}}
+
+{{#unless MEMORY_ENABLED}}{{#unless FILE_ENABLED}}{{#unless MONGO_ENABLED}}{{#unless COUCHBASE_ENABLED}}
+# Default to in-memory persistence, if nothing is set
+- descriptor: "beacons:persistence:memory:default:1.0"
+{{/unless}}{{/unless}}{{/unless}}{{/unless}}
 
 # Controller
 - descriptor: "beacons:controller:default:default:1.0"
@@ -40,7 +58,7 @@
   connection:
     protocol: http
     host: 0.0.0.0
-    port: {{HTTP_PORT}}{{^if HTTP_PORT}}8080{{/if}}
+    port: {{HTTP_PORT}}{{#unless HTTP_PORT}}8080{{/unless}}
 
 # HTTP Service V1
 - descriptor: "beacons:service:http:default:1.0"
