@@ -47,7 +47,7 @@ class BeaconsCouchbasePersistence extends pip_services3_couchbase_node_1.Identif
     getOneByUdi(correlationId, udi, callback) {
         let dpage = new pip_services3_commons_node_2.DataPage();
         let error = null;
-        super.getPageByFilter(correlationId, "udi='" + udi + "'", null, null, null, (error, dpage) => null);
+        super.getPageByFilter(correlationId, "udi='" + udi + "'", null, null, null, (cerr, cdpage) => { error = cerr; dpage = cdpage; });
         callback(error, dpage.data[0]);
     }
 }

@@ -66,7 +66,7 @@ export class BeaconsCouchbasePersistence
     public getOneByUdi(correlationId: string, udi: string, callback: (err: any, item: BeaconV1) => void): void {
         let dpage = new DataPage<BeaconV1>();
         let error = null;
-        super.getPageByFilter(correlationId, "udi='" + udi + "'", null, null, null, (error, dpage) => null);
+        super.getPageByFilter(correlationId, "udi='" + udi + "'", null, null, null, (cerr, cdpage) => { error = cerr; dpage = cdpage; });
         callback(error, dpage.data[0]);
     }
 }
