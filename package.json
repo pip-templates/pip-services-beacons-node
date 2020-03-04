@@ -5,7 +5,9 @@
   "typings": "./obj/src/index.d.ts",
   "scripts": {
     "service": "node ./bin/run.js",
-    "test": "mocha -t 5000 -R spec -u tdd --recursive ./obj/test"
+    "test": "mocha -t 5000 -R spec -u tdd --recursive ./obj/test",
+    "test_30s": "mocha -t 30000 -R spec -u tdd --recursive ./obj/test",
+    "delay_test": "sleep 60 && echo Continue... && mocha -t 30000 -R spec -u tdd --recursive ./obj/test"
   },
   "dependencies": {
     "pip-services3-commons-node": "^3.0.*",

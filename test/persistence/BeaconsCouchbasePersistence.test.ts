@@ -19,7 +19,7 @@ suite('BeaconsCouchbasePersistence', ()=> {
         // Exit if couchbase connection is not set
         if (couchbaseUri == null && couchbaseHost == null)
             return;
-    
+
         var dbConfig = ConfigParams.fromTuples(
             'bucket', couchbaseBucket,
             'options.auto_create', true,

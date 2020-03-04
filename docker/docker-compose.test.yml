@@ -22,4 +22,4 @@ services:
     image: mongo:latest
 
   couchbase:
-    image: couchbase/server-sandbox:5.5.1
+    image: couchbase/server-sandbox:6.0.1
