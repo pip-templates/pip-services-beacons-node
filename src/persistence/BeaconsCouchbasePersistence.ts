@@ -64,8 +64,8 @@ export class BeaconsCouchbasePersistence
 
     // Todo: getting "undefined" as a result, instead of a beacons
     public getOneByUdi(correlationId: string, udi: string, callback: (err: any, item: BeaconV1) => void): void {
-        let blist: BeaconV1[];
-        let error: any;
+        let blist: BeaconV1[] = [];
+        let error: any = null;
         super.getListByFilter(correlationId, "udi='" + udi + "'", null, null, (err, items) => { error = err; blist = items; });
         callback(error, blist ? blist[0] : null);
     }
