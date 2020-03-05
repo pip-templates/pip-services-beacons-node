@@ -53,9 +53,8 @@ suite('BeaconsCouchbasePersistence', ()=> {
         persistence.close(null, done);
     });
 
-    test('CRUD Operations (skipping - fix getByUdi before enabling)', (done) => {
+    test('CRUD Operations', (done) => {
         fixture.testCrudOperations(done);
-        //done();
     });
 
     test('Get with Filters', (done) => {
