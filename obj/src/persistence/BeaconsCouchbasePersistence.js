@@ -42,12 +42,13 @@ class BeaconsCouchbasePersistence extends pip_services3_couchbase_node_1.Identif
     getPageByFilter(correlationId, filter, paging, callback) {
         super.getPageByFilter(correlationId, this.composeFilter(filter), paging, null, null, callback);
     }
-    // Todo: getting "undefined" as a result, instead of a beacons
+    // Todo: test
     getOneByUdi(correlationId, udi, callback) {
-        let blist = [];
-        let error = null;
-        super.getListByFilter(correlationId, "udi='" + udi + "'", null, null, (err, items) => { error = err; blist = items; });
-        callback(error, blist ? blist[0] : null);
+        this.getPageByFilter(correlationId, pip_services3_commons_node_1.FilterParams.fromTuples('udi', udi), null, (error, page) => {
+            if (error)
+                callback(error, null);
+            callback(null, page.data[0]);
+        });
     }
 }
 exports.BeaconsCouchbasePersistence = BeaconsCouchbasePersistence;
