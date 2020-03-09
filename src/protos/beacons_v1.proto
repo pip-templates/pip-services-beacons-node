@@ -1,0 +1,117 @@
+// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "pip-templates.beacons.version1";
+option java_outer_classname = "BeaconsProtoV1";
+option objc_class_prefix = "BEACONS_CMD_V1";
+
+package beacons_v1;
+
+message ErrorDescription {
+  string type = 1;
+  string category = 2;
+  string code = 3;
+  string correlation_id = 4;
+  string status = 5;
+  string message = 6;
+  string cause = 7;
+  string stack_trace = 8;
+  map<string, string> details = 9;
+}
+
+message PagingParams {
+    int64 skip = 1;
+    int32 take = 2;
+    bool total = 3;
+}
+
+message Beacon {
+    string id = 1;
+    string site_id = 2;
+    string type = 3;
+    string udi = 4;
+    string label = 5;
+    string center = 6; //map<string, string> center = 6; 
+    double radius = 7;
+
+}
+
+message BeaconsPage {
+    int64 total = 1;
+    repeated Beacon data = 2;
+}
+
+// The Beacons service definition.
+service Beacons {
+  rpc get_beacons (BeaconsPageRequest) returns (BeaconsPageReply) {}
+  rpc get_beacon_by_id (BeaconsIdRequest) returns (BeaconReply) {}
+  rpc get_beacon_by_udi (BeaconsUdiRequest) returns (BeaconReply) {}
+  rpc calculate_position (BeaconsPositionRequest) returns (BeaconsPositionReply) {}
+  rpc create_beacon (BeaconParamsRequest) returns (BeaconReply) {}
+  rpc update_beacon (BeaconParamsRequest) returns (BeaconReply) {}
+  rpc delete_beacon_by_id (BeaconsIdRequest) returns (BeaconReply) {}
+}
+
+// The request message containing the Beacons page request.
+message BeaconsPageRequest {
+  string correlation_id = 1;
+  map<string, string> filter = 2;
+  PagingParams paging = 3;
+}
+
+// The response message containing the Beacons page response
+message BeaconsPageReply {
+  ErrorDescription error = 1;
+  BeaconsPage page = 2;
+}
+
+// The request message containing the Beacons id request.
+message BeaconsIdRequest {
+  string correlation_id = 1;
+  string beacon_id = 2;
+}
+
+// The response message containing the Beacons params response
+message BeaconReply {
+  ErrorDescription error = 1;
+  Beacon beacon = 2;
+}
+
+// The request message containing the Beacons id request.
+message BeaconsUdiRequest {
+  string correlation_id = 1;
+  string udi = 2;
+}
+
+// The request message containing the Beacons calculate position request.
+message BeaconsPositionRequest {
+  string correlation_id = 1;
+  string site_id = 2;
+  string udis = 3;
+}
+
+// The request message containing the Beacons calculate position reply.
+message BeaconsPositionReply {
+  ErrorDescription error = 1;
+  string position = 2;
+}
+
+// The request message containing the Beacons params request
+message BeaconParamsRequest {
+  string correlation_id = 1;
+  Beacon beacon = 2;
+}

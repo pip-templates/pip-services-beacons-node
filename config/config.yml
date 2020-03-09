@@ -53,14 +53,15 @@
 # Controller
 - descriptor: "beacons:controller:default:default:1.0"
 
-# Shared HTTP Endpoint
+{{#if HTTP_ENABLED}}
+# Common HTTP endpoint
 - descriptor: "pip-services:endpoint:http:default:1.0"
   connection:
     protocol: http
     host: 0.0.0.0
     port: {{HTTP_PORT}}{{#unless HTTP_PORT}}8080{{/unless}}
 
-# HTTP Service V1
+# HTTP endpoint service version 1.0
 - descriptor: "beacons:service:http:default:1.0"
 
 # Hearbeat service
@@ -68,3 +69,21 @@
 
 # Status service
 - descriptor: "pip-services:status-service:http:default:1.0"
+{{/if}}
+
+{{#if GRPC_ENABLED}}
+# Common GRPC endpoint
+- descriptor: "beacons:endpoint:grpc:default:1.0"
+  connection:
+    protocol: http
+    host: 0.0.0.0
+    port: 8090
+
+# GRPC endpoint service version 1.0
+- descriptor: "beacons:service:grpc:default:1.0"
+
+# Commandable GRPC endpoint version 1.0
+- descriptor: "beacons:service:commandable-grpc:default:1.0"
+{{/if}}
+
+# Todo: do we need an 'unless' for when neither HTTP nor GRPC are enabled?
