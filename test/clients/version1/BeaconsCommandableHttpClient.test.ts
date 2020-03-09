@@ -4,15 +4,15 @@ import { References } from 'pip-services3-commons-node';
 
 import { BeaconsMemoryPersistence } from '../../../src/persistence/BeaconsMemoryPersistence';
 import { BeaconsController } from '../../../src/logic/BeaconsController';
-import { BeaconsHttpServiceV1 } from '../../../src/services/version1/BeaconsHttpServiceV1';
-import { BeaconsHttpClientV1 } from '../../../src/clients/version1/BeaconsHttpClientV1';
+import { BeaconsCommandableHttpServiceV1 } from '../../../src/services/version1/BeaconsCommandableHttpServiceV1';
+import { BeaconsCommandableHttpClientV1 } from '../../../src/clients/version1/BeaconsCommandableHttpClientV1';
 import { BeaconsClientV1Fixture } from './BeaconsClientV1Fixture';
 
-suite('BeaconsHttpClientV1', () => {
+suite('BeaconsCommandableHttpClientV1', () => {
     let persistence: BeaconsMemoryPersistence;
     let controller: BeaconsController;
-    let service: BeaconsHttpServiceV1;
-    let client: BeaconsHttpClientV1;
+    let service: BeaconsCommandableHttpServiceV1;
+    let client: BeaconsCommandableHttpClientV1;
     let fixture: BeaconsClientV1Fixture;
 
     setup((done) => {
@@ -28,10 +28,10 @@ suite('BeaconsHttpClientV1', () => {
             'connection.host', 'localhost'
         );
 
-        service = new BeaconsHttpServiceV1();
+        service = new BeaconsCommandableHttpServiceV1();
         service.configure(httpConfig);
 
-        client = new BeaconsHttpClientV1();
+        client = new BeaconsCommandableHttpClientV1();
         client.configure(httpConfig);
 
         let references = References.fromTuples(

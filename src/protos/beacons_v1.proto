@@ -73,38 +73,38 @@ message BeaconsPageRequest {
   PagingParams paging = 3;
 }
 
-// The response message containing the Beacons page response
+// The response message containing the Beacons page response.
 message BeaconsPageReply {
   ErrorDescription error = 1;
   BeaconsPage page = 2;
 }
 
-// The request message containing the Beacons id request.
+// The request message containing the Beacon id request.
 message BeaconsIdRequest {
   string correlation_id = 1;
   string beacon_id = 2;
 }
 
-// The response message containing the Beacons params response
+// The response message containing the Beacon response.
 message BeaconReply {
   ErrorDescription error = 1;
   Beacon beacon = 2;
 }
 
-// The request message containing the Beacons id request.
+// The request message containing the Beacon udi request.
 message BeaconsUdiRequest {
   string correlation_id = 1;
   string udi = 2;
 }
 
-// The request message containing the Beacons calculate position request.
+// The request message containing the calculate position request.
 message BeaconsPositionRequest {
   string correlation_id = 1;
   string site_id = 2;
   string udis = 3;
 }
 
-// The request message containing the Beacons calculate position reply.
+// The response message containing the calculate position response.
 message BeaconsPositionReply {
   ErrorDescription error = 1;
   string position = 2;

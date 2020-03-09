@@ -2,15 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const pip_services3_components_node_1 = require("pip-services3-components-node");
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
-const BeaconsNullClientV1_1 = require("../../src/clients/version1/BeaconsNullClientV1");
-const BeaconsDirectClientV1_1 = require("../../src/clients/version1/BeaconsDirectClientV1");
-const BeaconsHttpClientV1_1 = require("../../src/clients/version1/BeaconsHttpClientV1");
+const BeaconsNullClientV1_1 = require("../clients/version1/BeaconsNullClientV1");
+const BeaconsDirectClientV1_1 = require("../clients/version1/BeaconsDirectClientV1");
+const BeaconsCommandableHttpClientV1_1 = require("../clients/version1/BeaconsCommandableHttpClientV1");
 class BeaconsClientFactory extends pip_services3_components_node_1.Factory {
     constructor() {
         super();
         this.registerAsType(BeaconsClientFactory.NullClientDescriptor, BeaconsNullClientV1_1.BeaconsNullClientV1);
         this.registerAsType(BeaconsClientFactory.DirectClientDescriptor, BeaconsDirectClientV1_1.BeaconsDirectClientV1);
-        this.registerAsType(BeaconsClientFactory.HttpClientDescriptor, BeaconsHttpClientV1_1.BeaconsHttpClientV1);
+        this.registerAsType(BeaconsClientFactory.HttpClientDescriptor, BeaconsCommandableHttpClientV1_1.BeaconsCommandableHttpClientV1);
     }
 }
 exports.BeaconsClientFactory = BeaconsClientFactory;

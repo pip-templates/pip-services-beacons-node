@@ -2,25 +2,22 @@ let _ = require('lodash');
 let services = require('../../../../src/protos/beacon_v1_grpc_pb');
 let messages = require('../../../../src/protos/beacon_v1_pb');
 
-import { IReferences, ConfigParams } from 'pip-services3-commons-node';
+import { IReferences } from 'pip-services3-commons-node';
 import { Descriptor } from 'pip-services3-commons-node';
 import { DataPage } from 'pip-services3-commons-node';
 import { FilterParams } from 'pip-services3-commons-node';
-import { ObjectSchema } from 'pip-services3-commons-node';
-import { TypeCode } from 'pip-services3-commons-node';
 import { GrpcService } from 'pip-services3-grpc-node';
 
 import { BeaconV1 } from '../../data/version1/BeaconV1';
-import { BeaconV1Schema } from '../../data/version1/BeaconV1Schema';
 import { IBeaconsController } from '../../logic/IBeaconsController';
 import { BeaconsGrpcConverterV1 } from '../../clients/version1/BeaconsGrpcConverterV1';
 
-export class SettingsGrpcServiceV1 extends GrpcService {
+export class BeaconsGrpcServiceV1 extends GrpcService {
     private _controller: IBeaconsController;
 	
     public constructor() {
-        super(services.SettingsService);
-        this._dependencyResolver.put('controller', new Descriptor("pip-services-settings", "controller", "default", "*", "*"));
+        super(services.BeaconsService);
+        this._dependencyResolver.put('controller', new Descriptor("beacons", "controller", "default", "*", "*"));
     }
 
 	public setReferences(references: IReferences): void {
@@ -42,7 +39,7 @@ export class SettingsGrpcServiceV1 extends GrpcService {
                 let error = BeaconsGrpcConverterV1.fromError(err);
                 let page = err == null ? BeaconsGrpcConverterV1.fromBeaconPage(result) : null;
 
-                let response = new messages.SettingsSectionPageReply();
+                let response = new messages.BeaconsPageReply();
                 response.setError(error);
                 response.setPage(page);
 
@@ -61,7 +58,7 @@ export class SettingsGrpcServiceV1 extends GrpcService {
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
 
-                let response = new messages.SettingsParamsReply();
+                let response = new messages.BeaconReply();
                 response.setError(error);
                 BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
 
@@ -80,7 +77,7 @@ export class SettingsGrpcServiceV1 extends GrpcService {
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
 
-                let response = new messages.SettingsParamsReply();
+                let response = new messages.BeaconReply();
                 response.setError(error);
                 BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
 
@@ -100,7 +97,7 @@ export class SettingsGrpcServiceV1 extends GrpcService {
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
 
-                let response = new messages.SettingsParamsReply();
+                let response = new messages.BeaconsPositionReply();
                 response.setError(error);
                 BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
 
@@ -119,7 +116,7 @@ export class SettingsGrpcServiceV1 extends GrpcService {
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
 
-                let response = new messages.SettingsParamsReply();
+                let response = new messages.BeaconReply();
                 response.setError(error);
                 BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
 
@@ -138,7 +135,7 @@ export class SettingsGrpcServiceV1 extends GrpcService {
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
 
-                let response = new messages.SettingsParamsReply();
+                let response = new messages.BeaconReply();
                 response.setError(error);
                 BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
 
@@ -157,7 +154,7 @@ export class SettingsGrpcServiceV1 extends GrpcService {
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
 
-                let response = new messages.SettingsParamsReply();
+                let response = new messages.BeaconReply();
                 response.setError(error);
                 BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
 

@@ -13,7 +13,7 @@ import { BeaconV1 } from '../../../src/data/version1/BeaconV1';
 import { BeaconTypeV1 } from '../../../src/data/version1/BeaconTypeV1';
 import { BeaconsMemoryPersistence } from '../../../src/persistence/BeaconsMemoryPersistence';
 import { BeaconsController } from '../../../src/logic/BeaconsController';
-import { BeaconsHttpServiceV1 } from '../../../src/services/version1/BeaconsHttpServiceV1';
+import { BeaconsCommandableHttpServiceV1 } from '../../../src/services/version1/BeaconsCommandableHttpServiceV1';
 
 const BEACON1: BeaconV1 = {
     id: '1',
@@ -37,7 +37,7 @@ const BEACON2: BeaconV1 = {
 suite('BeaconsHttpServiceV1', () => {
     let persistence: BeaconsMemoryPersistence;
     let controller: BeaconsController;
-    let service: BeaconsHttpServiceV1;
+    let service: BeaconsCommandableHttpServiceV1;
     let rest: any;
 
     setup((done) => {
@@ -50,7 +50,7 @@ suite('BeaconsHttpServiceV1', () => {
         controller = new BeaconsController();
         controller.configure(new ConfigParams());
 
-        service = new BeaconsHttpServiceV1();
+        service = new BeaconsCommandableHttpServiceV1();
         service.configure(ConfigParams.fromTuples(
             'connection.protocol', 'http',
             'connection.port', 3000,

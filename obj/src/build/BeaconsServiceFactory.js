@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const pip_services3_components_node_1 = require("pip-services3-components-node");
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
-const BeaconsMemoryPersistence_1 = require("../../src/persistence/BeaconsMemoryPersistence");
-const BeaconsFilePersistence_1 = require("../../src/persistence/BeaconsFilePersistence");
-const BeaconsMongoDbPersistence_1 = require("../../src/persistence/BeaconsMongoDbPersistence");
-const BeaconsCouchbasePersistence_1 = require("../../src/persistence/BeaconsCouchbasePersistence");
-const BeaconsController_1 = require("../../src/logic/BeaconsController");
-const BeaconsHttpServiceV1_1 = require("../../src/services/version1/BeaconsHttpServiceV1");
+const BeaconsMemoryPersistence_1 = require("../persistence/BeaconsMemoryPersistence");
+const BeaconsFilePersistence_1 = require("../persistence/BeaconsFilePersistence");
+const BeaconsMongoDbPersistence_1 = require("../persistence/BeaconsMongoDbPersistence");
+const BeaconsCouchbasePersistence_1 = require("../persistence/BeaconsCouchbasePersistence");
+const BeaconsController_1 = require("../logic/BeaconsController");
+const BeaconsCommandableHttpServiceV1_1 = require("../services/version1/BeaconsCommandableHttpServiceV1");
 class BeaconsServiceFactory extends pip_services3_components_node_1.Factory {
     constructor() {
         super();
@@ -16,7 +16,7 @@ class BeaconsServiceFactory extends pip_services3_components_node_1.Factory {
         this.registerAsType(BeaconsServiceFactory.MongoDbPersistenceDescriptor, BeaconsMongoDbPersistence_1.BeaconsMongoDbPersistence);
         this.registerAsType(BeaconsServiceFactory.CouchbasePersistenceDescriptor, BeaconsCouchbasePersistence_1.BeaconsCouchbasePersistence);
         this.registerAsType(BeaconsServiceFactory.ControllerDescriptor, BeaconsController_1.BeaconsController);
-        this.registerAsType(BeaconsServiceFactory.HttpServiceV1Descriptor, BeaconsHttpServiceV1_1.BeaconsHttpServiceV1);
+        this.registerAsType(BeaconsServiceFactory.CommandableHttpServiceV1Descriptor, BeaconsCommandableHttpServiceV1_1.BeaconsCommandableHttpServiceV1);
     }
 }
 exports.BeaconsServiceFactory = BeaconsServiceFactory;
@@ -25,5 +25,5 @@ BeaconsServiceFactory.FilePersistenceDescriptor = new pip_services3_commons_node
 BeaconsServiceFactory.MongoDbPersistenceDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'persistence', 'mongodb', '*', '1.0');
 BeaconsServiceFactory.CouchbasePersistenceDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'persistence', 'couchbase', '*', '1.0');
 BeaconsServiceFactory.ControllerDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'controller', 'default', '*', '1.0');
-BeaconsServiceFactory.HttpServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'http', '*', '1.0');
+BeaconsServiceFactory.CommandableHttpServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'http', '*', '1.0');
 //# sourceMappingURL=BeaconsServiceFactory.js.map

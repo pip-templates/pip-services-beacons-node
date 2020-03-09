@@ -7,10 +7,10 @@ const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");
 const pip_services3_grpc_node_1 = require("pip-services3-grpc-node");
 const BeaconsGrpcConverterV1_1 = require("../../clients/version1/BeaconsGrpcConverterV1");
-class SettingsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
+class BeaconsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     constructor() {
-        super(services.SettingsService);
-        this._dependencyResolver.put('controller', new pip_services3_commons_node_1.Descriptor("pip-services-settings", "controller", "default", "*", "*"));
+        super(services.BeaconsService);
+        this._dependencyResolver.put('controller', new pip_services3_commons_node_1.Descriptor("beacons", "controller", "default", "*", "*"));
     }
     setReferences(references) {
         super.setReferences(references);
@@ -24,7 +24,7 @@ class SettingsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         this._controller.getBeacons(correlationId, filter, paging, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);
             let page = err == null ? BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromBeaconPage(result) : null;
-            let response = new messages.SettingsSectionPageReply();
+            let response = new messages.BeaconsPageReply();
             response.setError(error);
             response.setPage(page);
             callback(err, response);
@@ -35,7 +35,7 @@ class SettingsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         let id = call.request.getId();
         this._controller.getBeaconById(correlationId, id, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);
-            let response = new messages.SettingsParamsReply();
+            let response = new messages.BeaconReply();
             response.setError(error);
             BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
             callback(err, response);
@@ -46,7 +46,7 @@ class SettingsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         let udi = call.request.getUdi();
         this._controller.getBeaconByUdi(correlationId, udi, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);
-            let response = new messages.SettingsParamsReply();
+            let response = new messages.BeaconReply();
             response.setError(error);
             BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
             callback(err, response);
@@ -58,7 +58,7 @@ class SettingsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         let siteId = call.request.getSiteId();
         this._controller.calculatePosition(correlationId, udis, siteId, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);
-            let response = new messages.SettingsParamsReply();
+            let response = new messages.BeaconsPositionReply();
             response.setError(error);
             BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
             callback(err, response);
@@ -70,7 +70,7 @@ class SettingsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         ;
         this._controller.createBeacon(correlationId, beacon, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);
-            let response = new messages.SettingsParamsReply();
+            let response = new messages.BeaconReply();
             response.setError(error);
             BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
             callback(err, response);
@@ -82,7 +82,7 @@ class SettingsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         ;
         this._controller.updateBeacon(correlationId, beacon, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);
-            let response = new messages.SettingsParamsReply();
+            let response = new messages.BeaconReply();
             response.setError(error);
             BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
             callback(err, response);
@@ -94,7 +94,7 @@ class SettingsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         ;
         this._controller.deleteBeaconById(correlationId, id, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);
-            let response = new messages.SettingsParamsReply();
+            let response = new messages.BeaconReply();
             response.setError(error);
             BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
             callback(err, response);
@@ -110,5 +110,5 @@ class SettingsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         this.registerMethod('delete_beacon_by_id', null, this.deleteBeaconById);
     }
 }
-exports.SettingsGrpcServiceV1 = SettingsGrpcServiceV1;
+exports.BeaconsGrpcServiceV1 = BeaconsGrpcServiceV1;
 //# sourceMappingURL=BeaconsGrpcServiceV1.js.map

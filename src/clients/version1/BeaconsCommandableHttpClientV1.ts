@@ -1,14 +1,18 @@
-import { FilterParams } from 'pip-services3-commons-node';
+import { FilterParams, ConfigParams } from 'pip-services3-commons-node';
 import { PagingParams } from 'pip-services3-commons-node';
 import { DataPage } from 'pip-services3-commons-node';
 import { CommandableHttpClient } from 'pip-services3-rpc-node';
 
-import { BeaconV1 } from '../../../src/data/version1/BeaconV1';
+import { BeaconV1 } from '../../data/version1/BeaconV1';
 import { IBeaconsClientV1 } from './IBeaconsClientV1';
 
-export class BeaconsHttpClientV1 extends CommandableHttpClient implements IBeaconsClientV1 {
-    public constructor() {
+export class BeaconsCommandableHttpClientV1 extends CommandableHttpClient implements IBeaconsClientV1 {
+    
+    public constructor(config?: any) {
         super('v1/beacons');
+
+        if (config != null)
+            this.configure(ConfigParams.fromValue(config));
     }
 
     public getBeacons(correlationId: string, filter: FilterParams, paging: PagingParams,

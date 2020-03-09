@@ -1,1 +1,3 @@
-export { BeaconsHttpServiceV1 } from './BeaconsHttpServiceV1';
+export { BeaconsCommandableHttpServiceV1 } from './BeaconsCommandableHttpServiceV1';
+export { BeaconsCommandableGrpcServiceV1 } from './BeaconsCommandableGrpcServiceV1';
+export { BeaconsGrpcServiceV1 } from './BeaconsGrpcServiceV1';

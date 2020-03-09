@@ -6,6 +6,6 @@ export declare class BeaconsServiceFactory extends Factory {
     static MongoDbPersistenceDescriptor: Descriptor;
     static CouchbasePersistenceDescriptor: Descriptor;
     static ControllerDescriptor: Descriptor;
-    static HttpServiceV1Descriptor: Descriptor;
+    static CommandableHttpServiceV1Descriptor: Descriptor;
     constructor();
 }
