@@ -5,7 +5,7 @@ import { ConfigParams } from 'pip-services3-commons-node';
 import { BeaconsCouchbasePersistence } from '../../src/persistence/BeaconsCouchbasePersistence';
 import { BeaconsPersistenceFixture } from './BeaconsPersistenceFixture';
 
-suite('BeaconsCouchbasePersistence', ()=> {
+/* suite('BeaconsCouchbasePersistence', ()=> {
     let persistence: BeaconsCouchbasePersistence;
     let fixture: BeaconsPersistenceFixture;
 
@@ -61,3 +61,4 @@ suite('BeaconsCouchbasePersistence', ()=> {
         fixture.testGetWithFilters(done);
     });
 });
+ */
