@@ -7,7 +7,7 @@
     "service": "node ./bin/run.js",
     "test": "mocha -t 5000 -R spec -u tdd --recursive ./obj/test",
     "test_30s": "mocha -t 30000 -R spec -u tdd --recursive ./obj/test",
-    "protogen": "cd src/protos && protoc --plugin=protoc-gen-ts=../../node_modules/.bin/protoc-gen-ts --js_out=import_style=commonjs,binary:./ --ts_out=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` beacons_v1.proto",
+    "protogen": "cd src/protos && protoc --plugin=protoc-gen-ts=../../node_modules/.bin/protoc-gen-ts --js_out=import_style=commonjs,binary:./ --ts_out=. --grpc_out=. --plugin=protoc-gen-grpc=../../node_modules/.bin/grpc_tools_node_protoc_plugin beacons_v1.proto",
     "delay_test": "sleep 60 && echo Continue... && mocha -t 30000 -R spec -u tdd --recursive ./obj/test"
   },
   "dependencies": {
@@ -27,10 +27,11 @@
     "@types/lodash": "^4.14.109",
     "@types/mocha": "^5.2.1",
     "@types/node": "^10.3.0",
-    "google-protobuf": "^3.7.1",
-    "ts-protoc-gen": "^0.9.0",
     "chai": "^4.1.2",
+    "google-protobuf": "^3.7.1",
+    "grpc-tools": "^1.8.1",
     "mocha": "^5.2.0",
-    "restify": "^4.3.0"
+    "restify": "^4.3.0",
+    "ts-protoc-gen": "^0.9.0"
   }
 }
