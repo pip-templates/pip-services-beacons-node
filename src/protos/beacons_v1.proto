@@ -15,7 +15,7 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "pip-templates.beacons.version1";
+option java_package = "beacons.version1";
 option java_outer_classname = "BeaconsProtoV1";
 option objc_class_prefix = "BEACONS_CMD_V1";
 
