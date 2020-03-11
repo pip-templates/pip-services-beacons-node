@@ -9,6 +9,7 @@ services:
     depends_on:
       - mongo
     environment:
+      - HTTP_ENABLED=true
       - HTTP_PORT=8080
       - MONGO_ENABLED=true
       - MONGO_SERVICE_HOST=mongo
