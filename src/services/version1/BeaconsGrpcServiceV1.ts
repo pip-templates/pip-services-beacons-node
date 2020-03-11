@@ -1,6 +1,6 @@
 let _ = require('lodash');
-let services = require('../../../../src/protos/beacon_v1_grpc_pb');
-let messages = require('../../../../src/protos/beacon_v1_pb');
+let services = require('../../../../src/protos/beacons_v1_grpc_pb');
+let messages = require('../../../../src/protos/beacons_v1_pb');
 
 import { IReferences } from 'pip-services3-commons-node';
 import { Descriptor } from 'pip-services3-commons-node';
@@ -12,6 +12,7 @@ import { BeaconV1 } from '../../data/version1/BeaconV1';
 import { IBeaconsController } from '../../logic/IBeaconsController';
 import { BeaconsGrpcConverterV1 } from '../../clients/version1/BeaconsGrpcConverterV1';
 
+//Todo: Why is the controller returning gRPC-ready results???
 export class BeaconsGrpcServiceV1 extends GrpcService {
     private _controller: IBeaconsController;
 	
@@ -37,7 +38,7 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
             paging,
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
-                let page = err == null ? BeaconsGrpcConverterV1.fromBeaconPage(result) : null;
+                let page = err == null ? BeaconsGrpcConverterV1.fromBeaconsPage(result) : null;
 
                 let response = new messages.BeaconsPageReply();
                 response.setError(error);
@@ -57,10 +58,11 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
             id,
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
+                let beacon = BeaconsGrpcConverterV1.fromBeacon(result);
 
                 let response = new messages.BeaconReply();
                 response.setError(error);
-                BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
+                response.setBeacon(beacon)
 
                 callback(err, response);
             }
@@ -76,11 +78,12 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
             udi,
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
+                let beacon = BeaconsGrpcConverterV1.fromBeacon(result);
 
                 let response = new messages.BeaconReply();
                 response.setError(error);
-                BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
-
+                response.setBeacon(beacon)
+                
                 callback(err, response);
             }
         );
@@ -99,7 +102,7 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
 
                 let response = new messages.BeaconsPositionReply();
                 response.setError(error);
-                BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
+                response.setPosition(response.getPosition());
 
                 callback(err, response);
             }
@@ -115,30 +118,38 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
             beacon,
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
+                //Todo: Why is the controller returning gRPC-ready results??? 
+                //Commented out BeaconsGrpcConverterV1.fromBeacon's logic - it just returns the argument passed to it...
+                let beacon = BeaconsGrpcConverterV1.fromBeacon(result);
 
                 let response = new messages.BeaconReply();
                 response.setError(error);
-                BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
-
+                response.setBeacon(beacon)
+                
                 callback(err, response);
+                
             }
         );
     }
 
     private updateBeacon(call: any, callback: any) {
         let correlationId = call.request.getCorrelationId();
-        let beacon = call.request.getBeacon();;
+        let beacon = call.request.getBeacon();
+
+        //Todo: why does call.request.getBeacon() return data that needs to converting?
+        beacon = BeaconsGrpcConverterV1.toBeacon(beacon);
 
         this._controller.updateBeacon(
             correlationId,
             beacon,
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
+                let beacon = BeaconsGrpcConverterV1.fromBeacon(result);
 
                 let response = new messages.BeaconReply();
                 response.setError(error);
-                BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
-
+                response.setBeacon(beacon)
+                
                 callback(err, response);
             }
         );
@@ -153,11 +164,12 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
             id,
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
+                let beacon = BeaconsGrpcConverterV1.fromBeacon(result);
 
                 let response = new messages.BeaconReply();
                 response.setError(error);
-                BeaconsGrpcConverterV1.setMap(response.getParametersMap(), result);
-
+                response.setBeacon(beacon)
+                
                 callback(err, response);
             }
         );

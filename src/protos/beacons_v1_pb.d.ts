@@ -209,7 +209,7 @@ export namespace BeaconsPageReply {
   }
 }
 
-export class BeaconsIdRequest extends jspb.Message {
+export class BeaconIdRequest extends jspb.Message {
   getCorrelationId(): string;
   setCorrelationId(value: string): void;
 
@@ -217,16 +217,16 @@ export class BeaconsIdRequest extends jspb.Message {
   setBeaconId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BeaconsIdRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: BeaconsIdRequest): BeaconsIdRequest.AsObject;
+  toObject(includeInstance?: boolean): BeaconIdRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: BeaconIdRequest): BeaconIdRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: BeaconsIdRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BeaconsIdRequest;
-  static deserializeBinaryFromReader(message: BeaconsIdRequest, reader: jspb.BinaryReader): BeaconsIdRequest;
+  static serializeBinaryToWriter(message: BeaconIdRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BeaconIdRequest;
+  static deserializeBinaryFromReader(message: BeaconIdRequest, reader: jspb.BinaryReader): BeaconIdRequest;
 }
 
-export namespace BeaconsIdRequest {
+export namespace BeaconIdRequest {
   export type AsObject = {
     correlationId: string,
     beaconId: string,
@@ -261,7 +261,7 @@ export namespace BeaconReply {
   }
 }
 
-export class BeaconsUdiRequest extends jspb.Message {
+export class BeaconUdiRequest extends jspb.Message {
   getCorrelationId(): string;
   setCorrelationId(value: string): void;
 
@@ -269,16 +269,16 @@ export class BeaconsUdiRequest extends jspb.Message {
   setUdi(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BeaconsUdiRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: BeaconsUdiRequest): BeaconsUdiRequest.AsObject;
+  toObject(includeInstance?: boolean): BeaconUdiRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: BeaconUdiRequest): BeaconUdiRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: BeaconsUdiRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BeaconsUdiRequest;
-  static deserializeBinaryFromReader(message: BeaconsUdiRequest, reader: jspb.BinaryReader): BeaconsUdiRequest;
+  static serializeBinaryToWriter(message: BeaconUdiRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BeaconUdiRequest;
+  static deserializeBinaryFromReader(message: BeaconUdiRequest, reader: jspb.BinaryReader): BeaconUdiRequest;
 }
 
-export namespace BeaconsUdiRequest {
+export namespace BeaconUdiRequest {
   export type AsObject = {
     correlationId: string,
     udi: string,
@@ -339,7 +339,7 @@ export namespace BeaconsPositionReply {
   }
 }
 
-export class BeaconParamsRequest extends jspb.Message {
+export class BeaconRequest extends jspb.Message {
   getCorrelationId(): string;
   setCorrelationId(value: string): void;
 
@@ -349,16 +349,16 @@ export class BeaconParamsRequest extends jspb.Message {
   setBeacon(value?: Beacon): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BeaconParamsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: BeaconParamsRequest): BeaconParamsRequest.AsObject;
+  toObject(includeInstance?: boolean): BeaconRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: BeaconRequest): BeaconRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: BeaconParamsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BeaconParamsRequest;
-  static deserializeBinaryFromReader(message: BeaconParamsRequest, reader: jspb.BinaryReader): BeaconParamsRequest;
+  static serializeBinaryToWriter(message: BeaconRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BeaconRequest;
+  static deserializeBinaryFromReader(message: BeaconRequest, reader: jspb.BinaryReader): BeaconRequest;
 }
 
-export namespace BeaconParamsRequest {
+export namespace BeaconRequest {
   export type AsObject = {
     correlationId: string,
     beacon?: Beacon.AsObject,

@@ -1,7 +1,6 @@
 import { FilterParams } from 'pip-services3-commons-node';
 import { PagingParams } from 'pip-services3-commons-node';
 import { DataPage } from 'pip-services3-commons-node';
-import { ConfigParams } from 'pip-services3-commons-node';
 import { GrpcClient } from 'pip-services3-grpc-node';
 import { IBeaconsClientV1 } from './IBeaconsClientV1';
 import { BeaconV1 } from '../../data/version1/BeaconV1';
@@ -14,9 +13,4 @@ export declare class BeaconsGrpcClientV1 extends GrpcClient implements IBeaconsC
     createBeacon(correlationId: string, beacon: BeaconV1, callback: (err: any, beacon: BeaconV1) => void): void;
     updateBeacon(correlationId: string, beacon: BeaconV1, callback: (err: any, beacon: BeaconV1) => void): void;
     deleteBeaconById(correlationId: string, beaconId: string, callback: (err: any, beacon: BeaconV1) => void): void;
-    getSectionIds(correlationId: string, filter: FilterParams, paging: PagingParams, callback: (err: any, page: DataPage<string>) => void): void;
-    getSections(correlationId: string, filter: FilterParams, paging: PagingParams, callback: (err: any, page: DataPage<BeaconV1>) => void): void;
-    getSectionById(correlationId: string, id: string, callback: (err: any, parameters: ConfigParams) => void): void;
-    setSection(correlationId: string, id: string, parameters: ConfigParams, callback?: (err: any, parameters: ConfigParams) => void): void;
-    modifySection(correlationId: string, id: string, updateParams: ConfigParams, incrementParams: ConfigParams, callback?: (err: any, parameters: ConfigParams) => void): void;
 }

@@ -1,5 +1,5 @@
 let _ = require('lodash');
-let messages = require('../../../src/protos/settings_v1_pb');
+let messages = require('../../../../src/protos/beacons_v1_pb');
 
 import { DataPage } from 'pip-services3-commons-node';
 import { PagingParams } from 'pip-services3-commons-node';
@@ -120,9 +120,9 @@ export class BeaconsGrpcConverterV1 {
         return paging;
     }
 
-    // Todo
+    // Todo: Why is the controller returning gRPC-ready data?
     public static fromBeacon(beacon: BeaconV1): any {
-        if (beacon == null) return null;
+/*         if (beacon == null) return null;
 
         let obj = new messages.Beacon();
 
@@ -135,7 +135,8 @@ export class BeaconsGrpcConverterV1 {
         obj.setCenter(beacon.center); //Todo: is this right? Maybe: BeaconsGrpcConverterV1.setMap(obj.getParametersMap(), beacon.center); ?
         obj.setRadius(beacon.radius);        
 
-        return obj;
+        return obj; */
+        return beacon;
     }
 
     // Todo
@@ -155,10 +156,10 @@ export class BeaconsGrpcConverterV1 {
         return beacon;
     }
 
-    public static fromBeaconPage(page: DataPage<BeaconV1>): any {
+    public static fromBeaconsPage(page: DataPage<BeaconV1>): any {
         if (page == null) return null;
 
-        let obj = new messages.BeaconPage();
+        let obj = new messages.BeaconsPage();
 
         obj.setTotal(page.total);
         let data = _.map(page.data, BeaconsGrpcConverterV1.fromBeacon);
@@ -167,7 +168,7 @@ export class BeaconsGrpcConverterV1 {
         return obj;
     }
 
-    public static toBeaconPage(obj: any): DataPage<BeaconV1> {
+    public static toBeaconsPage(obj: any): DataPage<BeaconV1> {
         if (obj == null) return null;
 
         let data = _.map(obj.getDataList(), BeaconsGrpcConverterV1.toBeacon);
@@ -178,27 +179,4 @@ export class BeaconsGrpcConverterV1 {
 
         return page;
     }
-
-    public static fromBeaconIdPage(page: DataPage<string>): any {
-        if (page == null) return null;
-
-        let obj = new messages.BeaconIdPage();
-
-        obj.setTotal(page.total);
-        obj.setDataList(page.data);
-
-        return obj;
-    }
-
-    public static toBeaconIdPage(obj: any): DataPage<string> {
-        if (obj == null) return null;
-
-        let page: DataPage<string> = {
-            total: obj.getTotal(),
-            data: obj.getDataList()
-        };
-
-        return page;
-    }
-
 }

@@ -19,15 +19,15 @@
 var grpc = require('grpc');
 var beacons_v1_pb = require('./beacons_v1_pb.js');
 
-function serialize_beacons_v1_BeaconParamsRequest(arg) {
-  if (!(arg instanceof beacons_v1_pb.BeaconParamsRequest)) {
-    throw new Error('Expected argument of type beacons_v1.BeaconParamsRequest');
+function serialize_beacons_v1_BeaconIdRequest(arg) {
+  if (!(arg instanceof beacons_v1_pb.BeaconIdRequest)) {
+    throw new Error('Expected argument of type beacons_v1.BeaconIdRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_beacons_v1_BeaconParamsRequest(buffer_arg) {
-  return beacons_v1_pb.BeaconParamsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_beacons_v1_BeaconIdRequest(buffer_arg) {
+  return beacons_v1_pb.BeaconIdRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_beacons_v1_BeaconReply(arg) {
@@ -41,15 +41,26 @@ function deserialize_beacons_v1_BeaconReply(buffer_arg) {
   return beacons_v1_pb.BeaconReply.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_beacons_v1_BeaconsIdRequest(arg) {
-  if (!(arg instanceof beacons_v1_pb.BeaconsIdRequest)) {
-    throw new Error('Expected argument of type beacons_v1.BeaconsIdRequest');
+function serialize_beacons_v1_BeaconRequest(arg) {
+  if (!(arg instanceof beacons_v1_pb.BeaconRequest)) {
+    throw new Error('Expected argument of type beacons_v1.BeaconRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_beacons_v1_BeaconsIdRequest(buffer_arg) {
-  return beacons_v1_pb.BeaconsIdRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_beacons_v1_BeaconRequest(buffer_arg) {
+  return beacons_v1_pb.BeaconRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_beacons_v1_BeaconUdiRequest(arg) {
+  if (!(arg instanceof beacons_v1_pb.BeaconUdiRequest)) {
+    throw new Error('Expected argument of type beacons_v1.BeaconUdiRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_beacons_v1_BeaconUdiRequest(buffer_arg) {
+  return beacons_v1_pb.BeaconUdiRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_beacons_v1_BeaconsPageReply(arg) {
@@ -96,17 +107,6 @@ function deserialize_beacons_v1_BeaconsPositionRequest(buffer_arg) {
   return beacons_v1_pb.BeaconsPositionRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_beacons_v1_BeaconsUdiRequest(arg) {
-  if (!(arg instanceof beacons_v1_pb.BeaconsUdiRequest)) {
-    throw new Error('Expected argument of type beacons_v1.BeaconsUdiRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_beacons_v1_BeaconsUdiRequest(buffer_arg) {
-  return beacons_v1_pb.BeaconsUdiRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 
 // The Beacons service definition.
 var BeaconsService = exports.BeaconsService = {
@@ -125,10 +125,10 @@ var BeaconsService = exports.BeaconsService = {
     path: '/beacons_v1.Beacons/get_beacon_by_id',
     requestStream: false,
     responseStream: false,
-    requestType: beacons_v1_pb.BeaconsIdRequest,
+    requestType: beacons_v1_pb.BeaconIdRequest,
     responseType: beacons_v1_pb.BeaconReply,
-    requestSerialize: serialize_beacons_v1_BeaconsIdRequest,
-    requestDeserialize: deserialize_beacons_v1_BeaconsIdRequest,
+    requestSerialize: serialize_beacons_v1_BeaconIdRequest,
+    requestDeserialize: deserialize_beacons_v1_BeaconIdRequest,
     responseSerialize: serialize_beacons_v1_BeaconReply,
     responseDeserialize: deserialize_beacons_v1_BeaconReply,
   },
@@ -136,10 +136,10 @@ var BeaconsService = exports.BeaconsService = {
     path: '/beacons_v1.Beacons/get_beacon_by_udi',
     requestStream: false,
     responseStream: false,
-    requestType: beacons_v1_pb.BeaconsUdiRequest,
+    requestType: beacons_v1_pb.BeaconUdiRequest,
     responseType: beacons_v1_pb.BeaconReply,
-    requestSerialize: serialize_beacons_v1_BeaconsUdiRequest,
-    requestDeserialize: deserialize_beacons_v1_BeaconsUdiRequest,
+    requestSerialize: serialize_beacons_v1_BeaconUdiRequest,
+    requestDeserialize: deserialize_beacons_v1_BeaconUdiRequest,
     responseSerialize: serialize_beacons_v1_BeaconReply,
     responseDeserialize: deserialize_beacons_v1_BeaconReply,
   },
@@ -158,10 +158,10 @@ var BeaconsService = exports.BeaconsService = {
     path: '/beacons_v1.Beacons/create_beacon',
     requestStream: false,
     responseStream: false,
-    requestType: beacons_v1_pb.BeaconParamsRequest,
+    requestType: beacons_v1_pb.BeaconRequest,
     responseType: beacons_v1_pb.BeaconReply,
-    requestSerialize: serialize_beacons_v1_BeaconParamsRequest,
-    requestDeserialize: deserialize_beacons_v1_BeaconParamsRequest,
+    requestSerialize: serialize_beacons_v1_BeaconRequest,
+    requestDeserialize: deserialize_beacons_v1_BeaconRequest,
     responseSerialize: serialize_beacons_v1_BeaconReply,
     responseDeserialize: deserialize_beacons_v1_BeaconReply,
   },
@@ -169,10 +169,10 @@ var BeaconsService = exports.BeaconsService = {
     path: '/beacons_v1.Beacons/update_beacon',
     requestStream: false,
     responseStream: false,
-    requestType: beacons_v1_pb.BeaconParamsRequest,
+    requestType: beacons_v1_pb.BeaconRequest,
     responseType: beacons_v1_pb.BeaconReply,
-    requestSerialize: serialize_beacons_v1_BeaconParamsRequest,
-    requestDeserialize: deserialize_beacons_v1_BeaconParamsRequest,
+    requestSerialize: serialize_beacons_v1_BeaconRequest,
+    requestDeserialize: deserialize_beacons_v1_BeaconRequest,
     responseSerialize: serialize_beacons_v1_BeaconReply,
     responseDeserialize: deserialize_beacons_v1_BeaconReply,
   },
@@ -180,10 +180,10 @@ var BeaconsService = exports.BeaconsService = {
     path: '/beacons_v1.Beacons/delete_beacon_by_id',
     requestStream: false,
     responseStream: false,
-    requestType: beacons_v1_pb.BeaconsIdRequest,
+    requestType: beacons_v1_pb.BeaconIdRequest,
     responseType: beacons_v1_pb.BeaconReply,
-    requestSerialize: serialize_beacons_v1_BeaconsIdRequest,
-    requestDeserialize: deserialize_beacons_v1_BeaconsIdRequest,
+    requestSerialize: serialize_beacons_v1_BeaconIdRequest,
+    requestDeserialize: deserialize_beacons_v1_BeaconIdRequest,
     responseSerialize: serialize_beacons_v1_BeaconReply,
     responseDeserialize: deserialize_beacons_v1_BeaconReply,
   },

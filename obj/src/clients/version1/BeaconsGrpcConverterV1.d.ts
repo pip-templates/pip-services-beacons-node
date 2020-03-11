@@ -12,8 +12,6 @@ export declare class BeaconsGrpcConverterV1 {
     static toPagingParams(obj: any): PagingParams;
     static fromBeacon(beacon: BeaconV1): any;
     static toBeacon(obj: any): BeaconV1;
-    static fromBeaconPage(page: DataPage<BeaconV1>): any;
-    static toBeaconPage(obj: any): DataPage<BeaconV1>;
-    static fromBeaconIdPage(page: DataPage<string>): any;
-    static toBeaconIdPage(obj: any): DataPage<string>;
+    static fromBeaconsPage(page: DataPage<BeaconV1>): any;
+    static toBeaconsPage(obj: any): DataPage<BeaconV1>;
 }

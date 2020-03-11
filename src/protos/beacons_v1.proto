@@ -58,12 +58,12 @@ message BeaconsPage {
 // The Beacons service definition.
 service Beacons {
   rpc get_beacons (BeaconsPageRequest) returns (BeaconsPageReply) {}
-  rpc get_beacon_by_id (BeaconsIdRequest) returns (BeaconReply) {}
-  rpc get_beacon_by_udi (BeaconsUdiRequest) returns (BeaconReply) {}
+  rpc get_beacon_by_id (BeaconIdRequest) returns (BeaconReply) {}
+  rpc get_beacon_by_udi (BeaconUdiRequest) returns (BeaconReply) {}
   rpc calculate_position (BeaconsPositionRequest) returns (BeaconsPositionReply) {}
-  rpc create_beacon (BeaconParamsRequest) returns (BeaconReply) {}
-  rpc update_beacon (BeaconParamsRequest) returns (BeaconReply) {}
-  rpc delete_beacon_by_id (BeaconsIdRequest) returns (BeaconReply) {}
+  rpc create_beacon (BeaconRequest) returns (BeaconReply) {}
+  rpc update_beacon (BeaconRequest) returns (BeaconReply) {}
+  rpc delete_beacon_by_id (BeaconIdRequest) returns (BeaconReply) {}
 }
 
 // The request message containing the Beacons page request.
@@ -80,7 +80,7 @@ message BeaconsPageReply {
 }
 
 // The request message containing the Beacon id request.
-message BeaconsIdRequest {
+message BeaconIdRequest {
   string correlation_id = 1;
   string beacon_id = 2;
 }
@@ -92,7 +92,7 @@ message BeaconReply {
 }
 
 // The request message containing the Beacon udi request.
-message BeaconsUdiRequest {
+message BeaconUdiRequest {
   string correlation_id = 1;
   string udi = 2;
 }
@@ -110,8 +110,8 @@ message BeaconsPositionReply {
   string position = 2;
 }
 
-// The request message containing the Beacons params request
-message BeaconParamsRequest {
+// The request message containing the Beacon request
+message BeaconRequest {
   string correlation_id = 1;
   Beacon beacon = 2;
 }

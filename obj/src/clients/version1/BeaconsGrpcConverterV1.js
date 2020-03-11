@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
-let messages = require('../../../src/protos/settings_v1_pb');
+let messages = require('../../../../src/protos/beacons_v1_pb');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");
 const pip_services3_commons_node_3 = require("pip-services3-commons-node");
@@ -95,20 +95,23 @@ class BeaconsGrpcConverterV1 {
         let paging = new pip_services3_commons_node_1.PagingParams(obj.getSkip(), obj.getTake(), obj.getTotal());
         return paging;
     }
-    // Todo
+    // Todo: Why is the controller returning gRPC-ready data?
     static fromBeacon(beacon) {
-        if (beacon == null)
-            return null;
-        let obj = new messages.Beacon();
-        obj.setId(beacon.id);
-        obj.setSiteId(beacon.site_id);
-        obj.setType(beacon.type);
-        obj.setUdi(beacon.udi);
-        obj.setType(beacon.type);
-        obj.setLabel(beacon.label);
-        obj.setCenter(beacon.center); //Todo: is this right? Maybe: BeaconsGrpcConverterV1.setMap(obj.getParametersMap(), beacon.center); ?
-        obj.setRadius(beacon.radius);
-        return obj;
+        /*         if (beacon == null) return null;
+        
+                let obj = new messages.Beacon();
+        
+                obj.setId(beacon.id);
+                obj.setSiteId(beacon.site_id);
+                obj.setType(beacon.type);
+                obj.setUdi(beacon.udi);
+                obj.setType(beacon.type);
+                obj.setLabel(beacon.label);
+                obj.setCenter(beacon.center); //Todo: is this right? Maybe: BeaconsGrpcConverterV1.setMap(obj.getParametersMap(), beacon.center); ?
+                obj.setRadius(beacon.radius);
+        
+                return obj; */
+        return beacon;
     }
     // Todo
     static toBeacon(obj) {
@@ -125,39 +128,22 @@ class BeaconsGrpcConverterV1 {
         };
         return beacon;
     }
-    static fromBeaconPage(page) {
+    static fromBeaconsPage(page) {
         if (page == null)
             return null;
-        let obj = new messages.BeaconPage();
+        let obj = new messages.BeaconsPage();
         obj.setTotal(page.total);
         let data = _.map(page.data, BeaconsGrpcConverterV1.fromBeacon);
         obj.setDataList(data);
         return obj;
     }
-    static toBeaconPage(obj) {
+    static toBeaconsPage(obj) {
         if (obj == null)
             return null;
         let data = _.map(obj.getDataList(), BeaconsGrpcConverterV1.toBeacon);
         let page = {
             total: obj.getTotal(),
             data: data
-        };
-        return page;
-    }
-    static fromBeaconIdPage(page) {
-        if (page == null)
-            return null;
-        let obj = new messages.BeaconIdPage();
-        obj.setTotal(page.total);
-        obj.setDataList(page.data);
-        return obj;
-    }
-    static toBeaconIdPage(obj) {
-        if (obj == null)
-            return null;
-        let page = {
-            total: obj.getTotal(),
-            data: obj.getDataList()
         };
         return page;
     }
