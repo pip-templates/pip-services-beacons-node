@@ -7,7 +7,6 @@ const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");
 const pip_services3_grpc_node_1 = require("pip-services3-grpc-node");
 const BeaconsGrpcConverterV1_1 = require("../../clients/version1/BeaconsGrpcConverterV1");
-//Todo: Why is the controller returning gRPC-ready results???
 class BeaconsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     constructor() {
         super(services.BeaconsService);
@@ -33,7 +32,7 @@ class BeaconsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     }
     getBeaconById(call, callback) {
         let correlationId = call.request.getCorrelationId();
-        let id = call.request.getId();
+        let id = call.request.getBeaconId();
         this._controller.getBeaconById(correlationId, id, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);
             let beacon = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromBeacon(result);
@@ -57,13 +56,14 @@ class BeaconsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     }
     calculatePosition(call, callback) {
         let correlationId = call.request.getCorrelationId();
-        let udis = call.request.getUdis();
         let siteId = call.request.getSiteId();
-        this._controller.calculatePosition(correlationId, udis, siteId, (err, result) => {
+        let udis = call.request.getUdisList();
+        this._controller.calculatePosition(correlationId, siteId, udis, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);
             let response = new messages.BeaconsPositionReply();
+            result = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromPoint(result);
             response.setError(error);
-            response.setPosition(response.getPosition());
+            response.setPosition(result);
             callback(err, response);
         });
     }
@@ -71,10 +71,9 @@ class BeaconsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         let correlationId = call.request.getCorrelationId();
         let beacon = call.request.getBeacon();
         ;
+        beacon = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.toBeacon(beacon);
         this._controller.createBeacon(correlationId, beacon, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);
-            //Todo: Why is the controller returning gRPC-ready results??? 
-            //Commented out BeaconsGrpcConverterV1.fromBeacon's logic - it just returns the argument passed to it...
             let beacon = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromBeacon(result);
             let response = new messages.BeaconReply();
             response.setError(error);
@@ -85,7 +84,6 @@ class BeaconsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     updateBeacon(call, callback) {
         let correlationId = call.request.getCorrelationId();
         let beacon = call.request.getBeacon();
-        //Todo: why does call.request.getBeacon() return data that needs to converting?
         beacon = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.toBeacon(beacon);
         this._controller.updateBeacon(correlationId, beacon, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);
@@ -98,7 +96,7 @@ class BeaconsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     }
     deleteBeaconById(call, callback) {
         let correlationId = call.request.getCorrelationId();
-        let id = call.request.getId();
+        let id = call.request.getBeaconId();
         ;
         this._controller.deleteBeaconById(correlationId, id, (err, result) => {
             let error = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromError(err);

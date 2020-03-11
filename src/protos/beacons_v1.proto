@@ -39,13 +39,18 @@ message PagingParams {
     bool total = 3;
 }
 
+message Point {
+    string type = 1;
+    repeated double coordinates = 2;
+}
+
 message Beacon {
     string id = 1;
     string site_id = 2;
     string type = 3;
     string udi = 4;
     string label = 5;
-    string center = 6; //map<string, string> center = 6; 
+    Point center = 6;
     double radius = 7;
 
 }
@@ -101,13 +106,13 @@ message BeaconUdiRequest {
 message BeaconsPositionRequest {
   string correlation_id = 1;
   string site_id = 2;
-  string udis = 3;
+  repeated string udis = 3;
 }
 
 // The response message containing the calculate position response.
 message BeaconsPositionReply {
   ErrorDescription error = 1;
-  string position = 2;
+  Point position = 2;
 }
 
 // The request message containing the Beacon request

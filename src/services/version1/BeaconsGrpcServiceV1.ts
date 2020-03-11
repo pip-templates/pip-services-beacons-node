@@ -12,7 +12,6 @@ import { BeaconV1 } from '../../data/version1/BeaconV1';
 import { IBeaconsController } from '../../logic/IBeaconsController';
 import { BeaconsGrpcConverterV1 } from '../../clients/version1/BeaconsGrpcConverterV1';
 
-//Todo: Why is the controller returning gRPC-ready results???
 export class BeaconsGrpcServiceV1 extends GrpcService {
     private _controller: IBeaconsController;
 	
@@ -51,7 +50,7 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
 
     private getBeaconById(call: any, callback: any) {
         let correlationId = call.request.getCorrelationId();
-        let id = call.request.getId();
+        let id = call.request.getBeaconId();
 
         this._controller.getBeaconById(
             correlationId,
@@ -91,18 +90,22 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
 
     private calculatePosition(call: any, callback: any) {
         let correlationId = call.request.getCorrelationId();
-        let udis = call.request.getUdis();
         let siteId = call.request.getSiteId();
+        let udis = call.request.getUdisList();
 
         this._controller.calculatePosition(
             correlationId,
-            udis, siteId,
+            siteId,
+            udis,
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
 
                 let response = new messages.BeaconsPositionReply();
+
+                result=BeaconsGrpcConverterV1.fromPoint(result);
+
                 response.setError(error);
-                response.setPosition(response.getPosition());
+                response.setPosition(result);
 
                 callback(err, response);
             }
@@ -113,13 +116,13 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
         let correlationId = call.request.getCorrelationId();
         let beacon = call.request.getBeacon();;
 
+        beacon = BeaconsGrpcConverterV1.toBeacon(beacon);
+
         this._controller.createBeacon(
             correlationId,
             beacon,
             (err, result) => {
                 let error = BeaconsGrpcConverterV1.fromError(err);
-                //Todo: Why is the controller returning gRPC-ready results??? 
-                //Commented out BeaconsGrpcConverterV1.fromBeacon's logic - it just returns the argument passed to it...
                 let beacon = BeaconsGrpcConverterV1.fromBeacon(result);
 
                 let response = new messages.BeaconReply();
@@ -136,7 +139,6 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
         let correlationId = call.request.getCorrelationId();
         let beacon = call.request.getBeacon();
 
-        //Todo: why does call.request.getBeacon() return data that needs to converting?
         beacon = BeaconsGrpcConverterV1.toBeacon(beacon);
 
         this._controller.updateBeacon(
@@ -157,7 +159,7 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
 
     private deleteBeaconById(call: any, callback: any) {
         let correlationId = call.request.getCorrelationId();
-        let id = call.request.getId();;
+        let id = call.request.getBeaconId();;
 
         this._controller.deleteBeaconById(
             correlationId,

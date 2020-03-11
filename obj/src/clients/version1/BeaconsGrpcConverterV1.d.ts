@@ -10,6 +10,8 @@ export declare class BeaconsGrpcConverterV1 {
     private static fromJson;
     static fromPagingParams(paging: PagingParams): any;
     static toPagingParams(obj: any): PagingParams;
+    static fromPoint(point: any): any;
+    static toPoint(obj: any): any;
     static fromBeacon(beacon: BeaconV1): any;
     static toBeacon(obj: any): BeaconV1;
     static fromBeaconsPage(page: DataPage<BeaconV1>): any;

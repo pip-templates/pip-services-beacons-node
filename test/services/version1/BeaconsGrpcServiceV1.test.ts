@@ -173,7 +173,7 @@ suite('BeaconsGrpcServiceV1', () => {
                     }
                 );
             },
-            /* // Update the beacon
+            // Update the beacon
             (callback) => {
                 beacon1.label = 'ABC';
 
@@ -194,7 +194,7 @@ suite('BeaconsGrpcServiceV1', () => {
                         callback();
                     }
                 );
-            }, */
+            },
             // Get beacon by udi
             (callback) => {
                 client.get_beacon_by_udi(

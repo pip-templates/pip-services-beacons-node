@@ -120,9 +120,29 @@ export class BeaconsGrpcConverterV1 {
         return paging;
     }
 
-    // Todo: Why is the controller returning gRPC-ready data?
+    public static fromPoint(point: any): any {
+        if (point == null) return null;
+
+        let obj = new messages.Point();
+        obj.setType(point.type);
+        obj.setCoordinatesList(point.coordinates);    
+
+        return obj;
+    }
+
+    public static toPoint(obj: any): any {
+        if (obj == null) return null;
+
+        let point = {
+            type: obj.getType(),
+            coordinates: obj.getCoordinatesList()
+        };
+
+        return point;
+    }
+
     public static fromBeacon(beacon: BeaconV1): any {
-/*         if (beacon == null) return null;
+        if (beacon == null) return null;
 
         let obj = new messages.Beacon();
 
@@ -132,14 +152,13 @@ export class BeaconsGrpcConverterV1 {
         obj.setUdi(beacon.udi);
         obj.setType(beacon.type);
         obj.setLabel(beacon.label);
-        obj.setCenter(beacon.center); //Todo: is this right? Maybe: BeaconsGrpcConverterV1.setMap(obj.getParametersMap(), beacon.center); ?
+        let center = BeaconsGrpcConverterV1.fromPoint(beacon.center);
+        obj.setCenter(center);
         obj.setRadius(beacon.radius);        
 
-        return obj; */
-        return beacon;
+        return obj;
     }
 
-    // Todo
     public static toBeacon(obj: any): BeaconV1 {
         if (obj == null) return null;
 
@@ -149,7 +168,7 @@ export class BeaconsGrpcConverterV1 {
             type: obj.getType(),
             udi: obj.getUdi(),
             label: obj.getLabel(),
-            center: obj.getCenter(), // Todo: is this right? Maybe: center: ConfigParams.fromValue(BeaconsGrpcConverterV1.getMap(obj.getCenter())), ?
+            center: BeaconsGrpcConverterV1.toPoint(obj.getCenter()),
             radius: obj.getRadius()
         };
 

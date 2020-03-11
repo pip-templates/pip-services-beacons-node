@@ -95,25 +95,38 @@ class BeaconsGrpcConverterV1 {
         let paging = new pip_services3_commons_node_1.PagingParams(obj.getSkip(), obj.getTake(), obj.getTotal());
         return paging;
     }
-    // Todo: Why is the controller returning gRPC-ready data?
-    static fromBeacon(beacon) {
-        /*         if (beacon == null) return null;
-        
-                let obj = new messages.Beacon();
-        
-                obj.setId(beacon.id);
-                obj.setSiteId(beacon.site_id);
-                obj.setType(beacon.type);
-                obj.setUdi(beacon.udi);
-                obj.setType(beacon.type);
-                obj.setLabel(beacon.label);
-                obj.setCenter(beacon.center); //Todo: is this right? Maybe: BeaconsGrpcConverterV1.setMap(obj.getParametersMap(), beacon.center); ?
-                obj.setRadius(beacon.radius);
-        
-                return obj; */
-        return beacon;
+    static fromPoint(point) {
+        if (point == null)
+            return null;
+        let obj = new messages.Point();
+        obj.setType(point.type);
+        obj.setCoordinatesList(point.coordinates);
+        return obj;
     }
-    // Todo
+    static toPoint(obj) {
+        if (obj == null)
+            return null;
+        let point = {
+            type: obj.getType(),
+            coordinates: obj.getCoordinatesList()
+        };
+        return point;
+    }
+    static fromBeacon(beacon) {
+        if (beacon == null)
+            return null;
+        let obj = new messages.Beacon();
+        obj.setId(beacon.id);
+        obj.setSiteId(beacon.site_id);
+        obj.setType(beacon.type);
+        obj.setUdi(beacon.udi);
+        obj.setType(beacon.type);
+        obj.setLabel(beacon.label);
+        let center = BeaconsGrpcConverterV1.fromPoint(beacon.center);
+        obj.setCenter(center); //Todo: is this right? Maybe: BeaconsGrpcConverterV1.setMap(obj.getParametersMap(), beacon.center); ?
+        obj.setRadius(beacon.radius);
+        return obj;
+    }
     static toBeacon(obj) {
         if (obj == null)
             return null;
@@ -123,7 +136,7 @@ class BeaconsGrpcConverterV1 {
             type: obj.getType(),
             udi: obj.getUdi(),
             label: obj.getLabel(),
-            center: obj.getCenter(),
+            center: BeaconsGrpcConverterV1.toPoint(obj.getCenter()),
             radius: obj.getRadius()
         };
         return beacon;

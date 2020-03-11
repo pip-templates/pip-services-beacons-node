@@ -82,6 +82,32 @@ export namespace PagingParams {
   }
 }
 
+export class Point extends jspb.Message {
+  getType(): string;
+  setType(value: string): void;
+
+  clearCoordinatesList(): void;
+  getCoordinatesList(): Array<number>;
+  setCoordinatesList(value: Array<number>): void;
+  addCoordinates(value: number, index?: number): number;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Point.AsObject;
+  static toObject(includeInstance: boolean, msg: Point): Point.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Point, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Point;
+  static deserializeBinaryFromReader(message: Point, reader: jspb.BinaryReader): Point;
+}
+
+export namespace Point {
+  export type AsObject = {
+    type: string,
+    coordinatesList: Array<number>,
+  }
+}
+
 export class Beacon extends jspb.Message {
   getId(): string;
   setId(value: string): void;
@@ -98,8 +124,10 @@ export class Beacon extends jspb.Message {
   getLabel(): string;
   setLabel(value: string): void;
 
-  getCenter(): string;
-  setCenter(value: string): void;
+  hasCenter(): boolean;
+  clearCenter(): void;
+  getCenter(): Point | undefined;
+  setCenter(value?: Point): void;
 
   getRadius(): number;
   setRadius(value: number): void;
@@ -121,7 +149,7 @@ export namespace Beacon {
     type: string,
     udi: string,
     label: string,
-    center: string,
+    center?: Point.AsObject,
     radius: number,
   }
 }
@@ -292,8 +320,10 @@ export class BeaconsPositionRequest extends jspb.Message {
   getSiteId(): string;
   setSiteId(value: string): void;
 
-  getUdis(): string;
-  setUdis(value: string): void;
+  clearUdisList(): void;
+  getUdisList(): Array<string>;
+  setUdisList(value: Array<string>): void;
+  addUdis(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BeaconsPositionRequest.AsObject;
@@ -309,7 +339,7 @@ export namespace BeaconsPositionRequest {
   export type AsObject = {
     correlationId: string,
     siteId: string,
-    udis: string,
+    udisList: Array<string>,
   }
 }
 
@@ -319,8 +349,10 @@ export class BeaconsPositionReply extends jspb.Message {
   getError(): ErrorDescription | undefined;
   setError(value?: ErrorDescription): void;
 
-  getPosition(): string;
-  setPosition(value: string): void;
+  hasPosition(): boolean;
+  clearPosition(): void;
+  getPosition(): Point | undefined;
+  setPosition(value?: Point): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BeaconsPositionReply.AsObject;
@@ -335,7 +367,7 @@ export class BeaconsPositionReply extends jspb.Message {
 export namespace BeaconsPositionReply {
   export type AsObject = {
     error?: ErrorDescription.AsObject,
-    position: string,
+    position?: Point.AsObject,
   }
 }
 
