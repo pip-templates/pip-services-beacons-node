@@ -34,7 +34,13 @@ const BEACON2: BeaconV1 = {
     radius: 70
 };
 
-suite('BeaconsHttpServiceV1', () => {
+var httpConfig = ConfigParams.fromTuples(
+    "connection.protocol", "http",
+    "connection.host", "localhost",
+    "connection.port", 3000
+);
+
+suite('BeaconsCommandableHttpServiceV1', () => {
     let persistence: BeaconsMemoryPersistence;
     let controller: BeaconsController;
     let service: BeaconsCommandableHttpServiceV1;
@@ -51,11 +57,7 @@ suite('BeaconsHttpServiceV1', () => {
         controller.configure(new ConfigParams());
 
         service = new BeaconsCommandableHttpServiceV1();
-        service.configure(ConfigParams.fromTuples(
-            'connection.protocol', 'http',
-            'connection.port', 3000,
-            'connection.host', 'localhost'
-        ));
+        service.configure(httpConfig);
 
         let references = References.fromTuples(
             new Descriptor('beacons', 'persistence', 'memory', 'default', '1.0'), persistence,
