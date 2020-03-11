@@ -8,6 +8,12 @@ import { BeaconsCommandableHttpServiceV1 } from '../../../src/services/version1/
 import { BeaconsCommandableHttpClientV1 } from '../../../src/clients/version1/BeaconsCommandableHttpClientV1';
 import { BeaconsClientV1Fixture } from './BeaconsClientV1Fixture';
 
+var httpConfig = ConfigParams.fromTuples(
+    'connection.protocol', 'http',
+    'connection.host', 'localhost',
+    'connection.port', 3000
+);
+
 suite('BeaconsCommandableHttpClientV1', () => {
     let persistence: BeaconsMemoryPersistence;
     let controller: BeaconsController;
@@ -21,12 +27,6 @@ suite('BeaconsCommandableHttpClientV1', () => {
 
         controller = new BeaconsController();
         controller.configure(new ConfigParams());
-
-        let httpConfig = ConfigParams.fromTuples(
-            'connection.protocol', 'http',
-            'connection.port', 3000,
-            'connection.host', 'localhost'
-        );
 
         service = new BeaconsCommandableHttpServiceV1();
         service.configure(httpConfig);
