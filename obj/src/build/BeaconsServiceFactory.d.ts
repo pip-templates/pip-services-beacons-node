@@ -7,5 +7,7 @@ export declare class BeaconsServiceFactory extends Factory {
     static CouchbasePersistenceDescriptor: Descriptor;
     static ControllerDescriptor: Descriptor;
     static CommandableHttpServiceV1Descriptor: Descriptor;
+    static CommandableGrpcServiceV1Descriptor: Descriptor;
+    static GrpcServiceV1Descriptor: Descriptor;
     constructor();
 }
