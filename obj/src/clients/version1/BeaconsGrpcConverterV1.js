@@ -123,7 +123,7 @@ class BeaconsGrpcConverterV1 {
         obj.setType(beacon.type);
         obj.setLabel(beacon.label);
         let center = BeaconsGrpcConverterV1.fromPoint(beacon.center);
-        obj.setCenter(center); //Todo: is this right? Maybe: BeaconsGrpcConverterV1.setMap(obj.getParametersMap(), beacon.center); ?
+        obj.setCenter(center);
         obj.setRadius(beacon.radius);
         return obj;
     }
