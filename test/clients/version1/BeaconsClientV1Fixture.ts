@@ -83,7 +83,9 @@ export class BeaconsClientV1Fixture {
                 this._client.getBeacons(
                     null,
                     new FilterParams(),
-                    new PagingParams(),
+                    // Todo: this doesn't work with regular GRPC!
+                    // new PagingParams(),
+                    null,
                     (err, page) => {
                         assert.isNull(err);
 

@@ -1,6 +1,6 @@
 let _ = require('lodash');
-let services = require('../../../src/protos/settings_v1_grpc_pb');
-let messages = require('../../../src/protos/settings_v1_pb');
+let services = require('../../../../src/protos/beacons_v1_grpc_pb');
+let messages = require('../../../../src/protos/beacons_v1_pb');
 
 import { FilterParams } from 'pip-services3-commons-node';
 import { PagingParams } from 'pip-services3-commons-node';
@@ -20,8 +20,8 @@ export class BeaconsGrpcClientV1 extends GrpcClient implements IBeaconsClientV1 
 
     public getBeacons(correlationId: string, filter: FilterParams, paging: PagingParams, 
         callback: (err: any, page: DataPage<BeaconV1>) => void): void {
-        let request = new messages.BeaconsPageRequest();
 
+        let request = new messages.BeaconsPageRequest();
         BeaconsGrpcConverterV1.setMap(request.getFilterMap(), filter);
         request.setPaging(BeaconsGrpcConverterV1.fromPagingParams(paging));
 
@@ -47,8 +47,9 @@ export class BeaconsGrpcClientV1 extends GrpcClient implements IBeaconsClientV1 
     
     public getBeaconById(correlationId: string, beaconId: string, 
         callback: (err: any, beacon: BeaconV1) => void): void {
+
         let request = new messages.BeaconIdRequest();
-        request.setId(beaconId);
+        request.setBeaconId(beaconId);
 
         let timing = this.instrument(correlationId, 'beacons.get_beacon_by_id');
 
@@ -72,6 +73,7 @@ export class BeaconsGrpcClientV1 extends GrpcClient implements IBeaconsClientV1 
     
     public getBeaconByUdi(correlationId: string, udi: string, 
         callback: (err: any, beacon: BeaconV1) => void): void {
+
         let request = new messages.BeaconUdiRequest();
         request.setUdi(udi);
 
@@ -97,8 +99,9 @@ export class BeaconsGrpcClientV1 extends GrpcClient implements IBeaconsClientV1 
     
     public calculatePosition(correlationId: string, siteId: string, udis: string[],
         callback: (err: any, position: any) => void): void {
+
         let request = new messages.BeaconsPositionRequest();
-        request.setUdis(udis);
+        request.setUdisList(udis);
         request.setSiteId(siteId);
 
         let timing = this.instrument(correlationId, 'beacons.calculate_position');
@@ -113,7 +116,7 @@ export class BeaconsGrpcClientV1 extends GrpcClient implements IBeaconsClientV1 
                     err = BeaconsGrpcConverterV1.toError(response.error);
 
                 let result = response 
-                    ? response.getPosition()
+                    ? BeaconsGrpcConverterV1.toPoint(response.getPosition())
                     : null;
 
                 callback(err, result);
@@ -123,8 +126,10 @@ export class BeaconsGrpcClientV1 extends GrpcClient implements IBeaconsClientV1 
     
     public createBeacon(correlationId: string, beacon: BeaconV1, 
         callback: (err: any, beacon: BeaconV1) => void): void {
+
         let request = new messages.BeaconRequest();
-        request.setBeacon(beacon);
+        let gprcBeacon = BeaconsGrpcConverterV1.fromBeacon(beacon);
+        request.setBeacon(gprcBeacon);
 
         let timing = this.instrument(correlationId, 'beacons.create_beacon');
 
@@ -148,8 +153,10 @@ export class BeaconsGrpcClientV1 extends GrpcClient implements IBeaconsClientV1 
     
     public updateBeacon(correlationId: string, beacon: BeaconV1, 
         callback: (err: any, beacon: BeaconV1) => void): void {
+
         let request = new messages.BeaconRequest();
-        request.setBeacon(beacon);
+        let gprcBeacon = BeaconsGrpcConverterV1.fromBeacon(beacon);
+        request.setBeacon(gprcBeacon);
 
         let timing = this.instrument(correlationId, 'beacons.update_beacon');
 
@@ -173,8 +180,9 @@ export class BeaconsGrpcClientV1 extends GrpcClient implements IBeaconsClientV1 
     
     public deleteBeaconById(correlationId: string, beaconId: string, 
         callback: (err: any, beacon: BeaconV1) => void): void {
+        
         let request = new messages.BeaconIdRequest();
-        request.setId(beaconId);
+        request.setBeaconId(beaconId);
 
         let timing = this.instrument(correlationId, 'beacons.delete_beacon_by_id');
 

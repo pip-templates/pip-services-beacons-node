@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
-let services = require('../../../src/protos/settings_v1_grpc_pb');
-let messages = require('../../../src/protos/settings_v1_pb');
+let services = require('../../../../src/protos/beacons_v1_grpc_pb');
+let messages = require('../../../../src/protos/beacons_v1_pb');
 const pip_services3_grpc_node_1 = require("pip-services3-grpc-node");
 const BeaconsGrpcConverterV1_1 = require("./BeaconsGrpcConverterV1");
 class BeaconsGrpcClientV1 extends pip_services3_grpc_node_1.GrpcClient {
@@ -26,7 +26,7 @@ class BeaconsGrpcClientV1 extends pip_services3_grpc_node_1.GrpcClient {
     }
     getBeaconById(correlationId, beaconId, callback) {
         let request = new messages.BeaconIdRequest();
-        request.setId(beaconId);
+        request.setBeaconId(beaconId);
         let timing = this.instrument(correlationId, 'beacons.get_beacon_by_id');
         this.call('get_beacon_by_id', correlationId, request, (err, response) => {
             timing.endTiming();
@@ -54,7 +54,7 @@ class BeaconsGrpcClientV1 extends pip_services3_grpc_node_1.GrpcClient {
     }
     calculatePosition(correlationId, siteId, udis, callback) {
         let request = new messages.BeaconsPositionRequest();
-        request.setUdis(udis);
+        request.setUdisList(udis);
         request.setSiteId(siteId);
         let timing = this.instrument(correlationId, 'beacons.calculate_position');
         this.call('calculate_position', correlationId, request, (err, response) => {
@@ -62,14 +62,15 @@ class BeaconsGrpcClientV1 extends pip_services3_grpc_node_1.GrpcClient {
             if (err == null && response.error != null)
                 err = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.toError(response.error);
             let result = response
-                ? response.getPosition()
+                ? BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.toPoint(response.getPosition())
                 : null;
             callback(err, result);
         });
     }
     createBeacon(correlationId, beacon, callback) {
         let request = new messages.BeaconRequest();
-        request.setBeacon(beacon);
+        let gprcBeacon = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromBeacon(beacon);
+        request.setBeacon(gprcBeacon);
         let timing = this.instrument(correlationId, 'beacons.create_beacon');
         this.call('create_beacon', correlationId, request, (err, response) => {
             timing.endTiming();
@@ -83,7 +84,8 @@ class BeaconsGrpcClientV1 extends pip_services3_grpc_node_1.GrpcClient {
     }
     updateBeacon(correlationId, beacon, callback) {
         let request = new messages.BeaconRequest();
-        request.setBeacon(beacon);
+        let gprcBeacon = BeaconsGrpcConverterV1_1.BeaconsGrpcConverterV1.fromBeacon(beacon);
+        request.setBeacon(gprcBeacon);
         let timing = this.instrument(correlationId, 'beacons.update_beacon');
         this.call('update_beacon', correlationId, request, (err, response) => {
             timing.endTiming();
@@ -97,7 +99,7 @@ class BeaconsGrpcClientV1 extends pip_services3_grpc_node_1.GrpcClient {
     }
     deleteBeaconById(correlationId, beaconId, callback) {
         let request = new messages.BeaconIdRequest();
-        request.setId(beaconId);
+        request.setBeaconId(beaconId);
         let timing = this.instrument(correlationId, 'beacons.delete_beacon_by_id');
         this.call('delete_beacon_by_id', correlationId, request, (err, response) => {
             timing.endTiming();

@@ -6,7 +6,7 @@ import { CommandableGrpcClient } from 'pip-services3-grpc-node';
 import { BeaconV1 } from '../../data/version1/BeaconV1';
 import { IBeaconsClientV1 } from './IBeaconsClientV1';
 
-export class BeaconsHttpClientV1 extends CommandableGrpcClient implements IBeaconsClientV1 {
+export class BeaconsCommandableGrpcClientV1 extends CommandableGrpcClient implements IBeaconsClientV1 {
     public constructor(config?: any) {
         super('v1/beacons');
 

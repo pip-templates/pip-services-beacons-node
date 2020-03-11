@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_grpc_node_1 = require("pip-services3-grpc-node");
-class BeaconsHttpClientV1 extends pip_services3_grpc_node_1.CommandableGrpcClient {
+class BeaconsCommandableGrpcClientV1 extends pip_services3_grpc_node_1.CommandableGrpcClient {
     constructor(config) {
         super('v1/beacons');
         if (config != null)
@@ -43,5 +43,5 @@ class BeaconsHttpClientV1 extends pip_services3_grpc_node_1.CommandableGrpcClien
         }, callback);
     }
 }
-exports.BeaconsHttpClientV1 = BeaconsHttpClientV1;
+exports.BeaconsCommandableGrpcClientV1 = BeaconsCommandableGrpcClientV1;
 //# sourceMappingURL=BeaconsCommandableGrpcClientV1.js.map

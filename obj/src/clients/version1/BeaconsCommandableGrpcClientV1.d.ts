@@ -4,7 +4,7 @@ import { DataPage } from 'pip-services3-commons-node';
 import { CommandableGrpcClient } from 'pip-services3-grpc-node';
 import { BeaconV1 } from '../../data/version1/BeaconV1';
 import { IBeaconsClientV1 } from './IBeaconsClientV1';
-export declare class BeaconsHttpClientV1 extends CommandableGrpcClient implements IBeaconsClientV1 {
+export declare class BeaconsCommandableGrpcClientV1 extends CommandableGrpcClient implements IBeaconsClientV1 {
     constructor(config?: any);
     getBeacons(correlationId: string, filter: FilterParams, paging: PagingParams, callback: (err: any, page: DataPage<BeaconV1>) => void): void;
     getBeaconById(correlationId: string, beaconId: string, callback: (err: any, beacon: BeaconV1) => void): void;
