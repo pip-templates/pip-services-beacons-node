@@ -10,7 +10,7 @@ const BeaconsGrpcConverterV1_1 = require("../../clients/version1/BeaconsGrpcConv
 class BeaconsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     constructor() {
         super(services.BeaconsService);
-        this._dependencyResolver.put('controller', new pip_services3_commons_node_1.Descriptor("beacons", "controller", "default", "*", "*"));
+        this._dependencyResolver.put('controller', new pip_services3_commons_node_1.Descriptor("beacons", "controller", "*", "*", "*"));
     }
     setReferences(references) {
         super.setReferences(references);

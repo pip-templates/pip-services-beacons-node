@@ -20,7 +20,7 @@ class BeaconsClientFactory extends pip_services3_components_node_1.Factory {
 exports.BeaconsClientFactory = BeaconsClientFactory;
 BeaconsClientFactory.NullClientDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'client', 'null', '*', '1.0');
 BeaconsClientFactory.DirectClientDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'client', 'direct', '*', '1.0');
-BeaconsClientFactory.CommandableHttpClientDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'client', 'http', '*', '1.0');
+BeaconsClientFactory.CommandableHttpClientDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'client', 'commandable-http', '*', '1.0');
 BeaconsClientFactory.CommandableGrpcClientV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'client', 'commandable-grpc', '*', '1.0');
 BeaconsClientFactory.GrpcClientV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'client', 'grpc', '*', '1.0');
 //# sourceMappingURL=BeaconsClientFactory.js.map

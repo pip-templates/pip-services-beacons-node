@@ -17,7 +17,7 @@ export class BeaconsGrpcServiceV1 extends GrpcService {
 	
     public constructor() {
         super(services.BeaconsService);
-        this._dependencyResolver.put('controller', new Descriptor("beacons", "controller", "default", "*", "*"));
+        this._dependencyResolver.put('controller', new Descriptor("beacons", "controller", "*", "*", "*"));
     }
 
 	public setReferences(references: IReferences): void {

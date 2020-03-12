@@ -11,7 +11,7 @@ import { BeaconsGrpcClientV1 } from '../clients/version1/BeaconsGrpcClientV1';
 export class BeaconsClientFactory extends Factory{
     public static NullClientDescriptor = new Descriptor('beacons', 'client', 'null', '*', '1.0');
     public static DirectClientDescriptor = new Descriptor('beacons', 'client', 'direct', '*', '1.0');
-    public static CommandableHttpClientDescriptor = new Descriptor('beacons', 'client', 'http', '*', '1.0');
+    public static CommandableHttpClientDescriptor = new Descriptor('beacons', 'client', 'commandable-http', '*', '1.0');
     public static CommandableGrpcClientV1Descriptor = new Descriptor('beacons', 'client', 'commandable-grpc', '*', '1.0');
     public static GrpcClientV1Descriptor = new Descriptor('beacons', 'client', 'grpc', '*', '1.0');
     
