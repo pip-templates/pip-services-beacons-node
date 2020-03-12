@@ -3,6 +3,8 @@ import { Descriptor } from 'pip-services3-commons-node';
 export declare class BeaconsClientFactory extends Factory {
     static NullClientDescriptor: Descriptor;
     static DirectClientDescriptor: Descriptor;
-    static HttpClientDescriptor: Descriptor;
+    static CommandableHttpClientDescriptor: Descriptor;
+    static CommandableGrpcClientV1Descriptor: Descriptor;
+    static GrpcClientV1Descriptor: Descriptor;
     constructor();
 }
