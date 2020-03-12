@@ -17,7 +17,7 @@ export class BeaconsServiceFactory extends Factory{
     public static CouchbasePersistenceDescriptor = new Descriptor('beacons', 'persistence', 'couchbase', '*', '1.0');
     public static ControllerDescriptor = new Descriptor('beacons', 'controller', 'default', '*', '1.0');
     public static CommandableHttpServiceV1Descriptor = new Descriptor('beacons', 'service', 'http', '*', '1.0');
-    public static CommandableGrpcServiceV1Descriptor = new Descriptor('beacons', 'service', 'grpc', '*', '1.0');
+    public static CommandableGrpcServiceV1Descriptor = new Descriptor('beacons', 'service', 'commandable-grpc', '*', '1.0');
     public static GrpcServiceV1Descriptor = new Descriptor('beacons', 'service', 'grpc', '*', '1.0');
     
     constructor(){

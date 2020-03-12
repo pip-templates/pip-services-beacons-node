@@ -30,6 +30,6 @@ BeaconsServiceFactory.MongoDbPersistenceDescriptor = new pip_services3_commons_n
 BeaconsServiceFactory.CouchbasePersistenceDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'persistence', 'couchbase', '*', '1.0');
 BeaconsServiceFactory.ControllerDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'controller', 'default', '*', '1.0');
 BeaconsServiceFactory.CommandableHttpServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'http', '*', '1.0');
-BeaconsServiceFactory.CommandableGrpcServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'grpc', '*', '1.0');
+BeaconsServiceFactory.CommandableGrpcServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'commandable-grpc', '*', '1.0');
 BeaconsServiceFactory.GrpcServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'grpc', '*', '1.0');
 //# sourceMappingURL=BeaconsServiceFactory.js.map
