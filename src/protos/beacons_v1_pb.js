@@ -703,8 +703,8 @@ proto.beacons_v1.PagingParams.prototype.toObject = function(opt_includeInstance)
  */
 proto.beacons_v1.PagingParams.toObject = function(includeInstance, msg) {
   var f, obj = {
-    skip: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    take: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    skip: jspb.Message.getFieldWithDefault(msg, 1, null),
+    take: jspb.Message.getFieldWithDefault(msg, 2, null),
     total: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
@@ -812,7 +812,7 @@ proto.beacons_v1.PagingParams.serializeBinaryToWriter = function(message, writer
  * @return {number}
  */
 proto.beacons_v1.PagingParams.prototype.getSkip = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, null));
 };
 
 
@@ -830,7 +830,7 @@ proto.beacons_v1.PagingParams.prototype.setSkip = function(value) {
  * @return {number}
  */
 proto.beacons_v1.PagingParams.prototype.getTake = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, null));
 };
 
 

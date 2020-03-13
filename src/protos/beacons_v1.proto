@@ -12,6 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
+// !!!Important note!!!
+//    When regenerating the files in the "protos" folder using "npm run protogen", 
+//    you will need to manually change the following lines in beacons_v1_pb.js 
+//    for PagingParams to work correctly:
+//
+//        proto.beacons_v1.PagingParams.prototype.getSkip = function() {
+//          return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0)); // Change this default value of 0 to null
+//        };
+//
+//        proto.beacons_v1.PagingParams.prototype.getTake = function() {
+//          return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0)); // Change this default value of 0 to null
+//        };
+//
+//        proto.beacons_v1.PagingParams.toObject = function(includeInstance, msg) {
+//          var f, obj = {
+//            skip: jspb.Message.getFieldWithDefault(msg, 1, 0), // Change this default value of 0 to null
+//            take: jspb.Message.getFieldWithDefault(msg, 2, 0), // Change this default value of 0 to null
+//            total: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+//        };
+
+
 syntax = "proto3";
 
 option java_multiple_files = true;

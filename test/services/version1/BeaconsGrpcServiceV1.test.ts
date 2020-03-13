@@ -156,7 +156,7 @@ suite('BeaconsGrpcServiceV1', () => {
                 client.get_beacons(
                     {
                         filter: new FilterParams(),
-                        paging: null
+                        paging: new PagingParams()
                     },
                     (err, response) => {
                         err = err || response.error;
