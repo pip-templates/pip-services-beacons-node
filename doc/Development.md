@@ -6,7 +6,6 @@ This document provides high-level instructions on how to build and test the micr
 * [Installing](#install)
 * [Building](#build)
 * [Testing](#test)
-* [Contributing](#contrib) 
 
 ## <a name="setup"></a> Environment Setup
 
@@ -60,24 +59,3 @@ The command to run unit tests is as follows:
 ```bash
 npm test
 ```
-
-## <a name="contrib"></a> Contributing
-
-Developers interested in contributing should read the following instructions:
-
-- [How to Contribute](http://www.pipservices.org/contribute/)
-- [Guidelines](http://www.pipservices.org/contribute/guidelines)
-- [Styleguide](http://www.pipservices.org/contribute/styleguide)
-<!-- Todo: remove? -->
-<!-- - [ChangeLog](CHANGELOG.md) -->
-
-> Please do **not** ask general questions in an issue. Issues are to be used only for reporting bugs, requesting
-  enhancements, or requesting new features. For general questions and discussions, use the
-  [Contributors Forum](http://www.pipservices.org/forums/forum/contributors/).
-
-<!-- It is important to note that for each release, the [ChangeLog](CHANGELOG.md) is a resource that will
-itemize all:
-
-- Bug Fixes
-- New Features
-- Breaking Changes -->
