@@ -181,9 +181,9 @@ node bin/run.js
 The easiest way to work with the microservice is through the client SDK. 
 
 If you use node.js, then get references to the required libraries:
-- Pip.Services3.Commons : https://github.com/pip-services3-dotnet/pip-services3-commons-node
+- Pip.Services3.Commons : https://github.com/pip-services3-node/pip-services3-commons-node
 - Pip.Services3.Rpc: 
-https://github.com/pip-services3-dotnet/pip-services3-rpc-node
+https://github.com/pip-services3-node/pip-services3-rpc-node
 
 <!-- Todo: rename pip-templates-microservice-node? -->
 Add classes from the **pip-services3-commons-node** and **pip-templates-microservice-node** packages
