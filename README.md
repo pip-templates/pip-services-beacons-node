@@ -23,7 +23,7 @@ This microservice does not depend on other microservices.
 
 The logical contract of the microservice is presented below. 
 
-```cs
+```javascript
 export class BeaconV1 implements IStringIdentifiable {
     public id: string;
     public site_id: string;
@@ -186,7 +186,8 @@ If you use node.js, then get references to the required libraries:
 - Pip.Services3.Rpc: 
 https://github.com/pip-services3-dotnet/pip-services3-rpc-node
 
-<!-- Add classes from the **pip-services3-commons-node** and **pip-templates-microservice-node** packages
+<!-- Todo: rename pip-templates-microservice-node? -->
+Add classes from the **pip-services3-commons-node** and **pip-templates-microservice-node** packages
 ```javascript
 import { ConfigParams } from 'pip-services3-commons-node';
 import { FilterParams } from 'pip-services3-commons-node';
@@ -195,7 +196,7 @@ import { PagingParams } from 'pip-services3-commons-node';
 import { BeaconV1 } from 'pip-templates-microservice-node';
 import { BeaconTypeV1 } from 'pip-templates-microservice-node';
 import { BeaconsCommandableHttpClientV1 } from 'pip-templates-microservice-node';
-``` -->
+```
 
 Define client configuration parameters that match the configuration of the microservice's external API
 ```javascript
