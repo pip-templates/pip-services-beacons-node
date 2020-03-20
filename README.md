@@ -9,15 +9,15 @@ The microservice currently supports the following deployment options:
 
 This microservice does not depend on other microservices.
 
-<!-- Todo: -->
-<!-- <a name="links"></a> Quick Links:
+<a name="links"></a> Quick Links:
 
 * [Download Links](doc/Downloads.md)
 * [Development Guide](doc/Development.md)
 * [Configuration Guide](doc/Configuration.md)
 * [Deployment Guide](doc/Deployment.md)
 * Communication Protocols
-  - [HTTP Version 1](doc/HttpProtocolV1.md) -->
+  - [HTTP Version 1](doc/HttpProtocolV1.md)
+  <!-- Todo: gRPC -->
 
 ## Contract
 
@@ -67,7 +67,7 @@ export interface IBeaconsClientV1 {
 
 ## Download
 
-Right now, the only way to get the microservice is to check it out directly from the github repository
+Right now, the only way to get the microservice is to check it out directly from the GitHub repository
 ```bash
 git clone https://github.com/pip-templates/pip-templates-microservice-node.git
 ```
@@ -168,9 +168,8 @@ Example of a microservice configuration
 - descriptor: "beacons:service:commandable-grpc:default:1.0"
 {{/if}}
 ```
- 
-<!-- Todo -->
-<!-- For more information on microservice configuration, see [The Configuration Guide](Configuration.md). -->
+
+For more information on microservice configuration, see [The Configuration Guide](Configuration.md).
 
 The microservice can be started using the command:
 ```bash
