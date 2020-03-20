@@ -17,7 +17,7 @@ This microservice does not depend on other microservices.
 * [Deployment Guide](doc/Deployment.md)
 * Communication Protocols
   - [HTTP Version 1](doc/HttpProtocolV1.md)
-  <!-- Todo: gRPC -->
+  - [gRPC Version 1](doc/GrpcProtocolV1.md)
 
 ## Contract
 
