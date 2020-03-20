@@ -8,13 +8,13 @@ The Beacons Microservice implements a gRPC compatible API, that can be accessed 
 * [BeaconsPage message](#class3)
 * [PagingParams message](#class4)
 * [ErrorDescription message](#class5)
-* [POST v1/beacons.get_beacons](#operation1)
-* [POST v1/beacons.get_beacon_by_id](#operation2)
-* [POST v1/beacons.get_beacon_by_udi](#operation3)
-* [POST v1/beacons.calculate_position](#operation4)
-* [POST v1/beacons.create_beacon](#operation5)
-* [POST v1/beacons.update_beacon](#operation6)
-* [POST v1/beacons.delete_beacon_by_id](#operation7)
+* [Route v1/beacons.get_beacons](#operation1)
+* [Route v1/beacons.get_beacon_by_id](#operation2)
+* [Route v1/beacons.get_beacon_by_udi](#operation3)
+* [Route v1/beacons.calculate_position](#operation4)
+* [Route v1/beacons.create_beacon](#operation5)
+* [Route v1/beacons.update_beacon](#operation6)
+* [Route v1/beacons.delete_beacon_by_id](#operation7)
 
 ## Data types
 
