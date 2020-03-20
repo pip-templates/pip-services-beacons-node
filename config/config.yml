@@ -85,5 +85,3 @@
 # Commandable GRPC endpoint version 1.0
 - descriptor: "beacons:service:commandable-grpc:default:1.0"
 {{/if}}
-
-# Todo: do we need an 'unless' for when neither HTTP nor GRPC are enabled?
