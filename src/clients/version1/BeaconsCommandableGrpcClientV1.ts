@@ -8,7 +8,7 @@ import { IBeaconsClientV1 } from './IBeaconsClientV1';
 
 export class BeaconsCommandableGrpcClientV1 extends CommandableGrpcClient implements IBeaconsClientV1 {
     public constructor(config?: any) {
-        super('v1/beacons');
+        super('v1.beacons');
 
         if (config != null)
             this.configure(ConfigParams.fromValue(config));

@@ -106,7 +106,7 @@ suite('BeaconsCommandableGrpcServiceV1', () => {
             (callback) => {
                 client.invoke(
                     {
-                        method: 'v1/beacons.create_beacon',
+                        method: 'v1.beacons.create_beacon',
                         args_empty: false,
                         args_json: JSON.stringify({
                             beacon: BEACON1
@@ -134,7 +134,7 @@ suite('BeaconsCommandableGrpcServiceV1', () => {
             (callback) => {
                 client.invoke(
                     {
-                        method: 'v1/beacons.create_beacon',
+                        method: 'v1.beacons.create_beacon',
                         args_empty: false,
                         args_json: JSON.stringify({
                             beacon: BEACON2
@@ -162,7 +162,7 @@ suite('BeaconsCommandableGrpcServiceV1', () => {
             (callback) => {
                 client.invoke(
                     {
-                        method: 'v1/beacons.get_beacons',
+                        method: 'v1.beacons.get_beacons',
                         args_empty: false,
                         args_json: JSON.stringify( { 
                             filter: new FilterParams(),
@@ -191,7 +191,7 @@ suite('BeaconsCommandableGrpcServiceV1', () => {
 
                 client.invoke(
                     {
-                        method: 'v1/beacons.update_beacon',
+                        method: 'v1.beacons.update_beacon',
                         args_empty: false,
                         args_json: JSON.stringify({
                             beacon: beacon1
@@ -216,7 +216,7 @@ suite('BeaconsCommandableGrpcServiceV1', () => {
             (callback) => {
                 client.invoke(
                     {
-                        method: 'v1/beacons.get_beacon_by_udi',
+                        method: 'v1.beacons.get_beacon_by_udi',
                         args_empty: false,
                         args_json: JSON.stringify({
                             udi: beacon1.udi
@@ -240,7 +240,7 @@ suite('BeaconsCommandableGrpcServiceV1', () => {
             (callback) => {
                 client.invoke(
                     {
-                        method: 'v1/beacons.calculate_position',
+                        method: 'v1.beacons.calculate_position',
                         args_empty: false,
                         args_json: JSON.stringify({
                             site_id: '1',
@@ -268,7 +268,7 @@ suite('BeaconsCommandableGrpcServiceV1', () => {
             (callback) => {
                 client.invoke(
                     {
-                        method: 'v1/beacons.delete_beacon_by_id',
+                        method: 'v1.beacons.delete_beacon_by_id',
                         args_empty: false,
                         args_json: JSON.stringify({
                             beacon_id: beacon1.id
@@ -292,7 +292,7 @@ suite('BeaconsCommandableGrpcServiceV1', () => {
             (callback) => {
                 client.invoke(
                     {
-                        method: 'v1/beacons.get_beacon_by_id',
+                        method: 'v1.beacons.get_beacon_by_id',
                         args_empty: false,
                         args_json: JSON.stringify({
                             beacon_id: beacon1.id

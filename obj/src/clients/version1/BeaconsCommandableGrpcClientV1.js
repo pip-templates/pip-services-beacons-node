@@ -4,7 +4,7 @@ const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_grpc_node_1 = require("pip-services3-grpc-node");
 class BeaconsCommandableGrpcClientV1 extends pip_services3_grpc_node_1.CommandableGrpcClient {
     constructor(config) {
-        super('v1/beacons');
+        super('v1.beacons');
         if (config != null)
             this.configure(pip_services3_commons_node_1.ConfigParams.fromValue(config));
     }
