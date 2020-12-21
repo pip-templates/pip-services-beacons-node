@@ -2,22 +2,28 @@
 
 This is the Beacons microservice from the Pip.Templates library. 
 
-The microservice currently supports the following deployment options:
-* Deployment platforms: Standalone Process
-* External APIs: HTTP/REST, gRPC
-* Persistence: Memory, Flat Files, MongoDB, Couchbase
+Supported functionality:
+* Deployment platforms: Standalone Process, Docker, AWS Lambda
+* External APIs: HTTP (REST and Commandable), GRPC (Custom and Commandable)
+* Persistence: Memory, Flat Files, MongoDB, PosgreSQL (Relational and NoSQL), SQLServer (Relational and NoSQL)
+* Health checks: Heartbeat, Status
+* Consolidated logging: ElasticSearch, CloudWatch
+* Consolidated metrics: Prometheus, CloudWatch
 
 This microservice does not depend on other microservices.
 
 <a name="links"></a> Quick Links:
 
-* [Download Links](doc/Downloads.md)
-* [Development Guide](doc/Development.md)
-* [Configuration Guide](doc/Configuration.md)
-* [Deployment Guide](doc/Deployment.md)
-* Communication Protocols
-  - [HTTP Version 1](doc/HttpProtocolV1.md)
-  - [gRPC Version 1](doc/GrpcProtocolV1.md)
+There are no dependencies on other microservices.
+
+<a name="links"></a> Quick links:
+
+* Communication Protocols:
+  - [gRPC Version 1](src/protos/beacons_v1.proto)
+  - [HTTP Version 1](src/swagger/beacons_v1.yaml)
+* [API Reference](https://pip-templates.github.io/pip-samples-beacons-node/step9/docs/globals.html)
+* [Change Log](CHANGELOG.md)
+
 
 ## Contract
 
@@ -76,104 +82,51 @@ The Pip.Service team is working on implementing packaging, to make stable releas
 
 ## Run
 
-Add the **config.yml** file to the config folder and set configuration parameters as needed.
+The microservice can be configured using the environment variables:
+* MEMORY_ENABLED - turn on in-memory persistence. Keep it undefined to turn it off
+* FILE_ENABLED - turn on file persistence. Keep it undefined to turn it off
+* FILE_PATH - file path where persistent data shall be stored (default: ../data/id_records.json) 
+* MONGO_ENABLED - turn on MongoDB persistence. Keep it undefined to turn it off
+* MONGO_SERVICE_URI - URI to connect to MongoDB. When it's defined other database parameters are ignored
+* MONGO_SERVICE_HOST - MongoDB hostname or server address
+* MONGO_SERVICE_PORT - MongoDB port number (default: 3360)
+* MONGO_DB - MongoDB database name (default: app)
+* MONGO_COLLECTION - MongoDB collection (default: id_records)
+* MONGO_USER - MongoDB user login
+* MONGO_PASS - MongoDB user password
+* POSTGRES_ENABLED - turn on PostgreSQL persistence. Keep it undefined to turn it off
+* POSTGRES_SERVICE_URI - URI to connect to PostgreSQL. When it's defined other database parameters are ignored
+* POSTGRES_SERVICE_HOST - PostgreSQL hostname or server address
+* POSTGRES_SERVICE_PORT - PostgreSQL port number (default: 5432)
+* POSTGRES_DB - PostgreSQL database name (default: app)
+* POSTGRES_TABLE - PostgreSQL table (default: id_records)
+* POSTGRES_USER - PostgreSQL user login
+* POSTGRES_PASS - PostgreSQL user password
+* SQLSERVER_ENABLED - turn on SQL Server persistence. Keep it undefined to turn it off
+* SQLSERVER_SERVICE_URI - URI to connect to SQL Server. When it's defined other database parameters are ignored
+* SQLSERVER_SERVICE_HOST - SQL Server hostname or server address
+* SQLSERVER_SERVICE_PORT - SQL Server port number (default: 1433)
+* SQLSERVER_DB - SQL Server database name (default: app)
+* SQLSERVER_TABLE - SQL Server table (default: id_records)
+* SQLSERVER_USER - SQL Server user login
+* SQLSERVER_PASS - SQL Server user password
+* HTTP_ENABLED - turn on HTTP endpoint
+* HTTP_PORT - HTTP port number (default: 8080)
 
-Example of a microservice configuration
-```yaml
----
-# Container descriptor
-- descriptor: "pip-services:context-info:default:default:1.0"
-  name: "beacons"
-  description: "Beacons microservice"
-
-# Console logger
-- descriptor: "pip-services:logger:console:default:1.0"
-  level: "trace"
-
-# Perfomance counter that post values to log
-- descriptor: "pip-services:counters:log:default:1.0"
-
-{{#if MEMORY_ENABLED}}
-# In-memory persistence. Use only for testing!
-- descriptor: "beacons:persistence:memory:default:1.0"
-{{/if}}
-
-{{#if FILE_ENABLED}}
-# File persistence
-- descriptor: "beacons:persistence:file:default:1.0"
-  path: {{FILE_PATH}}{{#unless FILE_PATH}}"./data/beacons.json"{{/unless}}
-{{/if}}
-
-{{#if MONGO_ENABLED}}
-# MongoDb persistence
-- descriptor: "beacons:persistence:mongodb:default:1.0"
-  connection:
-    uri: {{MONGO_SERVICE_URI}}
-    host: {{MONGO_SERVICE_HOST}}{{#unless MONGO_SERVICE_HOST}}"localhost"{{/unless}}
-    port: {{MONGO_SERVICE_PORT}}{{#unless MONGO_SERVICE_PORT}}27017{{/unless}}
-    database: {{MONGO_DB}}{{#unless MONGO_DB}}"test"{{/unless}}
-{{/if}}
-
-{{#if COUCHBASE_ENABLED}}
-# Couchbase Persistence
-- descriptor: "beacons:persistence:couchbase:default:1.0"
-  bucket: {{COUCHBASE_BUCKET}}{{#unless COUCHBASE_BUCKET}}test{{/unless}}
-  connection:
-    uri: {{{COUCHBASE_SERVICE_URI}}}
-    host: {{{COUCHBASE_SERVICE_HOST}}}{{#unless COUCHBASE_SERVICE_HOST}}localhost{{/unless}}
-    port: {{COUCHBASE_SERVICE_PORT}}{{#unless COUCHBASE_SERVICE_PORT}}8091{{/unless}}
-  credential:
-    username: {{COUCHBASE_USER}}{{#unless COUCHBASE_USER}}Administrator{{/unless}}
-    password: {{COUCHBASE_PASS}}{{#unless COUCHBASE_PASS}}password{{/unless}}
-{{/if}}
-
-{{#unless MEMORY_ENABLED}}{{#unless FILE_ENABLED}}{{#unless MONGO_ENABLED}}{{#unless COUCHBASE_ENABLED}}
-# Default to in-memory persistence, if nothing is set
-- descriptor: "beacons:persistence:memory:default:1.0"
-{{/unless}}{{/unless}}{{/unless}}{{/unless}}
-
-# Controller
-- descriptor: "beacons:controller:default:default:1.0"
-
-{{#if HTTP_ENABLED}}
-# Common HTTP endpoint
-- descriptor: "pip-services:endpoint:http:default:1.0"
-  connection:
-    protocol: http
-    host: 0.0.0.0
-    port: {{HTTP_PORT}}{{#unless HTTP_PORT}}8080{{/unless}}
-
-# HTTP endpoint service version 1.0
-- descriptor: "beacons:service:commandable-http:default:1.0"
-
-# Hearbeat service
-- descriptor: "pip-services:heartbeat-service:http:default:1.0"
-
-# Status service
-- descriptor: "pip-services:status-service:http:default:1.0"
-{{/if}}
-
-{{#if GRPC_ENABLED}}
-# Common GRPC endpoint
-- descriptor: "beacons:endpoint:grpc:default:1.0"
-  connection:
-    protocol: http
-    host: 0.0.0.0
-    port: 8090
-
-# GRPC endpoint service version 1.0
-- descriptor: "beacons:service:grpc:default:1.0"
-
-# Commandable GRPC endpoint version 1.0
-- descriptor: "beacons:service:commandable-grpc:default:1.0"
-{{/if}}
+Start the microservice as process:
+```bash
+node ./bin/run.js
 ```
 
-For more information on microservice configuration, see [The Configuration Guide](Configuration.md).
-
-The microservice can be started using the command:
+Run the microservice in docker:
+Then use the following command:
 ```bash
-node bin/run.js
+./run.ps1
+```
+
+Launch the microservice with all infrastructure services using docker-compose:
+```bash
+docker-compose -f ./docker/docker-compose.yml
 ```
 
 ## Use
@@ -283,6 +236,58 @@ async.series([
 });
 ```
 
-## Acknowledgements
+## Develop
+
+For development you shall install the following prerequisites:
+* Node.js
+* Visual Studio Code or another IDE of your choice
+* Docker
+* Typescript
+
+Install dependencies:
+```bash
+npm install
+```
+
+Compile the microservice:
+```bash
+tsc
+```
+
+Before running tests launch infrastructure services and required microservices:
+```bash
+docker-compose -f ./docker-compose.dev.yml
+```
+
+Run automated tests:
+```bash
+npm test
+```
+
+Run automated benchmarks:
+```bash
+npm run benchmark
+```
+
+Generate GRPC protobuf stubs:
+```bash
+./protogen.ps1
+```
+
+Generate API documentation:
+```bash
+./docgen.ps1
+```
+
+Before committing changes run dockerized build and test as:
+```bash
+./build.ps1
+./test.ps1
+./package.ps1
+./run.ps1
+./clear.ps1
+```
+
+## Contacts
 
 This microservice was created and currently maintained by *Sergey Seroukhov*.
