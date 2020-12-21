@@ -2,7 +2,7 @@
 /.git
 /.gitignore
 /.dockerignore
-/doc
+/docs
 /dist
 /node_modules
 /docker
