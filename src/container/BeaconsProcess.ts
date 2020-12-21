@@ -1,3 +1,4 @@
+/** @module container */
 import { ProcessContainer } from 'pip-services3-container-node';
 import { DefaultRpcFactory } from 'pip-services3-rpc-node';
 

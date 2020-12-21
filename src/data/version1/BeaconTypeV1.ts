@@ -1,3 +1,4 @@
+/** @module data */
 export class BeaconTypeV1 {
     public static Unknown: string = "unknown";
     public static AltBeacon: string = "altbeacon";

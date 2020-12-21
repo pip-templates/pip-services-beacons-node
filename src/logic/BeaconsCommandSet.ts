@@ -1,3 +1,5 @@
+/** @module logic */
+
 import { CommandSet, FilterParams, PagingParams } from 'pip-services3-commons-node';
 import { ICommand } from 'pip-services3-commons-node';
 import { Command } from 'pip-services3-commons-node';

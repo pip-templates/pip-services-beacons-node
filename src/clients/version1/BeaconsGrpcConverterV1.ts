@@ -1,4 +1,7 @@
+/** @module clients */
+/** @hidden */
 let _ = require('lodash');
+/** @hidden */
 let messages = require('../../../../src/protos/beacons_v1_pb');
 
 import { DataPage } from 'pip-services3-commons-node';

@@ -1,3 +1,5 @@
+/** @module services */
+
 import { CommandableHttpService } from 'pip-services3-rpc-node';
 import { Descriptor } from 'pip-services3-commons-node';
 

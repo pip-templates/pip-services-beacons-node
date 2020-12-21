@@ -1,4 +1,7 @@
+/** @module logic */
+/** @hidden */
 let _ = require('lodash');
+/** @hidden */
 let async = require('async');
 
 import { FilterParams } from 'pip-services3-commons-node';

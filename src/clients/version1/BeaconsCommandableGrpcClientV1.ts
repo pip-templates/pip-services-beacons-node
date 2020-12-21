@@ -1,3 +1,5 @@
+/** @module clients */
+
 import { FilterParams, ConfigParams } from 'pip-services3-commons-node';
 import { PagingParams } from 'pip-services3-commons-node';
 import { DataPage } from 'pip-services3-commons-node';

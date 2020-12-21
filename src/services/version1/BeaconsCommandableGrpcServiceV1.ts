@@ -1,3 +1,5 @@
+/** @module services */
+
 import { Descriptor } from 'pip-services3-commons-node';
 import { CommandableGrpcService } from 'pip-services3-grpc-node';
 

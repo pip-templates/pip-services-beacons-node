@@ -1,3 +1,4 @@
+/** @module data */
 import { ObjectSchema } from 'pip-services3-commons-node';
 import { TypeCode } from 'pip-services3-commons-node';
 
