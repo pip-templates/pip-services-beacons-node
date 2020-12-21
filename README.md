@@ -12,10 +12,6 @@ Supported functionality:
 
 This microservice does not depend on other microservices.
 
-<a name="links"></a> Quick Links:
-
-There are no dependencies on other microservices.
-
 <a name="links"></a> Quick links:
 
 * Communication Protocols:
@@ -27,7 +23,7 @@ There are no dependencies on other microservices.
 
 ## Contract
 
-The logical contract of the microservice is presented below. 
+The contract of the microservice is presented below. 
 
 ```javascript
 export class BeaconV1 implements IStringIdentifiable {
