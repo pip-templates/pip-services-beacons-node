@@ -1,3 +1,5 @@
+/** @module persistence */
+/** @hidden */
 let _ = require('lodash');
 
 import { FilterParams } from 'pip-services3-commons-node';
