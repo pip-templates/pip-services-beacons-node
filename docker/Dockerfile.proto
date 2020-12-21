@@ -1,0 +1,16 @@
+# Build stage
+FROM node:8
+
+# set working directory
+WORKDIR /app
+
+COPY . .
+
+# Install plugins for protoc
+RUN npm i grpc && \
+    npm i grpc-tools && \
+    npm i ts-protoc-gen && \
+    npm i grpc_tools_node_protoc_ts 
+
+# Generate
+RUN cd src/protos && npx grpc_tools_node_protoc  --js_out=import_style=commonjs,binary:./ --grpc_out=.  ./beacons_v1.proto
