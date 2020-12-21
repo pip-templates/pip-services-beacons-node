@@ -1,3 +1,4 @@
+/** @module logic */
 import { CommandSet } from 'pip-services3-commons-node';
 import { IBeaconsController } from '../../src/logic/IBeaconsController';
 export declare class BeaconsCommandSet extends CommandSet {

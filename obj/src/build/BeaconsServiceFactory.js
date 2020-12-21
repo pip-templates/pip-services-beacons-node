@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BeaconsServiceFactory = void 0;
+/** @module build */
 const pip_services3_components_node_1 = require("pip-services3-components-node");
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const BeaconsMemoryPersistence_1 = require("../persistence/BeaconsMemoryPersistence");

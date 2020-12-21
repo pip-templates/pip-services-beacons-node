@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BeaconsLambdaClientV1 = void 0;
+/** @module clients */
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_aws_node_1 = require("pip-services3-aws-node");
 class BeaconsLambdaClientV1 extends pip_services3_aws_node_1.CommandableLambdaClient {

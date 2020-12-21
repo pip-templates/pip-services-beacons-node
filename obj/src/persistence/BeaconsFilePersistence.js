@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BeaconsFilePersistence = void 0;
+/** @module persistence */
 const pip_services3_data_node_1 = require("pip-services3-data-node");
 const BeaconsMemoryPersistence_1 = require("./BeaconsMemoryPersistence");
 class BeaconsFilePersistence extends BeaconsMemoryPersistence_1.BeaconsMemoryPersistence {

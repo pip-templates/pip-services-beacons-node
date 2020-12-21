@@ -1,3 +1,4 @@
+/** @module data */
 import { IStringIdentifiable } from 'pip-services3-commons-node';
 export declare class BeaconV1 implements IStringIdentifiable {
     id: string;

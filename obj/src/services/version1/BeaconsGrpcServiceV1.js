@@ -1,7 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BeaconsGrpcServiceV1 = void 0;
+/** @module services */
+/** @hidden */
 let _ = require('lodash');
+/** @hidden */
 let services = require('../../../../src/protos/beacons_v1_grpc_pb');
+/** @hidden */
 let messages = require('../../../../src/protos/beacons_v1_pb');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");

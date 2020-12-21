@@ -1,3 +1,4 @@
+/** @module persistence */
 import { JsonFilePersister } from 'pip-services3-data-node';
 import { BeaconV1 } from '../data/version1/BeaconV1';
 import { BeaconsMemoryPersistence } from './BeaconsMemoryPersistence';

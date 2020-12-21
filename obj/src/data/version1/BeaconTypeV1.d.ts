@@ -1,3 +1,4 @@
+/** @module data */
 export declare class BeaconTypeV1 {
     static Unknown: string;
     static AltBeacon: string;
