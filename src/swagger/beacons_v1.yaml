@@ -1,0 +1,159 @@
+openapi: '3.0.2'
+info:
+  title: 'Beacons Service V1'
+  description: 'microservice to demonstrate works with data microservices'
+  version: '1'
+paths:
+  /v1/beacons/get_beacons:
+    post:
+      tags:
+        - v1/beacons
+      operationId: 'get_beacons'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                filter:
+                  type: 'object'
+                paging:
+                  type: 'object'
+              required:
+                - filter
+                - paging
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: 'object'
+  /v1/beacons/get_beacon_by_id:
+    post:
+      tags:
+        - v1/beacons
+      operationId: 'get_beacon_by_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                beacon_id:
+                  type: 'string'
+              required:
+                - beacon_id
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: 'object'
+  /v1/beacons/get_beacon_by_udi:
+    post:
+      tags:
+        - v1/beacons
+      operationId: 'get_beacon_by_udi'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                udi:
+                  type: 'string'
+              required:
+                - udi
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: 'object'
+  /v1/beacons/calculate_position:
+    post:
+      tags:
+        - v1/beacons
+      operationId: 'calculate_position'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                site_id:
+                  type: 'string'
+                udis:
+                  type: 'object'
+              required:
+                - site_id
+                - udis
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: 'object'
+  /v1/beacons/create_beacon:
+    post:
+      tags:
+        - v1/beacons
+      operationId: 'create_beacon'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                beacon:
+                  type: 'object'
+              required:
+                - beacon
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: 'object'
+  /v1/beacons/update_beacon:
+    post:
+      tags:
+        - v1/beacons
+      operationId: 'update_beacon'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                beacon:
+                  type: 'object'
+              required:
+                - beacon
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: 'object'
+  /v1/beacons/delete_beacon_by_id:
+    post:
+      tags:
+        - v1/beacons
+      operationId: 'delete_beacon_by_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                beacon_id:
+                  type: 'string'
+              required:
+                - beacon_id
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: 'object'
