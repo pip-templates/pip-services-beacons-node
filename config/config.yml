@@ -32,6 +32,34 @@
     database: {{MONGO_DB}}{{#unless MONGO_DB}}"test"{{/unless}}
 {{/if}}
 
+{{#if POSTGRES_ENABLED}}
+# PostreSQL Persistence
+- descriptor: "beacons:persistence:postgres:default:1.0"
+  table: {{POSTGRES_TABLE}}{{#unless POSTGRES_TABLE}}id_records{{/unless}}
+  connection:
+    uri: {{{POSTGRES_SERVICE_URI}}}
+    host: {{{POSTGRES_SERVICE_HOST}}}{{#unless POSTGRES_SERVICE_HOST}}localhost{{/unless}}
+    port: {{POSTGRES_SERVICE_PORT}}{{#unless POSTGRES_SERVICE_PORT}}5432{{/unless}}
+    database: {{POSTGRES_DB}}{{#unless POSTGRES_DB}}app{{/unless}}
+  credential:
+    username: {{POSTGRES_USER}}
+    password: {{POSTGRES_PASS}}
+{{/if}}
+
+{{#if SQLSERVER_ENABLED}}
+# SQL Server Persistence
+- descriptor: "beacons:persistence:sqlserver:default:1.0"
+  table: {{SQLSERVER_TABLE}}{{#unless SQLSERVER_TABLE}}id_records{{/unless}}
+  connection:
+    uri: {{{SQLSERVER_SERVICE_URI}}}
+    host: {{{SQLSERVER_SERVICE_HOST}}}{{#unless SQLSERVER_SERVICE_HOST}}localhost{{/unless}}
+    port: {{SQLSERVER_SERVICE_PORT}}{{#unless SQLSERVER_SERVICE_PORT}}1433{{/unless}}
+    database: {{SQLSERVER_DB}}{{#unless SQLSERVER_DB}}app{{/unless}}
+  credential:
+    username: {{SQLSERVER_USER}}
+    password: {{SQLSERVER_PASS}}
+{{/if}}
+
 {{#if COUCHBASE_ENABLED}}
 # Couchbase Persistence
 - descriptor: "beacons:persistence:couchbase:default:1.0"
@@ -63,6 +91,13 @@
 
 # HTTP endpoint service version 1.0
 - descriptor: "beacons:service:commandable-http:default:1.0"
+  swagger:
+    enable: true
+    auto: true
+    route: swagger
+    name: Beacons Service V1
+    description: microservice to demonstrate works with data microservices
+
 
 # Hearbeat service
 - descriptor: "pip-services:heartbeat-service:http:default:1.0"
