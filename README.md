@@ -21,7 +21,7 @@ There are no dependencies on other microservices.
 * Communication Protocols:
   - [gRPC Version 1](src/protos/beacons_v1.proto)
   - [HTTP Version 1](src/swagger/beacons_v1.yaml)
-* [API Reference](https://pip-templates.github.io/pip-samples-beacons-node/step9/docs/globals.html)
+* [API Reference](https://pip-templates.github.io/pip-templates-data-node/globals.html)
 * [Change Log](CHANGELOG.md)
 
 
