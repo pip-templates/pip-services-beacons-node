@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test
+    ports:
+      - "5432:5432"
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASS: sqlserver_123
+    ports:
+      - "1433:1433"
+  #couchbase:
+  #  image: couchbase/server-sandbox:6.0.1
+  #  ports:
+  #    - "8091:8091"
