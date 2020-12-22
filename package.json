@@ -19,6 +19,8 @@
     "pip-services3-data-node": "^3.0.*",
     "pip-services3-grpc-node": "^3.0.*",
     "pip-services3-mongodb-node": "^3.2.*",
+    "pip-services3-postgres-node": "^3.0.*",
+    "pip-services3-sqlserver-node": "^3.0.1",
     "pip-services3-rpc-node": "^3.2.*"
   },
   "devDependencies": {
@@ -31,6 +33,7 @@
     "google-protobuf": "^3.7.1",
     "grpc-tools": "^1.8.1",
     "mocha": "^5.2.0",
+    "pip-services3-postgres-node": "^3.0.4",
     "restify": "^4.3.0",
     "ts-protoc-gen": "^0.9.0"
   }
