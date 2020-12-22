@@ -15,8 +15,8 @@ COPY . .
 
 # Specify the command for running tests
 # For Couchbase tests, use "delay_test"
-CMD [ "npm", "test" ]
-# CMD [ "npm", "run", "delay_test" ]
+# CMD [ "npm", "test" ]
+CMD [ "npm", "run", "delay_test" ]
 
 # Remove the npmrc file, because env variable NPM_TOKEN is set for travis projects
 RUN rm -f ./.npmrc
