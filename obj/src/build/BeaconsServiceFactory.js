@@ -8,6 +8,9 @@ const BeaconsMemoryPersistence_1 = require("../persistence/BeaconsMemoryPersiste
 const BeaconsFilePersistence_1 = require("../persistence/BeaconsFilePersistence");
 const BeaconsMongoDbPersistence_1 = require("../persistence/BeaconsMongoDbPersistence");
 const BeaconsCouchbasePersistence_1 = require("../persistence/BeaconsCouchbasePersistence");
+const BeaconsPostgresPersistence_1 = require("../persistence/BeaconsPostgresPersistence");
+const BeaconsJsonPostgresPersistence_1 = require("../persistence/BeaconsJsonPostgresPersistence");
+const BeaconsSqlServerPersistence_1 = require("../persistence/BeaconsSqlServerPersistence");
 const BeaconsController_1 = require("../logic/BeaconsController");
 const BeaconsCommandableHttpServiceV1_1 = require("../services/version1/BeaconsCommandableHttpServiceV1");
 const BeaconsCommandableGrpcServiceV1_1 = require("../services/version1/BeaconsCommandableGrpcServiceV1");
@@ -19,6 +22,9 @@ class BeaconsServiceFactory extends pip_services3_components_node_1.Factory {
         this.registerAsType(BeaconsServiceFactory.FilePersistenceDescriptor, BeaconsFilePersistence_1.BeaconsFilePersistence);
         this.registerAsType(BeaconsServiceFactory.MongoDbPersistenceDescriptor, BeaconsMongoDbPersistence_1.BeaconsMongoDbPersistence);
         this.registerAsType(BeaconsServiceFactory.CouchbasePersistenceDescriptor, BeaconsCouchbasePersistence_1.BeaconsCouchbasePersistence);
+        this.registerAsType(BeaconsServiceFactory.BeaconsPostgresPersistence, BeaconsPostgresPersistence_1.BeaconsPostgresPersistence);
+        this.registerAsType(BeaconsServiceFactory.BeaconsJsonPostgresPersistence, BeaconsJsonPostgresPersistence_1.BeaconsJsonPostgresPersistence);
+        this.registerAsType(BeaconsServiceFactory.BeaconsSqlServerPersistence, BeaconsSqlServerPersistence_1.BeaconsSqlServerPersistence);
         this.registerAsType(BeaconsServiceFactory.ControllerDescriptor, BeaconsController_1.BeaconsController);
         this.registerAsType(BeaconsServiceFactory.CommandableHttpServiceV1Descriptor, BeaconsCommandableHttpServiceV1_1.BeaconsCommandableHttpServiceV1);
         this.registerAsType(BeaconsServiceFactory.CommandableGrpcServiceV1Descriptor, BeaconsCommandableGrpcServiceV1_1.BeaconsCommandableGrpcServiceV1);
@@ -30,6 +36,9 @@ BeaconsServiceFactory.MemoryPersistenceDescriptor = new pip_services3_commons_no
 BeaconsServiceFactory.FilePersistenceDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'persistence', 'file', '*', '1.0');
 BeaconsServiceFactory.MongoDbPersistenceDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'persistence', 'mongodb', '*', '1.0');
 BeaconsServiceFactory.CouchbasePersistenceDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'persistence', 'couchbase', '*', '1.0');
+BeaconsServiceFactory.BeaconsPostgresPersistence = new pip_services3_commons_node_1.Descriptor('beacons', 'persistence', 'postgres', '*', '1.0');
+BeaconsServiceFactory.BeaconsJsonPostgresPersistence = new pip_services3_commons_node_1.Descriptor('beacons', 'persistence', 'memory', '*', '1.0');
+BeaconsServiceFactory.BeaconsSqlServerPersistence = new pip_services3_commons_node_1.Descriptor('beacons', 'persistence', 'sqlserver', '*', '1.0');
 BeaconsServiceFactory.ControllerDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'controller', 'default', '*', '1.0');
 BeaconsServiceFactory.CommandableHttpServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'commandable-http', '*', '1.0');
 BeaconsServiceFactory.CommandableGrpcServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'commandable-grpc', '*', '1.0');
