@@ -8,18 +8,44 @@ services:
     image: ${IMAGE:-test}
     links:
       - mongo
+      - postgres
     #  - couchbase
     environment:
       - MONGO_SERVICE_HOST=mongo
       - MONGO_SERVICE_PORT=27017
       - MONGO_DB=test
+      - POSTGRES_SERVICE_HOST=postgres
+      - POSTGRES_SERVICE_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASS=postgres
+      - POSTGRES_DB=test
       - COUCHBASE_SERVICE_HOST=couchbase
       - COUCHBASE_SERVICE_PORT=8091
       - COUCHBASE_USER=Administrator
       - COUCHBASE_PASS=password
 
+      - SQLSERVER_HOST=sqlserver
+      - SQLSERVER_PORT=1433
+      - SQLSERVER_USER=sa
+      - SQLSERVER_PASSWORD=sqlserver_123
+      - SQLSERVER_DB=master
+
   mongo:
     image: mongo:latest
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: sqlserver_123
 
   #couchbase:
   #  image: couchbase/server-sandbox:6.0.1
