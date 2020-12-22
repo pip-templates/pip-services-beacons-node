@@ -21,6 +21,10 @@ This microservice does not depend on other microservices.
 * Communication Protocols:
   - [gRPC Version 1](src/protos/beacons_v1.proto)
   - [HTTP Version 1](src/swagger/beacons_v1.yaml)
+* Client SDKs:
+  - [Node.js SDK](https://github.com/pip-templates/pip-clients-beacons-node)
+  - [.NET SDK](https://github.com/pip-templates/pip-clients-beacons-dotnet)
+  - [Golang SDK](https://github.com/pip-templates/pip-clients-beacons-go)
 * [API Reference](https://pip-templates.github.io/pip-services-beacons-node/globals.html)
 * [Change Log](CHANGELOG.md)
 
