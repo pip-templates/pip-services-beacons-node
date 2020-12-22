@@ -1,5 +1,5 @@
 {
-  "name": "pip-templates-microservice-node",
+  "name": "pip-services-beacons-node",
   "version": "1.0.0",
   "main": "./obj/src/index.js",
   "typings": "./obj/src/index.d.ts",
@@ -22,7 +22,8 @@
     "pip-services3-mongodb-node": "^3.2.*",
     "pip-services3-postgres-node": "^3.0.*",
     "pip-services3-sqlserver-node": "^3.0.1",
-    "pip-services3-rpc-node": "^3.2.*"
+    "pip-services3-rpc-node": "^3.2.*",
+    "pip-benchmark-node": "^2.1.4"
   },
   "devDependencies": {
     "@types/async": "^2.0.49",
@@ -34,8 +35,6 @@
     "google-protobuf": "^3.7.1",
     "grpc-tools": "^1.8.1",
     "mocha": "^5.2.0",
-    "pip-benchmark-node": "^2.1.4",
-    "pip-services3-postgres-node": "^3.0.4",
     "restify": "^4.3.0",
     "ts-protoc-gen": "^0.9.0"
   }
