@@ -11,6 +11,11 @@
 # Perfomance counter that post values to log
 - descriptor: "pip-services:counters:log:default:1.0"
 
+{{^if POSTGRES_ENABLED}}{{^if MONGO_ENABLED}}{{^if FILE_ENABLED}}
+# Memory persistence
+- descriptor: "beacons:persistence:memory:default:1.0"
+{{/if}}{{/if}}{{/if}}
+
 {{#if MEMORY_ENABLED}}
 # In-memory persistence. Use only for testing!
 - descriptor: "beacons:persistence:memory:default:1.0"
@@ -40,7 +45,7 @@
     uri: {{{POSTGRES_SERVICE_URI}}}
     host: {{{POSTGRES_SERVICE_HOST}}}{{#unless POSTGRES_SERVICE_HOST}}localhost{{/unless}}
     port: {{POSTGRES_SERVICE_PORT}}{{#unless POSTGRES_SERVICE_PORT}}5432{{/unless}}
-    database: {{POSTGRES_DB}}{{#unless POSTGRES_DB}}app{{/unless}}
+    database: {{POSTGRES_DB}}{{#unless POSTGRES_DB}}test{{/unless}}
   credential:
     username: {{POSTGRES_USER}}
     password: {{POSTGRES_PASS}}
@@ -49,12 +54,12 @@
 {{#if SQLSERVER_ENABLED}}
 # SQL Server Persistence
 - descriptor: "beacons:persistence:sqlserver:default:1.0"
-  table: {{SQLSERVER_TABLE}}{{#unless SQLSERVER_TABLE}}id_records{{/unless}}
+  table: {{SQLSERVER_TABLE}}{{#unless SQLSERVER_TABLE}}beacons{{/unless}}
   connection:
     uri: {{{SQLSERVER_SERVICE_URI}}}
     host: {{{SQLSERVER_SERVICE_HOST}}}{{#unless SQLSERVER_SERVICE_HOST}}localhost{{/unless}}
     port: {{SQLSERVER_SERVICE_PORT}}{{#unless SQLSERVER_SERVICE_PORT}}1433{{/unless}}
-    database: {{SQLSERVER_DB}}{{#unless SQLSERVER_DB}}app{{/unless}}
+    database: {{SQLSERVER_DB}}{{#unless SQLSERVER_DB}}test{{/unless}}
   credential:
     username: {{SQLSERVER_USER}}
     password: {{SQLSERVER_PASS}}
@@ -80,6 +85,9 @@
 
 # Controller
 - descriptor: "beacons:controller:default:default:1.0"
+  options:
+    param1: XYZ
+    param2: 765
 
 {{#if HTTP_ENABLED}}
 # Common HTTP endpoint
@@ -94,9 +102,9 @@
   swagger:
     enable: true
     auto: true
-    route: swagger
-    name: Beacons Service V1
-    description: microservice to demonstrate works with data microservices
+    route: {{{SWAGGER_ROUTE}}}{{#unless SWAGGER_ROUTE}}swagger{{/unless}}
+    name: {{{SWAGGER_NAME}}}{{#unless SWAGGER_NAME}}Beacons Service V1{{/unless}}
+    description: {{{SWAGGER_DESCRIPTION}}}{{#unless SWAGGER_DESCRIPTION}}microservice to demonstrate works with data microservices{{/unless}}
 
 
 # Hearbeat service
@@ -112,7 +120,7 @@
   connection:
     protocol: http
     host: 0.0.0.0
-    port: 8090
+    port: {{{GRPC_PORT}}}{{#unless GRPC_PORT}}8090{{/unless}}
 
 # GRPC endpoint service version 1.0
 - descriptor: "beacons:service:grpc:default:1.0"

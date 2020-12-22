@@ -1,6 +1,10 @@
 # <img src="https://github.com/pip-services/pip-services/raw/master/design/Logo.png" alt="Pip.Services Logo" style="max-width:30%"> <br/> Beacons microservice
 
 This is the Beacons microservice from the Pip.Templates library. 
+The is simple a microservice that does couple things:
+
+* Store a list of BLE beacons (a.k.a. iBeacons), their unique identifiers, and the positions at which they were installed.
+* Calculate the position of a device, using the beacons it “sees” in its vicinity.
 
 Supported functionality:
 * Deployment platforms: Standalone Process, Docker, AWS Lambda
@@ -17,7 +21,7 @@ This microservice does not depend on other microservices.
 * Communication Protocols:
   - [gRPC Version 1](src/protos/beacons_v1.proto)
   - [HTTP Version 1](src/swagger/beacons_v1.yaml)
-* [API Reference](https://pip-templates.github.io/pip-templates-data-node/globals.html)
+* [API Reference](https://pip-templates.github.io/pip-services-beacons-node/globals.html)
 * [Change Log](CHANGELOG.md)
 
 
@@ -71,7 +75,7 @@ export interface IBeaconsClientV1 {
 
 Right now, the only way to get the microservice is to check it out directly from the GitHub repository
 ```bash
-git clone https://github.com/pip-templates/pip-templates-microservice-node.git
+git clone git@github.com:pip-templates/pip-services-beacons-node.git
 ```
 
 The Pip.Service team is working on implementing packaging, to make stable releases available as zip-downloadable archives.
@@ -108,6 +112,8 @@ The microservice can be configured using the environment variables:
 * SQLSERVER_PASS - SQL Server user password
 * HTTP_ENABLED - turn on HTTP endpoint
 * HTTP_PORT - HTTP port number (default: 8080)
+* GRPC_ENABLED - turn on GRPC endpoint
+* GRPC_PORT - GRPC port number (default: 8090)
 
 Start the microservice as process:
 ```bash
@@ -122,7 +128,7 @@ Then use the following command:
 
 Launch the microservice with all infrastructure services using docker-compose:
 ```bash
-docker-compose -f ./docker/docker-compose.yml
+docker-compose -f ./docker/docker-compose.yml up
 ```
 
 ## Use
@@ -134,16 +140,16 @@ If you use node.js, then get references to the required libraries:
 - Pip.Services3.Rpc: 
 https://github.com/pip-services3-node/pip-services3-rpc-node
 
-<!-- Todo: rename pip-templates-microservice-node? -->
-Add classes from the **pip-services3-commons-node** and **pip-templates-microservice-node** packages
+<!-- Todo: rename pip-services-beacons-node? -->
+Add classes from the **pip-services3-commons-node** and **pip-services-beacons-node** packages
 ```javascript
 import { ConfigParams } from 'pip-services3-commons-node';
 import { FilterParams } from 'pip-services3-commons-node';
 import { PagingParams } from 'pip-services3-commons-node';
 
-import { BeaconV1 } from 'pip-templates-microservice-node';
-import { BeaconTypeV1 } from 'pip-templates-microservice-node';
-import { BeaconsCommandableHttpClientV1 } from 'pip-templates-microservice-node';
+import { BeaconV1 } from 'pip-services-beacons-node';
+import { BeaconTypeV1 } from 'pip-services-beacons-node';
+import { BeaconsCommandableHttpClientV1 } from 'pip-services-beacons-node';
 ```
 
 Define client configuration parameters that match the configuration of the microservice's external API
@@ -252,7 +258,7 @@ tsc
 
 Before running tests launch infrastructure services and required microservices:
 ```bash
-docker-compose -f ./docker-compose.dev.yml
+docker-compose -f ./docker-compose.dev.yml up
 ```
 
 Run automated tests:
