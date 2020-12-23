@@ -6,8 +6,7 @@ const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_aws_node_1 = require("pip-services3-aws-node");
 class BeaconsLambdaClientV1 extends pip_services3_aws_node_1.CommandableLambdaClient {
     constructor(config) {
-        // Todo: 'v1/beacons' or just 'beacons' for lambda (like in SettingsLambdaClientV1.ts)?
-        super('v1/beacons');
+        super('beacons');
         if (config != null)
             this.configure(pip_services3_commons_node_1.ConfigParams.fromValue(config));
     }
