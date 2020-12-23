@@ -87,6 +87,9 @@ The Pip.Service team is working on implementing packaging, to make stable releas
 ## Run
 
 The microservice can be configured using the environment variables:
+* AWS_LAMDBA_ARN - a unique Amazon Resource Name
+* AWS_ACCESS_ID - AWS access/client id
+* AWS_ACCESS_KEY - AWS access/client id
 * MEMORY_ENABLED - turn on in-memory persistence. Keep it undefined to turn it off
 * FILE_ENABLED - turn on file persistence. Keep it undefined to turn it off
 * FILE_PATH - file path where persistent data shall be stored (default: ../data/id_records.json) 
