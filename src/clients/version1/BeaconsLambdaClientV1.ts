@@ -10,8 +10,7 @@ import { IBeaconsClientV1 } from './IBeaconsClientV1';
 export class BeaconsLambdaClientV1 extends CommandableLambdaClient implements IBeaconsClientV1 {
     
     constructor(config?: any) {
-        // Todo: 'v1/beacons' or just 'beacons' for lambda (like in SettingsLambdaClientV1.ts)?
-        super('v1/beacons');
+        super('beacons');
 
         if (config != null)
             this.configure(ConfigParams.fromValue(config));
