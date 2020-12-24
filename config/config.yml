@@ -11,16 +11,6 @@
 # Perfomance counter that post values to log
 - descriptor: "pip-services:counters:log:default:1.0"
 
-{{^if POSTGRES_ENABLED}}{{^if MONGO_ENABLED}}{{^if FILE_ENABLED}}
-# Memory persistence
-- descriptor: "beacons:persistence:memory:default:1.0"
-{{/if}}{{/if}}{{/if}}
-
-{{#if MEMORY_ENABLED}}
-# In-memory persistence. Use only for testing!
-- descriptor: "beacons:persistence:memory:default:1.0"
-{{/if}}
-
 {{#if FILE_ENABLED}}
 # File persistence
 - descriptor: "beacons:persistence:file:default:1.0"
