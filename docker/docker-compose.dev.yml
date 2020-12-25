@@ -25,6 +25,20 @@ services:
       SA_PASSWORD: sqlserver_123
     ports:
       - "1433:1433"
+
+  mysql:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: 'test'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - "3306:3306"  
+
   #couchbase:
   #  image: couchbase/server-sandbox:6.0.1
   #  ports:

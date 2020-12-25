@@ -9,4 +9,5 @@ export { BeaconsMongoDbPersistence } from './BeaconsMongoDbPersistence';
 export { BeaconsJsonPostgresPersistence } from './BeaconsJsonPostgresPersistence';
 export { BeaconsPostgresPersistence } from './BeaconsPostgresPersistence';
 export { BeaconsSqlServerPersistence } from './BeaconsSqlServerPersistence';
+export { BeaconsMySqlPersistence } from './BeaconsMySqlPersistence';
 export { BeaconsCouchbasePersistence } from './BeaconsCouchbasePersistence';

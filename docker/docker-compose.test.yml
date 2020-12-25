@@ -14,11 +14,13 @@ services:
       - MONGO_SERVICE_HOST=mongo
       - MONGO_SERVICE_PORT=27017
       - MONGO_DB=test
+
       - POSTGRES_SERVICE_HOST=postgres
       - POSTGRES_SERVICE_PORT=5432
       - POSTGRES_USER=postgres
       - POSTGRES_PASS=postgres
       - POSTGRES_DB=test
+
       - COUCHBASE_SERVICE_HOST=couchbase
       - COUCHBASE_SERVICE_PORT=8091
       - COUCHBASE_USER=Administrator
@@ -29,6 +31,12 @@ services:
       - SQLSERVER_USER=sa
       - SQLSERVER_PASSWORD=sqlserver_123
       - SQLSERVER_DB=master
+
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DB=test
 
   mongo:
     image: mongo:latest
@@ -46,6 +54,19 @@ services:
     environment:
       ACCEPT_EULA: Y
       SA_PASSWORD: sqlserver_123
+
+  mysql:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    # container_name: mysql
+    environment:
+      MYSQL_DATABASE: 'test'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    # ports:
+    #   - "5432:5432"
 
   #couchbase:
   #  image: couchbase/server-sandbox:6.0.1

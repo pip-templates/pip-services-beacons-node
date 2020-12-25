@@ -12,6 +12,7 @@
     "delay_test": "sleep 60 && echo Continue... && mocha -t 30000 -R spec -u tdd --recursive ./obj/test"
   },
   "dependencies": {
+    "pip-benchmark-node": "^2.1.4",
     "pip-services3-aws-node": "^3.0.*",
     "pip-services3-commons-node": "^3.0.*",
     "pip-services3-components-node": "^3.0.*",
@@ -20,10 +21,10 @@
     "pip-services3-data-node": "^3.0.*",
     "pip-services3-grpc-node": "^3.0.*",
     "pip-services3-mongodb-node": "^3.2.*",
+    "pip-services3-mysql-node": "^3.0.2",
     "pip-services3-postgres-node": "^3.0.*",
-    "pip-services3-sqlserver-node": "^3.0.1",
     "pip-services3-rpc-node": "^3.2.*",
-    "pip-benchmark-node": "^2.1.4"
+    "pip-services3-sqlserver-node": "^3.0.1"
   },
   "devDependencies": {
     "@types/async": "^2.0.49",

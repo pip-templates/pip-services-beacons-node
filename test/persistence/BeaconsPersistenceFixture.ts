@@ -15,7 +15,7 @@ const BEACON1: BeaconV1 = {
     type: BeaconTypeV1.AltBeacon,
     site_id: '1',
     label: 'TestBeacon1',
-    center: { type: 'Point', coordinates: [ 0, 0 ] },
+    // center: { type: 'Point', coordinates: [ 0, 0 ] },
     radius: 50
 };
 const BEACON2: BeaconV1 = {
@@ -24,7 +24,7 @@ const BEACON2: BeaconV1 = {
     type: BeaconTypeV1.iBeacon,
     site_id: '1',
     label: 'TestBeacon2',
-    center: { type: 'Point', coordinates: [ 2, 2 ] },
+    // center: { type: 'Point', coordinates: [ 2, 2 ] },
     radius: 70
 };
 const BEACON3: BeaconV1 = {
@@ -33,7 +33,7 @@ const BEACON3: BeaconV1 = {
     type: BeaconTypeV1.AltBeacon,
     site_id: '2',
     label: 'TestBeacon3',
-    center: { type: 'Point', coordinates: [ 10, 10 ] },
+    // center: { type: 'Point', coordinates: [ 10, 10 ] },
     radius: 50
 };
 
@@ -60,7 +60,7 @@ export class BeaconsPersistenceFixture {
                         assert.equal(BEACON1.site_id, beacon.site_id);
                         assert.equal(BEACON1.type, beacon.type);
                         assert.equal(BEACON1.label, beacon.label);
-                        assert.isNotNull(beacon.center);
+                        // assert.isNotNull(beacon.center);
 
                         callback();
                     }
@@ -79,7 +79,7 @@ export class BeaconsPersistenceFixture {
                         assert.equal(BEACON2.site_id, beacon.site_id);
                         assert.equal(BEACON2.type, beacon.type);
                         assert.equal(BEACON2.label, beacon.label);
-                        assert.isNotNull(beacon.center);
+                        // assert.isNotNull(beacon.center);
 
                         callback();
                     }
@@ -98,7 +98,7 @@ export class BeaconsPersistenceFixture {
                         assert.equal(BEACON3.site_id, beacon.site_id);
                         assert.equal(BEACON3.type, beacon.type);
                         assert.equal(BEACON3.label, beacon.label);
-                        assert.isNotNull(beacon.center);
+                        // assert.isNotNull(beacon.center);
 
                         callback();
                     }
