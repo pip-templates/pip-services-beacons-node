@@ -272,6 +272,24 @@ export class BeaconsPersistenceFixture {
                     }
                 )
             },
+
+            // Filter by label
+            (callback) => {
+                this._persistence.getPageByFilter(
+                    null,
+                    FilterParams.fromTuples(
+                        'label', 'TestBeacon1'
+                    ),
+                    new PagingParams(),
+                    (err, page) => {
+                        assert.isNull(err);
+
+                        assert.lengthOf(page.data, 1);
+
+                        callback();
+                    }
+                )
+            },
         ], done);
     }
 }
