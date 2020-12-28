@@ -1,5 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+<<<<<<< HEAD
+=======
+exports.BeaconsRestClientV1 = exports.BeaconsMockClientV1 = exports.BeaconsGrpcClientV1 = exports.BeaconsCommandableGrpcClientV1 = exports.BeaconsCommandableHttpClientV1 = exports.BeaconsDirectClientV1 = exports.BeaconsNullClientV1 = void 0;
+>>>>>>> a4cfbcb73dc8a9708e6e37dd746e32f45152ab25
 var BeaconsNullClientV1_1 = require("./BeaconsNullClientV1");
 Object.defineProperty(exports, "BeaconsNullClientV1", { enumerable: true, get: function () { return BeaconsNullClientV1_1.BeaconsNullClientV1; } });
 var BeaconsDirectClientV1_1 = require("./BeaconsDirectClientV1");

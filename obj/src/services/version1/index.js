@@ -1,5 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+<<<<<<< HEAD
+=======
+exports.BeaconsRestServiceV1 = exports.BeaconsGrpcServiceV1 = exports.BeaconsCommandableGrpcServiceV1 = exports.BeaconsCommandableHttpServiceV1 = void 0;
+>>>>>>> a4cfbcb73dc8a9708e6e37dd746e32f45152ab25
 /**
  * @module services
  * @preferred
