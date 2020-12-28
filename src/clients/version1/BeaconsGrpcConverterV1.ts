@@ -15,7 +15,7 @@ import { ApplicationExceptionFactory } from 'pip-services3-commons-node';
 
 import { BeaconV1 } from '../../data/version1/BeaconV1';
 
-// Todo: why isn't this part of pip-services-grpc?
+
 export class BeaconsGrpcConverterV1 {
 
     public static fromError(err: any): any {

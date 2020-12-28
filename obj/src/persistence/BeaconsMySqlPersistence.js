@@ -12,6 +12,20 @@ class BeaconsMySqlPersistence extends pip_services3_mysql_node_1.IdentifiableMyS
         this.autoCreateObject("CREATE TABLE beacons (id VARCHAR(32), site_id VARCHAR(32), type VARCHAR(15), udi VARCHAR(25), label VARCHAR(50), center JSON, radius REAL)");
         this.ensureIndex("beacons_site_id", { site_id: 1 });
     }
+    convertToPublic(value) {
+        for (let key in value) {
+            if (typeof value[key] == 'string' && value[key].startsWith('{'))
+                value[key] = JSON.parse(value[key]);
+        }
+        return value;
+    }
+    convertFromPublic(value) {
+        for (let key in value) {
+            if (typeof value[key] == 'object')
+                value[key] = JSON.stringify(value[key]);
+        }
+        return value;
+    }
     composeFilter(filter) {
         filter = filter || new pip_services3_commons_node_1.FilterParams();
         let filters = [];

@@ -1,10 +1,12 @@
 /** @module clients */
 
-import { ConfigParams, DataPage, FilterParams, PagingParams } from 'pip-services3-commons-node';
-
+import { ConfigParams } from 'pip-services3-commons-node';
+import { DataPage } from 'pip-services3-commons-node';
+import { FilterParams } from 'pip-services3-commons-node';
+import { PagingParams } from 'pip-services3-commons-node';
 import { RestClient } from 'pip-services3-rpc-node';
-import { BeaconV1 } from '../../data/version1/BeaconV1';
 
+import { BeaconV1 } from '../../data/version1/BeaconV1';
 import { IBeaconsClientV1 } from './IBeaconsClientV1';
 
 export class BeaconsRestClientV1 extends RestClient implements IBeaconsClientV1 {

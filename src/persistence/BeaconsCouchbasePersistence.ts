@@ -45,7 +45,6 @@ export class BeaconsCouchbasePersistence
         if (udi != null)
             filters.push("udi='" + udi + "'"); 
         
-        //Todo: check how 'in' works in couchbase
         let udis = filter.getAsObject('udis');
         if (_.isString(udis))
             udis = udis.split(',');
@@ -64,7 +63,6 @@ export class BeaconsCouchbasePersistence
         super.getPageByFilter(correlationId, this.composeFilter(filter), paging, null, null, callback);
     }
 
-    // Todo: test
     public getOneByUdi(correlationId: string, udi: string, callback: (err: any, item: BeaconV1) => void): void {
         this.getPageByFilter(correlationId, FilterParams.fromTuples('udi', udi ), null, (error, page) => {
             if(error)

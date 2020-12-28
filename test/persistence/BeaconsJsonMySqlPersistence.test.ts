@@ -18,6 +18,7 @@ suite('BeaconJsonMySqlPersistence', ()=> {
         return;
 
     setup((done) => {
+
         let dbConfig = ConfigParams.fromTuples(
             'connection.uri', mysqlUri,
             'connection.host', mysqlHost,
@@ -26,18 +27,14 @@ suite('BeaconJsonMySqlPersistence', ()=> {
             'credential.username', mysqlUser,
             'credential.password', mysqlPassword
         );
-
         persistence = new BeaconJsonMySqlPersistence();
         persistence.configure(dbConfig);
-
         fixture = new BeaconsPersistenceFixture(persistence);
-
         persistence.open(null, (err: any) => {
             if (err) {
                 done(err);
                 return;
             }
-
             persistence.clear(null, (err) => {
                 done(err);
             });

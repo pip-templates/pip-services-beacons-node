@@ -147,7 +147,7 @@ If you use node.js, then get references to the required libraries:
 - Pip.Services3.Rpc: 
 https://github.com/pip-services3-node/pip-services3-rpc-node
 
-<!-- Todo: rename pip-services-beacons-node? -->
+
 Add classes from the **pip-services3-commons-node** and **pip-services-beacons-node** packages
 ```javascript
 import { ConfigParams } from 'pip-services3-commons-node';

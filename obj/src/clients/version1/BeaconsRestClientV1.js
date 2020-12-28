@@ -17,8 +17,10 @@ class BeaconsRestClientV1 extends pip_services3_rpc_node_1.RestClient {
     getBeacons(correlationId, filter, paging, callback) {
         let time = this.instrument(correlationId, "beacons.get_beacons");
         this.call('get', '/beacons', correlationId, {
-            filter: filter,
-            paging: paging
+            beacons: {
+                filter: filter,
+                paging: paging
+            }
         }, null, (err, page) => {
             time.endTiming();
             if (err == null && page != null) {
@@ -29,18 +31,80 @@ class BeaconsRestClientV1 extends pip_services3_rpc_node_1.RestClient {
             }
         });
     }
-    // TODO: implement all methods
-    getBeaconById(correlationId, beaconId, callback) {
-    }
-    getBeaconByUdi(correlationId, udi, callback) {
-    }
     calculatePosition(correlationId, siteId, udis, callback) {
+        let time = this.instrument(correlationId, "beacons.calculate_position");
+        this.call('post', '/beacons/position', correlationId, null, {
+            udis: udis,
+            site_id: siteId
+        }, (err, beacon) => {
+            time.endTiming();
+            if (err == null && beacon != null) {
+                callback(err, beacon);
+            }
+            else {
+                callback(err, null);
+            }
+        });
     }
     createBeacon(correlationId, beacon, callback) {
+        let time = this.instrument(correlationId, "beacons.create_beacon");
+        this.call('post', '/beacons', correlationId, null, beacon, (err, createdBeacon) => {
+            time.endTiming();
+            if (err == null && createdBeacon != null) {
+                callback(err, createdBeacon);
+            }
+            else {
+                callback(err, null);
+            }
+        });
     }
     updateBeacon(correlationId, beacon, callback) {
+        let time = this.instrument(correlationId, "beacons.update_beacon");
+        this.call('post', '/beacons', correlationId, null, beacon, (err, updatedBeacon) => {
+            time.endTiming();
+            if (err == null && updatedBeacon != null) {
+                callback(err, updatedBeacon);
+            }
+            else {
+                callback(err, null);
+            }
+        });
+    }
+    getBeaconById(correlationId, id, callback) {
+        let time = this.instrument(correlationId, "beacons.get_beacon_by_id");
+        this.call('get', '/beacons/' + id, correlationId, null, null, (err, beacon) => {
+            time.endTiming();
+            if (err == null && beacon != null) {
+                callback(err, beacon);
+            }
+            else {
+                callback(err, null);
+            }
+        });
+    }
+    getBeaconByUdi(correlationId, udi, callback) {
+        let time = this.instrument(correlationId, "beacons.get_beacon_by_udi");
+        this.call('get', '/beacons/udi/' + udi, correlationId, null, null, (err, beacon) => {
+            time.endTiming();
+            if (err == null && beacon != null) {
+                callback(err, beacon);
+            }
+            else {
+                callback(err, null);
+            }
+        });
     }
     deleteBeaconById(correlationId, beaconId, callback) {
+        let time = this.instrument(correlationId, "beacons.delete_beacon_by_id");
+        this.call('delete', '/beacons/' + beaconId, correlationId, null, null, (err, beacon) => {
+            time.endTiming();
+            if (err == null && beacon != null) {
+                callback(err, beacon);
+            }
+            else {
+                callback(err, null);
+            }
+        });
     }
 }
 exports.BeaconsRestClientV1 = BeaconsRestClientV1;

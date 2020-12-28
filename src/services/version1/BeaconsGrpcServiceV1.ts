@@ -8,11 +8,9 @@ let messages = require('../../../../src/protos/beacons_v1_pb');
 
 import { IReferences } from 'pip-services3-commons-node';
 import { Descriptor } from 'pip-services3-commons-node';
-import { DataPage } from 'pip-services3-commons-node';
 import { FilterParams } from 'pip-services3-commons-node';
 import { GrpcService } from 'pip-services3-grpc-node';
 
-import { BeaconV1 } from '../../data/version1/BeaconV1';
 import { IBeaconsController } from '../../logic/IBeaconsController';
 import { BeaconsGrpcConverterV1 } from '../../clients/version1/BeaconsGrpcConverterV1';
 

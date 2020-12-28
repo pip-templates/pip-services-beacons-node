@@ -30,7 +30,6 @@ class BeaconsCouchbasePersistence extends pip_services3_couchbase_node_1.Identif
         let udi = filter.getAsNullableString('udi');
         if (udi != null)
             filters.push("udi='" + udi + "'");
-        //Todo: check how 'in' works in couchbase
         let udis = filter.getAsObject('udis');
         if (_.isString(udis))
             udis = udis.split(',');
@@ -45,7 +44,6 @@ class BeaconsCouchbasePersistence extends pip_services3_couchbase_node_1.Identif
     getPageByFilter(correlationId, filter, paging, callback) {
         super.getPageByFilter(correlationId, this.composeFilter(filter), paging, null, null, callback);
     }
-    // Todo: test
     getOneByUdi(correlationId, udi, callback) {
         this.getPageByFilter(correlationId, pip_services3_commons_node_1.FilterParams.fromTuples('udi', udi), null, (error, page) => {
             if (error)

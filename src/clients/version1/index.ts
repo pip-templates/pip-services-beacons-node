@@ -10,3 +10,4 @@ export { BeaconsCommandableGrpcClientV1 } from './BeaconsCommandableGrpcClientV1
 export { BeaconsGrpcClientV1 } from './BeaconsGrpcClientV1';
 export { BeaconsMockClientV1 } from './BeaconsMockClientV1';
 export { BeaconsRestClientV1 } from './BeaconsRestClientV1';
+export { BeaconsLambdaClientV1 } from './BeaconsLambdaClientV1';
