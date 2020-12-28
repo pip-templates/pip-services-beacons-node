@@ -15,6 +15,7 @@ const BeaconsController_1 = require("../logic/BeaconsController");
 const BeaconsCommandableHttpServiceV1_1 = require("../services/version1/BeaconsCommandableHttpServiceV1");
 const BeaconsCommandableGrpcServiceV1_1 = require("../services/version1/BeaconsCommandableGrpcServiceV1");
 const BeaconsGrpcServiceV1_1 = require("../services/version1/BeaconsGrpcServiceV1");
+const BeaconsRestServiceV1_1 = require("../services/version1/BeaconsRestServiceV1");
 class BeaconsServiceFactory extends pip_services3_components_node_1.Factory {
     constructor() {
         super();
@@ -29,6 +30,7 @@ class BeaconsServiceFactory extends pip_services3_components_node_1.Factory {
         this.registerAsType(BeaconsServiceFactory.CommandableHttpServiceV1Descriptor, BeaconsCommandableHttpServiceV1_1.BeaconsCommandableHttpServiceV1);
         this.registerAsType(BeaconsServiceFactory.CommandableGrpcServiceV1Descriptor, BeaconsCommandableGrpcServiceV1_1.BeaconsCommandableGrpcServiceV1);
         this.registerAsType(BeaconsServiceFactory.GrpcServiceV1Descriptor, BeaconsGrpcServiceV1_1.BeaconsGrpcServiceV1);
+        this.registerAsType(BeaconsServiceFactory.RestServiceDescriptor, BeaconsRestServiceV1_1.BeaconsRestServiceV1);
     }
 }
 exports.BeaconsServiceFactory = BeaconsServiceFactory;
@@ -43,4 +45,5 @@ BeaconsServiceFactory.ControllerDescriptor = new pip_services3_commons_node_1.De
 BeaconsServiceFactory.CommandableHttpServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'commandable-http', '*', '1.0');
 BeaconsServiceFactory.CommandableGrpcServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'commandable-grpc', '*', '1.0');
 BeaconsServiceFactory.GrpcServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'grpc', '*', '1.0');
+BeaconsServiceFactory.RestServiceDescriptor = new pip_services3_commons_node_1.Descriptor("beacons", "service", "rest", "*", "1.0");
 //# sourceMappingURL=BeaconsServiceFactory.js.map

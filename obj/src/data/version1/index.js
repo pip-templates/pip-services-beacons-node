@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RandomBeaconV1 = exports.BeaconV1Schema = exports.BeaconTypeV1 = exports.BeaconV1 = void 0;
 /**
  * @module data
  * @preferred

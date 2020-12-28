@@ -7,5 +7,7 @@ export declare class BeaconsClientFactory extends Factory {
     static CommandableHttpClientDescriptor: Descriptor;
     static CommandableGrpcClientV1Descriptor: Descriptor;
     static GrpcClientV1Descriptor: Descriptor;
+    static LambdaClientV1Descriptor: Descriptor;
+    static RestClientV1Descriptor: Descriptor;
     constructor();
 }

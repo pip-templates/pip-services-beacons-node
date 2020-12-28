@@ -6,9 +6,6 @@ let async = require('async');
 
 import { IReferences } from "pip-services3-commons-node";
 import { Descriptor } from "pip-services3-commons-node";
-import { ObjectSchema } from "pip-services3-commons-node";
-import { TypeCode } from "pip-services3-commons-node";
-import { LongConverter } from "pip-services3-commons-node";
 import { RestService } from "pip-services3-rpc-node";
 import { IBeaconsController } from "../../logic/IBeaconsController";
 
