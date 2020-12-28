@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BeaconsLambdaFunction = exports.BeaconsProcess = void 0;
 /**
  * @module container
  * @preferred
