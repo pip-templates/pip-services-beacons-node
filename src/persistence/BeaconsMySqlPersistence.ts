@@ -20,6 +20,27 @@ export class BeaconsMySqlPersistence extends IdentifiableMySqlPersistence<Beacon
         this.ensureIndex("beacons_site_id", { site_id: 1 });
     }
 
+    
+    protected convertToPublic(value: any): any {
+        
+        for(let key in value) {
+            if (typeof value[key] == 'string' && value[key].startsWith('{')) 
+                value[key] = JSON.parse(value[key]);
+        }
+
+        return value;
+    }
+    
+    protected convertFromPublic(value: any): any {
+
+        for(let key in value) {
+            if (typeof value[key] == 'object')
+                value[key] = JSON.stringify(value[key]);
+        }
+
+        return value;
+    }
+
     private composeFilter(filter: FilterParams): any {
         filter = filter || new FilterParams();
       

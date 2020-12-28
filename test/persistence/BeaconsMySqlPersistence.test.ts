@@ -51,5 +51,9 @@ suite('BeaconsMySqlPersistence', ()=> {
     test('Crud Operations', (done) => {
         fixture.testCrudOperations(done);
     });
+
+    test('Get with Filters', (done) => {
+        fixture.testGetWithFilters(done);
+    });
     
 });
