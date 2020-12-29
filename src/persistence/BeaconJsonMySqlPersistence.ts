@@ -17,8 +17,8 @@ export class BeaconJsonMySqlPersistence
     public constructor() {
         super('beacons_json');
         this.ensureTable();
-        this.autoCreateObject('ALTER TABLE `beacons_json` ADD `data` VARCHAR(50) AS (JSON_UNQUOTE(`data`->"$.id"))');
-        this.ensureIndex('beacons_json_data', { "data": 1 }, { unique: true });
+        this.autoCreateObject('ALTER TABLE `beacons_json` ADD `data_id` VARCHAR(50) AS (JSON_UNQUOTE(`data`->"$.id"))');
+        this.ensureIndex('beacons_json_id', { "data_id": 1 }, { unique: true });
     }
 
     private composeFilter(filter: FilterParams): any {
