@@ -9,6 +9,8 @@ services:
     links:
       - mongo
       - postgres
+      - sqlserver
+      - mysql
     #  - couchbase
     environment:
       - MONGO_SERVICE_HOST=mongo

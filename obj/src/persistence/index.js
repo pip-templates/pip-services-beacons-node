@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeaconsCouchbasePersistence = exports.BeaconJsonMySqlPersistence = exports.BeaconsMySqlPersistence = exports.BeaconsSqlServerPersistence = exports.BeaconsPostgresPersistence = exports.BeaconsJsonPostgresPersistence = exports.BeaconsMongoDbPersistence = exports.BeaconsFilePersistence = exports.BeaconsMemoryPersistence = void 0;
+exports.BeaconsCouchbasePersistence = exports.BeaconJsonMySqlPersistence = exports.BeaconsMySqlPersistence = exports.BeaconsJsonSqlServerPersistence = exports.BeaconsSqlServerPersistence = exports.BeaconsPostgresPersistence = exports.BeaconsJsonPostgresPersistence = exports.BeaconsMongoDbPersistence = exports.BeaconsFilePersistence = exports.BeaconsMemoryPersistence = void 0;
 var BeaconsMemoryPersistence_1 = require("./BeaconsMemoryPersistence");
 Object.defineProperty(exports, "BeaconsMemoryPersistence", { enumerable: true, get: function () { return BeaconsMemoryPersistence_1.BeaconsMemoryPersistence; } });
 var BeaconsFilePersistence_1 = require("./BeaconsFilePersistence");
@@ -13,6 +13,8 @@ var BeaconsPostgresPersistence_1 = require("./BeaconsPostgresPersistence");
 Object.defineProperty(exports, "BeaconsPostgresPersistence", { enumerable: true, get: function () { return BeaconsPostgresPersistence_1.BeaconsPostgresPersistence; } });
 var BeaconsSqlServerPersistence_1 = require("./BeaconsSqlServerPersistence");
 Object.defineProperty(exports, "BeaconsSqlServerPersistence", { enumerable: true, get: function () { return BeaconsSqlServerPersistence_1.BeaconsSqlServerPersistence; } });
+var BeaconsJsonSqlServerPersistence_1 = require("./BeaconsJsonSqlServerPersistence");
+Object.defineProperty(exports, "BeaconsJsonSqlServerPersistence", { enumerable: true, get: function () { return BeaconsJsonSqlServerPersistence_1.BeaconsJsonSqlServerPersistence; } });
 var BeaconsMySqlPersistence_1 = require("./BeaconsMySqlPersistence");
 Object.defineProperty(exports, "BeaconsMySqlPersistence", { enumerable: true, get: function () { return BeaconsMySqlPersistence_1.BeaconsMySqlPersistence; } });
 var BeaconJsonMySqlPersistence_1 = require("./BeaconJsonMySqlPersistence");
