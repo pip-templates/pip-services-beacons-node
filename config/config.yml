@@ -55,6 +55,19 @@
     password: {{SQLSERVER_PASS}}
 {{/if}}
 
+{{#if MYSQL_ENABLED}}
+# MYSQL Persistence
+- descriptor: "beacons:persistence:mysql:default:1.0"
+  connection:
+    uri: {{{MYSQL_URI}}}
+    host: {{{MYSQL_HOST}}}{{#unless MYSQL_HOST}}localhost{{/unless}}
+    port: {{MYSQL_PORT}}{{#unless MYSQL_PORT}}1433{{/unless}}
+    database: {{MYSQL_DB}}{{#unless MYSQL_DB}}test{{/unless}}
+  credential:
+    username: {{MYSQL_USER}}
+    password: {{MYSQL_PASSWORD}}
+{{/if}}
+
 {{#if COUCHBASE_ENABLED}}
 # Couchbase Persistence
 - descriptor: "beacons:persistence:couchbase:default:1.0"

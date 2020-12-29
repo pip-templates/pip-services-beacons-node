@@ -9,7 +9,7 @@ The is simple a microservice that does couple things:
 Supported functionality:
 * Deployment platforms: Standalone Process, Docker, AWS Lambda
 * External APIs: HTTP (REST and Commandable), GRPC (Custom and Commandable)
-* Persistence: Memory, Flat Files, MongoDB, PosgreSQL (Relational and NoSQL), SQLServer (Relational and NoSQL)
+* Persistence: Memory, Flat Files, MongoDB, PosgreSQL (Relational and NoSQL), SQLServer (Relational and NoSQL), MySql (Relational and NoSQL)
 * Health checks: Heartbeat, Status
 * Consolidated logging: ElasticSearch, CloudWatch
 * Consolidated metrics: Prometheus, CloudWatch
@@ -101,6 +101,13 @@ The microservice can be configured using the environment variables:
 * MONGO_COLLECTION - MongoDB collection (default: id_records)
 * MONGO_USER - MongoDB user login
 * MONGO_PASS - MongoDB user password
+* MYSQL_ENABLED - turn on MySql persistence. Keep it undefined to turn it off
+* MYSQL_URI - URI to connect to MySql. When it's defined other database parameters are ignored
+* MYSQL_HOST - MySql hostname or server address
+* MYSQL_PORT - MySql port number (default: 3306)
+* MYSQL_DB - MySql database name (default: test)
+* MYSQL_USER - MySql user login
+* MYSQL_PASSWORD - MySql user password
 * POSTGRES_ENABLED - turn on PostgreSQL persistence. Keep it undefined to turn it off
 * POSTGRES_SERVICE_URI - URI to connect to PostgreSQL. When it's defined other database parameters are ignored
 * POSTGRES_SERVICE_HOST - PostgreSQL hostname or server address
