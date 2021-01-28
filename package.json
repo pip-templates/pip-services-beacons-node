@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "pip-benchmark-node": "^2.1.4",
+    "pip-services-datadog-node": "^3.0.0",
     "pip-services-elasticsearch-node": "^3.0.3",
     "pip-services-prometheus-node": "^3.0.2",
     "pip-services3-aws-node": "^3.0.*",

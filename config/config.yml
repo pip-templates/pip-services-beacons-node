@@ -13,6 +13,19 @@
   access_key: {{AWS_ACCESS_KEY}}
   {{/if}}
 
+
+{{#if DATA_DOG_ENABLED}}
+# DataDog logger
+- descriptor: "pip-services:logger:datadog:default:1.0"
+  connection:
+    protocol: {{DTAT_DOG_PROTOCOL}}{{#unless DTAT_DOG_PROTOCOL}}https{{/unless}}
+    uri: {{DATA_DOG_URI}}
+    host: {{DATA_DOG_HOST}}{{#unless DATA_DOG_HOST}}"api.datadoghq.com"{{/unless}}
+    port: {{DATA_DOG_PORT}}{{#unless DATA_DOG_PORT}}443{{/unless}}
+  credential:
+    access_key: {{DATA_DOG_ACCRSS_KEY}}
+{{/if}}
+
 # Perfomance counter that post values to log
 - descriptor: "pip-services:counters:log:default:1.0"
 

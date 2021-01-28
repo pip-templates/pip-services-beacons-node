@@ -40,6 +40,6 @@ process.on('uncaughtException', (ex) => {
 // Gracefully shutdown
 process.on('exit', function () {
     runner.stop();
-    //console.log("Goodbye!");
+    console.log("Goodbye!");
 });
 
