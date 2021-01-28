@@ -81,10 +81,16 @@
     password: {{COUCHBASE_PASS}}{{#unless COUCHBASE_PASS}}password{{/unless}}
 {{/if}}
 
-{{#unless MEMORY_ENABLED}}{{#unless FILE_ENABLED}}{{#unless MONGO_ENABLED}}{{#unless COUCHBASE_ENABLED}}
+{{#unless MEMORY_ENABLED}}{{#unless FILE_ENABLED}}
+{{#unless MONGO_ENABLED}}{{#unless COUCHBASE_ENABLED}}
+{{#unless MYSQL_ENABLED}}{{#unless SQLSERVER_ENABLED}}
+{{#unless POSTGRES_ENABLED}}
 # Default to in-memory persistence, if nothing is set
 - descriptor: "beacons:persistence:memory:default:1.0"
-{{/unless}}{{/unless}}{{/unless}}{{/unless}}
+{{/unless}}{{/unless}}
+{{/unless}}{{/unless}}
+{{/unless}}{{/unless}}
+{{/unless}}
 
 # Controller
 - descriptor: "beacons:controller:default:default:1.0"
