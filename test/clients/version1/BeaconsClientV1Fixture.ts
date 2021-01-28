@@ -152,7 +152,7 @@ export class BeaconsClientV1Fixture {
                     (err, beacon) => {
                         assert.isNull(err);
 
-                        // assert.isNull(beacon || null);
+                        assert.isNull(beacon || null);
 
                         callback();
                     }

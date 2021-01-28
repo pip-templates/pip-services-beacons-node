@@ -98,7 +98,7 @@ export class BeaconsRestClientV1 extends RestClient implements IBeaconsClientV1 
         callback: (err: any, beacon: BeaconV1) => void): void {
             let time = this.instrument(correlationId, "beacons.update_beacon")
             this.call(
-                'post', 
+                'put', 
                 '/beacons',
                 correlationId,
                 null,
@@ -126,7 +126,7 @@ export class BeaconsRestClientV1 extends RestClient implements IBeaconsClientV1 
                 null,
                 (err, beacon) => {
                     time.endTiming();
-                    if (err == null && beacon != null) {
+                    if (err == null && beacon != null && beacon != 'null') {
                         callback(err, beacon)
                     } else {
                         callback(err, null);

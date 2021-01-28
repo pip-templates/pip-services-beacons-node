@@ -300,14 +300,10 @@ suite('BeaconsCommandableGrpcServiceV1', () => {
                     },
                     (err, response) => {
                         assert.isNull(err);
-
-                        /* 
-                        assert.isFalse(response.result_empty);
-                        assert.isString(response.result_json); 
-                        let beacon = JSON.parse(response.result_json);
-                        assert.isObject(beacon);
-                        */
-
+                        
+                        assert.isTrue(response.result_empty);
+                        assert.isEmpty(response.result_json); 
+                        
                         callback();
                     }
                 );

@@ -194,7 +194,7 @@ suite('BeaconsRestServiceV1', ()=> {
                     (err, req, res, beacon) => {
                         assert.isNull(err);
 
-                        //assert.isEmpty(beacon || null);
+                        assert.isEmpty(beacon || null);
 
                         callback();
                     }

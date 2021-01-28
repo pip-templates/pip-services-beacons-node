@@ -29,9 +29,10 @@ export class BeaconsCouchbasePersistence
             filters.push("id='" + id + "'");
 
         // To search for a partial match:
-/*      let idStarts = filter.getAsNullableString('id_starts');
+        let idStarts = filter.getAsNullableString('id_starts');
         if (idStarts != null)
-            filters.push("(id LIKE '" + idStarts + "%')"); */
+            console.log("(id LIKE '" + idStarts + "%')")
+            filters.push("(id LIKE '" + idStarts + "%')"); 
 
         let siteId = filter.getAsNullableString('site_id');
         if (siteId != null)

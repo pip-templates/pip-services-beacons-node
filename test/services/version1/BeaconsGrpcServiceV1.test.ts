@@ -267,11 +267,8 @@ suite('BeaconsGrpcServiceV1', () => {
                         let beacon = response ? response.beacon : null;
 
                         assert.isNull(err);
-
-                        /* 
-                        assert.isObject(beacon);
-                        */
-
+                        assert.isNull(beacon);
+                        
                         callback();
                     }
                 );
