@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "pip-benchmark-node": "^2.1.4",
+    "pip-services-elasticsearch-node": "^3.0.3",
+    "pip-services-prometheus-node": "^3.0.2",
     "pip-services3-aws-node": "^3.0.*",
     "pip-services3-commons-node": "^3.0.*",
     "pip-services3-components-node": "^3.0.*",
@@ -23,6 +25,7 @@
     "pip-services3-mongodb-node": "^3.2.*",
     "pip-services3-mysql-node": "^3.0.2",
     "pip-services3-postgres-node": "^3.0.*",
+    "pip-services3-prometheus-node": "^3.0.5",
     "pip-services3-rpc-node": "^3.2.*",
     "pip-services3-sqlserver-node": "^3.0.1"
   },

@@ -10,7 +10,7 @@ import { IBeaconsClientV1 } from './IBeaconsClientV1';
 export class BeaconsLambdaClientV1 extends CommandableLambdaClient implements IBeaconsClientV1 {
     
     constructor(config?: any) {
-        super('beacons');
+        super('v1/beacons');
 
         if (config != null)
             this.configure(ConfigParams.fromValue(config));

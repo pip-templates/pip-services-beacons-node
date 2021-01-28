@@ -87,12 +87,18 @@ The Pip.Service team is working on implementing packaging, to make stable releas
 ## Run
 
 The microservice can be configured using the environment variables:
+* CLOUD_WATCH_ENABLED -  turn on CloudWatch loggers and metrics
 * AWS_LAMDBA_ARN - a unique Amazon Resource Name
 * AWS_ACCESS_ID - AWS access/client id
 * AWS_ACCESS_KEY - AWS access/client id
-* MEMORY_ENABLED - turn on in-memory persistence. Keep it undefined to turn it off
+* ELASTICSEARCH_LOGGING_ENABLED - turn on Elasticsearch logs and metrics
+* ELASTICSEARCH_PROTOCOL - connection protocol: http or https
+* ELASTICSEARCH_SERVICE_URI - resource URI or connection string with all parameters in it
+* ELASTICSEARCH_SERVICE_HOST - host name or IP address
+* ELASTICSEARCH_SERVICE_PORT - port number
 * FILE_ENABLED - turn on file persistence. Keep it undefined to turn it off
 * FILE_PATH - file path where persistent data shall be stored (default: ../data/id_records.json) 
+* MEMORY_ENABLED - turn on in-memory persistence. Keep it undefined to turn it off
 * MONGO_ENABLED - turn on MongoDB persistence. Keep it undefined to turn it off
 * MONGO_SERVICE_URI - URI to connect to MongoDB. When it's defined other database parameters are ignored
 * MONGO_SERVICE_HOST - MongoDB hostname or server address
@@ -116,6 +122,11 @@ The microservice can be configured using the environment variables:
 * POSTGRES_TABLE - PostgreSQL table (default: id_records)
 * POSTGRES_USER - PostgreSQL user login
 * POSTGRES_PASS - PostgreSQL user password
+* PUSHGATEWAY_METRICS_ENABLED - turn on pushgetway for prometheus
+* PUSHGATEWAY_PROTOCOL - connection protocol: http or https
+* PUSHGATEWAY_METRICS_SERVICE_URI - resource URI or connection string with all parameters in it
+* PUSHGATEWAY_METRICS_SERVICE_HOST - host name or IP address
+* PUSHGATEWAY_METRICS_SERVICE_PORT - port number
 * SQLSERVER_ENABLED - turn on SQL Server persistence. Keep it undefined to turn it off
 * SQLSERVER_SERVICE_URI - URI to connect to SQL Server. When it's defined other database parameters are ignored
 * SQLSERVER_SERVICE_HOST - SQL Server hostname or server address
@@ -128,6 +139,7 @@ The microservice can be configured using the environment variables:
 * HTTP_PORT - HTTP port number (default: 8080)
 * GRPC_ENABLED - turn on GRPC endpoint
 * GRPC_PORT - GRPC port number (default: 8090)
+
 
 Start the microservice as process:
 ```bash

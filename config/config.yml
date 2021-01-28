@@ -7,6 +7,11 @@
 # Console logger
 - descriptor: "pip-services:logger:console:default:1.0"
   level: "trace"
+  {{#if CLOUD_WATCH_ENABLED}}
+  region: {{AWS_LAMDBA_ARN}}
+  access_id: {{AWS_ACCESS_ID}}
+  access_key: {{AWS_ACCESS_KEY}}
+  {{/if}}
 
 # Perfomance counter that post values to log
 - descriptor: "pip-services:counters:log:default:1.0"
@@ -91,6 +96,29 @@
 {{/unless}}{{/unless}}
 {{/unless}}{{/unless}}
 {{/unless}}
+
+{{#if ELASTICSEARCH_LOGGING_ENABLED}}
+# ElasticSearch logger
+- descriptor: "pip-services:logger:elasticsearch:default:1.0"
+  connection:
+    protocol: {{ELASTICSEARCH_PROTOCOL}}{{#unless ELASTICSEARCH_PROTOCOL}}http{{/unless}}
+    uri: {{ELASTICSEARCH_SERVICE_URI}}
+    host: {{ELASTICSEARCH_SERVICE_HOST}}{{#unless ELASTICSEARCH_SERVICE_HOST}}localhost{{/unless}}
+    port: {{ELASTICSEARCH_SERVICE_PORT}}{{#unless ELASTICSEARCH_SERVICE_PORT}}9200{{/unless}}
+{{/if}}
+
+# Performance log counters
+- descriptor: "pip-services:counters:console:default:1.0"
+
+# Prometheus performance counters
+- descriptor: "pip-services:counters:prometheus:default:1.0"
+{{#if PUSHGATEWAY_METRICS_ENABLED}}
+  connection:
+    protocol: {{PUSHGATEWAY_PROTOCOL}}{{#unless PUSHGATEWAY_PROTOCOL}}http{{/unless}}
+    uri: {{PUSHGATEWAY_METRICS_SERVICE_URI}}
+    host: {{PUSHGATEWAY_METRICS_SERVICE_HOST}}{{#unless PUSHGATEWAY_METRICS_SERVICE_HOST}}localhost{{/unless}}
+    port: {{PUSHGATEWAY_METRICS_SERVICE_PORT}}{{#unless PUSHGATEWAY_METRICS_SERVICE_PORT}}9090{{/unless}}
+{{/if}}
 
 # Controller
 - descriptor: "beacons:controller:default:default:1.0"

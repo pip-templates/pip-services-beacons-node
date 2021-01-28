@@ -11,7 +11,11 @@ services:
       - postgres
       - sqlserver
       - mysql
-    #  - couchbase
+      # - couchbase
+      - elasticsearch
+      - prometheus
+      - pushgateway
+    
     environment:
       - MONGO_SERVICE_HOST=mongo
       - MONGO_SERVICE_PORT=27017
@@ -39,6 +43,17 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
       - MYSQL_DB=test
+
+      - PROMETHEUS_SERVICE_HOST=prometheus
+      - PROMETHEUS_SERVICE_PORT=9090
+
+      - PUSHGATEWAY_METRICS_SERVICE_HOST=pushgateway
+      - PUSHGATEWAY_METRICS_SERVICE_PORT=9091
+      - PUSHGATEWAY_METRICS_ENABLED=true
+
+      - ELASTICSEARCH_LOGGING_ENABLED=true
+      - ELASTICSEARCH_SERVICE_HOST=elasticsearch
+      - ELASTICSEARCH_SERVICE_PORT=9200
 
   mongo:
     image: mongo:latest
@@ -68,5 +83,27 @@ services:
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
 
-  #couchbase:
-  #  image: couchbase/server-sandbox:6.0.1
+  # couchbase:
+  #   image: couchbase/server-sandbox:6.0.1
+  
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+    container_name: elasticsearch
+    environment:
+      # - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms128m -Xmx128m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+
+  pushgateway:
+    image: prom/pushgateway:latest
+    container_name: pushgateway
+
+  
