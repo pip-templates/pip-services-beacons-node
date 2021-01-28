@@ -43,6 +43,9 @@
     host: {{MONGO_SERVICE_HOST}}{{#unless MONGO_SERVICE_HOST}}"localhost"{{/unless}}
     port: {{MONGO_SERVICE_PORT}}{{#unless MONGO_SERVICE_PORT}}27017{{/unless}}
     database: {{MONGO_DB}}{{#unless MONGO_DB}}"test"{{/unless}}
+  credential:
+    username: {{MONGO_USER}}
+    password: {{MONGO_PASS}}
 {{/if}}
 
 {{#if POSTGRES_ENABLED}}
@@ -121,7 +124,7 @@
 {{/if}}
 
 # Performance log counters
-- descriptor: "pip-services:counters:console:default:1.0"
+- descriptor: "pip-services:counters:log:default:1.0"
 
 # Prometheus performance counters
 - descriptor: "pip-services:counters:prometheus:default:1.0"

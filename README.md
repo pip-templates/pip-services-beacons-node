@@ -93,9 +93,9 @@ The microservice can be configured using the environment variables:
 * CLOUD_WATCH_ENABLED -  turn on CloudWatch loggers and metrics
 * DATA_DOG_ENABLED - turn on DataDog loggers and metrics
 * DTAT_DOG_PROTOCOL - (optional) connection protocol: http or https (default: https)
-* DATA_DOG_URI - (optional) host name or IP address (default: api.datadoghq.com)
-* DATA_DOG_HOST - (optional) port number (default: 443)
-* DATA_DOG_PORT - (optional) resource URI or connection string with all parameters in it
+* DATA_DOG_URI - (optional) resource URI or connection string with all parameters in it
+* DATA_DOG_HOST - (optional) host name or IP address (default: api.datadoghq.com)
+* DATA_DOG_PORT - (optional) port number (default: 443)
 * DATA_DOG_ACCRSS_KEY - DataDog client api key
 * ELASTICSEARCH_LOGGING_ENABLED - turn on Elasticsearch logs and metrics
 * ELASTICSEARCH_PROTOCOL - connection protocol: http or https
