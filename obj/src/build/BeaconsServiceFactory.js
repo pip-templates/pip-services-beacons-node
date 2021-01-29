@@ -19,12 +19,6 @@ const BeaconsCommandableHttpServiceV1_1 = require("../services/version1/BeaconsC
 const BeaconsCommandableGrpcServiceV1_1 = require("../services/version1/BeaconsCommandableGrpcServiceV1");
 const BeaconsGrpcServiceV1_1 = require("../services/version1/BeaconsGrpcServiceV1");
 const BeaconsRestServiceV1_1 = require("../services/version1/BeaconsRestServiceV1");
-const log_1 = require("pip-services-elasticsearch-node/obj/src/log");
-const count_1 = require("pip-services3-prometheus-node/obj/src/count");
-const services_1 = require("pip-services3-prometheus-node/obj/src/services");
-const log_2 = require("pip-services3-components-node/obj/src/log");
-const count_2 = require("pip-services3-components-node/obj/src/count");
-const log_3 = require("pip-services-datadog-node/obj/src/log");
 class BeaconsServiceFactory extends pip_services3_components_node_1.Factory {
     constructor() {
         super();
@@ -43,12 +37,6 @@ class BeaconsServiceFactory extends pip_services3_components_node_1.Factory {
         this.registerAsType(BeaconsServiceFactory.CommandableGrpcServiceV1Descriptor, BeaconsCommandableGrpcServiceV1_1.BeaconsCommandableGrpcServiceV1);
         this.registerAsType(BeaconsServiceFactory.GrpcServiceV1Descriptor, BeaconsGrpcServiceV1_1.BeaconsGrpcServiceV1);
         this.registerAsType(BeaconsServiceFactory.RestServiceDescriptor, BeaconsRestServiceV1_1.BeaconsRestServiceV1);
-        this.registerAsType(BeaconsServiceFactory.ElasticSearchLogger, log_1.ElasticSearchLogger);
-        this.registerAsType(BeaconsServiceFactory.PrometheusCounters, count_1.PrometheusCounters);
-        this.registerAsType(BeaconsServiceFactory.PrometheusMetricsService, services_1.PrometheusMetricsService);
-        this.registerAsType(BeaconsServiceFactory.ConsoleLogger, log_2.ConsoleLogger);
-        this.registerAsType(BeaconsServiceFactory.LogCounters, count_2.LogCounters);
-        this.registerAsType(BeaconsServiceFactory.DataDogLogger, log_3.DataDogLogger);
     }
 }
 exports.BeaconsServiceFactory = BeaconsServiceFactory;
@@ -67,10 +55,4 @@ BeaconsServiceFactory.CommandableHttpServiceV1Descriptor = new pip_services3_com
 BeaconsServiceFactory.CommandableGrpcServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'commandable-grpc', '*', '1.0');
 BeaconsServiceFactory.GrpcServiceV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'grpc', '*', '1.0');
 BeaconsServiceFactory.RestServiceDescriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'service', 'rest', '*', '1.0');
-BeaconsServiceFactory.ElasticSearchLogger = new pip_services3_commons_node_1.Descriptor('pip-services', 'logger', 'elasticsearch', '*', '1.0');
-BeaconsServiceFactory.PrometheusCounters = new pip_services3_commons_node_1.Descriptor('pip-services', 'counters', 'prometheus', '*', '1.0');
-BeaconsServiceFactory.PrometheusMetricsService = new pip_services3_commons_node_1.Descriptor('pip-services', 'metrics-service', 'prometheus', '*', '1.0');
-BeaconsServiceFactory.ConsoleLogger = new pip_services3_commons_node_1.Descriptor('pip-services', 'logger', 'console', '*', '1.0');
-BeaconsServiceFactory.LogCounters = new pip_services3_commons_node_1.Descriptor('pip-services', 'counters', 'console', '*', '1.0');
-BeaconsServiceFactory.DataDogLogger = new pip_services3_commons_node_1.Descriptor('pip-services', 'logger', 'datadog', '*', '1.0');
 //# sourceMappingURL=BeaconsServiceFactory.js.map

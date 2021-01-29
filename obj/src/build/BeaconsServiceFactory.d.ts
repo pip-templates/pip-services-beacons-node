@@ -17,11 +17,5 @@ export declare class BeaconsServiceFactory extends Factory {
     static CommandableGrpcServiceV1Descriptor: Descriptor;
     static GrpcServiceV1Descriptor: Descriptor;
     static RestServiceDescriptor: Descriptor;
-    static ElasticSearchLogger: Descriptor;
-    static PrometheusCounters: Descriptor;
-    static PrometheusMetricsService: Descriptor;
-    static ConsoleLogger: Descriptor;
-    static LogCounters: Descriptor;
-    static DataDogLogger: Descriptor;
     constructor();
 }
