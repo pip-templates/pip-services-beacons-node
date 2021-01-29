@@ -43,15 +43,22 @@
     host: {{MONGO_SERVICE_HOST}}{{#unless MONGO_SERVICE_HOST}}"localhost"{{/unless}}
     port: {{MONGO_SERVICE_PORT}}{{#unless MONGO_SERVICE_PORT}}27017{{/unless}}
     database: {{MONGO_DB}}{{#unless MONGO_DB}}"test"{{/unless}}
+  credential:
+    username: {{MONGO_USER}}
+    password: {{MONGO_PASS}}
 {{/if}}
 
 {{#if POSTGRES_ENABLED}}
 # PostreSQL Persistence
+{{#if POSTGRES_JSON_ENABLED}}
+- descriptor: "beacons:persistence:json-postgres:default:1.0"
+{{else}}
 - descriptor: "beacons:persistence:postgres:default:1.0"
+{{/if}}
   table: {{POSTGRES_TABLE}}{{#unless POSTGRES_TABLE}}id_records{{/unless}}
   connection:
-    uri: {{{POSTGRES_SERVICE_URI}}}
-    host: {{{POSTGRES_SERVICE_HOST}}}{{#unless POSTGRES_SERVICE_HOST}}localhost{{/unless}}
+    uri: {{POSTGRES_SERVICE_URI}}
+    host: {{POSTGRES_SERVICE_HOST}}{{#unless POSTGRES_SERVICE_HOST}}localhost{{/unless}}
     port: {{POSTGRES_SERVICE_PORT}}{{#unless POSTGRES_SERVICE_PORT}}5432{{/unless}}
     database: {{POSTGRES_DB}}{{#unless POSTGRES_DB}}test{{/unless}}
   credential:
@@ -61,11 +68,15 @@
 
 {{#if SQLSERVER_ENABLED}}
 # SQL Server Persistence
+{{#if SQLSERVER_JSON_ENABLED}}
+- descriptor: "beacons:persistence:json-sqlserver:default:1.0"
+{{else}}
 - descriptor: "beacons:persistence:sqlserver:default:1.0"
+{{/if}}
   table: {{SQLSERVER_TABLE}}{{#unless SQLSERVER_TABLE}}beacons{{/unless}}
   connection:
-    uri: {{{SQLSERVER_SERVICE_URI}}}
-    host: {{{SQLSERVER_SERVICE_HOST}}}{{#unless SQLSERVER_SERVICE_HOST}}localhost{{/unless}}
+    uri: {{SQLSERVER_SERVICE_URI}}
+    host: {{SQLSERVER_SERVICE_HOST}}{{#unless SQLSERVER_SERVICE_HOST}}localhost{{/unless}}
     port: {{SQLSERVER_SERVICE_PORT}}{{#unless SQLSERVER_SERVICE_PORT}}1433{{/unless}}
     database: {{SQLSERVER_DB}}{{#unless SQLSERVER_DB}}test{{/unless}}
   credential:
@@ -75,10 +86,14 @@
 
 {{#if MYSQL_ENABLED}}
 # MYSQL Persistence
+{{#if MYSQL_JSON_ENABLED}}
+- descriptor: "beacons:persistence:json-mysql:default:1.0"
+{{else}}
 - descriptor: "beacons:persistence:mysql:default:1.0"
+{{/if}}
   connection:
-    uri: {{{MYSQL_URI}}}
-    host: {{{MYSQL_HOST}}}{{#unless MYSQL_HOST}}localhost{{/unless}}
+    uri: {{MYSQL_URI}}
+    host: {{MYSQL_HOST}}{{#unless MYSQL_HOST}}localhost{{/unless}}
     port: {{MYSQL_PORT}}{{#unless MYSQL_PORT}}1433{{/unless}}
     database: {{MYSQL_DB}}{{#unless MYSQL_DB}}test{{/unless}}
   credential:
@@ -91,8 +106,8 @@
 - descriptor: "beacons:persistence:couchbase:default:1.0"
   bucket: {{COUCHBASE_BUCKET}}{{#unless COUCHBASE_BUCKET}}test{{/unless}}
   connection:
-    uri: {{{COUCHBASE_SERVICE_URI}}}
-    host: {{{COUCHBASE_SERVICE_HOST}}}{{#unless COUCHBASE_SERVICE_HOST}}localhost{{/unless}}
+    uri: {{COUCHBASE_SERVICE_URI}}
+    host: {{COUCHBASE_SERVICE_HOST}}{{#unless COUCHBASE_SERVICE_HOST}}localhost{{/unless}}
     port: {{COUCHBASE_SERVICE_PORT}}{{#unless COUCHBASE_SERVICE_PORT}}8091{{/unless}}
   credential:
     username: {{COUCHBASE_USER}}{{#unless COUCHBASE_USER}}Administrator{{/unless}}
@@ -121,7 +136,7 @@
 {{/if}}
 
 # Performance log counters
-- descriptor: "pip-services:counters:console:default:1.0"
+- descriptor: "pip-services:counters:log:default:1.0"
 
 # Prometheus performance counters
 - descriptor: "pip-services:counters:prometheus:default:1.0"
@@ -152,9 +167,9 @@
   swagger:
     enable: true
     auto: true
-    route: {{{SWAGGER_ROUTE}}}{{#unless SWAGGER_ROUTE}}swagger{{/unless}}
-    name: {{{SWAGGER_NAME}}}{{#unless SWAGGER_NAME}}Beacons Service V1{{/unless}}
-    description: {{{SWAGGER_DESCRIPTION}}}{{#unless SWAGGER_DESCRIPTION}}microservice to demonstrate works with data microservices{{/unless}}
+    route: {{SWAGGER_ROUTE}}{{#unless SWAGGER_ROUTE}}swagger{{/unless}}
+    name: {{SWAGGER_NAME}}{{#unless SWAGGER_NAME}}Beacons Service V1{{/unless}}
+    description: {{SWAGGER_DESCRIPTION}}{{#unless SWAGGER_DESCRIPTION}}microservice to demonstrate works with data microservices{{/unless}}
 
 
 # Hearbeat service
@@ -170,7 +185,7 @@
   connection:
     protocol: http
     host: 0.0.0.0
-    port: {{{GRPC_PORT}}}{{#unless GRPC_PORT}}8090{{/unless}}
+    port: {{GRPC_PORT}}{{#unless GRPC_PORT}}8090{{/unless}}
 
 # GRPC endpoint service version 1.0
 - descriptor: "beacons:service:grpc:default:1.0"

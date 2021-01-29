@@ -93,9 +93,9 @@ The microservice can be configured using the environment variables:
 * CLOUD_WATCH_ENABLED -  turn on CloudWatch loggers and metrics
 * DATA_DOG_ENABLED - turn on DataDog loggers and metrics
 * DTAT_DOG_PROTOCOL - (optional) connection protocol: http or https (default: https)
-* DATA_DOG_URI - (optional) host name or IP address (default: api.datadoghq.com)
-* DATA_DOG_HOST - (optional) port number (default: 443)
-* DATA_DOG_PORT - (optional) resource URI or connection string with all parameters in it
+* DATA_DOG_URI - (optional) resource URI or connection string with all parameters in it
+* DATA_DOG_HOST - (optional) host name or IP address (default: api.datadoghq.com)
+* DATA_DOG_PORT - (optional) port number (default: 443)
 * DATA_DOG_ACCRSS_KEY - DataDog client api key
 * ELASTICSEARCH_LOGGING_ENABLED - turn on Elasticsearch logs and metrics
 * ELASTICSEARCH_PROTOCOL - connection protocol: http or https
@@ -114,6 +114,7 @@ The microservice can be configured using the environment variables:
 * MONGO_USER - MongoDB user login
 * MONGO_PASS - MongoDB user password
 * MYSQL_ENABLED - turn on MySql persistence. Keep it undefined to turn it off
+* MYSQL_JSON_ENABLED - turn on JSON MySql persistence. Keep it undefined to turn it off
 * MYSQL_URI - URI to connect to MySql. When it's defined other database parameters are ignored
 * MYSQL_HOST - MySql hostname or server address
 * MYSQL_PORT - MySql port number (default: 3306)
@@ -121,6 +122,7 @@ The microservice can be configured using the environment variables:
 * MYSQL_USER - MySql user login
 * MYSQL_PASSWORD - MySql user password
 * POSTGRES_ENABLED - turn on PostgreSQL persistence. Keep it undefined to turn it off
+* POSTGRES_JSON_ENABLED - turn on JSON PostgreSQL persistence. Keep it undefined to turn it off
 * POSTGRES_SERVICE_URI - URI to connect to PostgreSQL. When it's defined other database parameters are ignored
 * POSTGRES_SERVICE_HOST - PostgreSQL hostname or server address
 * POSTGRES_SERVICE_PORT - PostgreSQL port number (default: 5432)
@@ -134,6 +136,7 @@ The microservice can be configured using the environment variables:
 * PUSHGATEWAY_METRICS_SERVICE_HOST - host name or IP address
 * PUSHGATEWAY_METRICS_SERVICE_PORT - port number
 * SQLSERVER_ENABLED - turn on SQL Server persistence. Keep it undefined to turn it off
+* SQLSERVER_JSON_ENABLED - turn on JSON SQL Server persistence. Keep it undefined to turn it off
 * SQLSERVER_SERVICE_URI - URI to connect to SQL Server. When it's defined other database parameters are ignored
 * SQLSERVER_SERVICE_HOST - SQL Server hostname or server address
 * SQLSERVER_SERVICE_PORT - SQL Server port number (default: 1433)
