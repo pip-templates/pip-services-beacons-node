@@ -13,12 +13,11 @@
   access_key: {{AWS_ACCESS_KEY}}
   {{/if}}
 
-
 {{#if DATA_DOG_ENABLED}}
 # DataDog logger
 - descriptor: "pip-services:logger:datadog:default:1.0"
   connection:
-    protocol: {{DTAT_DOG_PROTOCOL}}{{#unless DTAT_DOG_PROTOCOL}}https{{/unless}}
+    protocol: {{DATA_DOG_PROTOCOL}}{{#unless DATA_DOG_PROTOCOL}}https{{/unless}}
     uri: {{DATA_DOG_URI}}
     host: {{DATA_DOG_HOST}}{{#unless DATA_DOG_HOST}}"api.datadoghq.com"{{/unless}}
     port: {{DATA_DOG_PORT}}{{#unless DATA_DOG_PORT}}443{{/unless}}
@@ -26,8 +25,28 @@
     access_key: {{DATA_DOG_ACCRSS_KEY}}
 {{/if}}
 
-# Perfomance counter that post values to log
+{{#if ELASTICSEARCH_LOGGING_ENABLED}}
+# ElasticSearch logger
+- descriptor: "pip-services:logger:elasticsearch:default:1.0"
+  connection:
+    protocol: {{ELASTICSEARCH_PROTOCOL}}{{#unless ELASTICSEARCH_PROTOCOL}}http{{/unless}}
+    uri: {{ELASTICSEARCH_SERVICE_URI}}
+    host: {{ELASTICSEARCH_SERVICE_HOST}}{{#unless ELASTICSEARCH_SERVICE_HOST}}localhost{{/unless}}
+    port: {{ELASTICSEARCH_SERVICE_PORT}}{{#unless ELASTICSEARCH_SERVICE_PORT}}9200{{/unless}}
+{{/if}}
+
+# Performance log counters
 - descriptor: "pip-services:counters:log:default:1.0"
+
+# Prometheus performance counters
+- descriptor: "pip-services:counters:prometheus:default:1.0"
+{{#if PUSHGATEWAY_METRICS_ENABLED}}
+  connection:
+    protocol: {{PUSHGATEWAY_PROTOCOL}}{{#unless PUSHGATEWAY_PROTOCOL}}http{{/unless}}
+    uri: {{PUSHGATEWAY_METRICS_SERVICE_URI}}
+    host: {{PUSHGATEWAY_METRICS_SERVICE_HOST}}{{#unless PUSHGATEWAY_METRICS_SERVICE_HOST}}localhost{{/unless}}
+    port: {{PUSHGATEWAY_METRICS_SERVICE_PORT}}{{#unless PUSHGATEWAY_METRICS_SERVICE_PORT}}9090{{/unless}}
+{{/if}}
 
 {{#if FILE_ENABLED}}
 # File persistence
@@ -125,29 +144,6 @@
 {{/unless}}{{/unless}}
 {{/unless}}
 
-{{#if ELASTICSEARCH_LOGGING_ENABLED}}
-# ElasticSearch logger
-- descriptor: "pip-services:logger:elasticsearch:default:1.0"
-  connection:
-    protocol: {{ELASTICSEARCH_PROTOCOL}}{{#unless ELASTICSEARCH_PROTOCOL}}http{{/unless}}
-    uri: {{ELASTICSEARCH_SERVICE_URI}}
-    host: {{ELASTICSEARCH_SERVICE_HOST}}{{#unless ELASTICSEARCH_SERVICE_HOST}}localhost{{/unless}}
-    port: {{ELASTICSEARCH_SERVICE_PORT}}{{#unless ELASTICSEARCH_SERVICE_PORT}}9200{{/unless}}
-{{/if}}
-
-# Performance log counters
-- descriptor: "pip-services:counters:log:default:1.0"
-
-# Prometheus performance counters
-- descriptor: "pip-services:counters:prometheus:default:1.0"
-{{#if PUSHGATEWAY_METRICS_ENABLED}}
-  connection:
-    protocol: {{PUSHGATEWAY_PROTOCOL}}{{#unless PUSHGATEWAY_PROTOCOL}}http{{/unless}}
-    uri: {{PUSHGATEWAY_METRICS_SERVICE_URI}}
-    host: {{PUSHGATEWAY_METRICS_SERVICE_HOST}}{{#unless PUSHGATEWAY_METRICS_SERVICE_HOST}}localhost{{/unless}}
-    port: {{PUSHGATEWAY_METRICS_SERVICE_PORT}}{{#unless PUSHGATEWAY_METRICS_SERVICE_PORT}}9090{{/unless}}
-{{/if}}
-
 # Controller
 - descriptor: "beacons:controller:default:default:1.0"
   options:
@@ -170,7 +166,6 @@
     route: {{SWAGGER_ROUTE}}{{#unless SWAGGER_ROUTE}}swagger{{/unless}}
     name: {{SWAGGER_NAME}}{{#unless SWAGGER_NAME}}Beacons Service V1{{/unless}}
     description: {{SWAGGER_DESCRIPTION}}{{#unless SWAGGER_DESCRIPTION}}microservice to demonstrate works with data microservices{{/unless}}
-
 
 # Hearbeat service
 - descriptor: "pip-services:heartbeat-service:http:default:1.0"
