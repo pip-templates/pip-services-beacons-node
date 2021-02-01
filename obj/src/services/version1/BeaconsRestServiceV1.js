@@ -92,13 +92,13 @@ class BeaconsRestServiceV1 extends pip_services3_rpc_node_1.RestService {
         });
     }
     calculatePosition(req, res) {
-        let orgId = req.route.params.org_id || req.body.org_id;
+        let site_id = req.route.params.site_id || req.body.site_id;
         let udis = req.route.params.udis || req.body.udis;
         if (_.isString(udis))
             udis = udis.split(',');
         if (!_.isArray(udis))
             udis = null;
-        this._controller.calculatePosition(null, orgId, udis, (err, position) => {
+        this._controller.calculatePosition(null, site_id, udis, (err, position) => {
             if (err) {
                 this.sendError(req, res, err);
             }
