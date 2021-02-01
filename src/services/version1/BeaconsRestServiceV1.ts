@@ -116,7 +116,7 @@ export class BeaconsRestServiceV1 extends RestService {
     }
 
     public calculatePosition(req: any, res: any): void {
-        let orgId = req.route.params.org_id || req.body.org_id;
+        let site_id = req.route.params.site_id || req.body.site_id;
         let udis = req.route.params.udis || req.body.udis;
         if (_.isString(udis))
             udis = udis.split(',');
@@ -124,7 +124,7 @@ export class BeaconsRestServiceV1 extends RestService {
             udis = null;
 
         this._controller.calculatePosition(
-            null, orgId, udis, (err, position) => {
+            null, site_id, udis, (err, position) => {
                 if (err) {
                     this.sendError(req, res, err);
                 } else {
