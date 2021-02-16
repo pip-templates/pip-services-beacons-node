@@ -95,6 +95,8 @@ The microservice can be configured using the environment variables:
 * AWS_ACCESS_ID - AWS access/client id
 * AWS_ACCESS_KEY - AWS access/client id
 * CLOUD_WATCH_ENABLED -  turn on CloudWatch loggers and metrics
+* CLOUD_WATCH_STREAM - Cloud Watch Log stream (default: context name)
+* CLOUD_WATCH_GROUP - Cloud Watch Log group (default: context instance ID or hostname)
 * DATADOG_ENABLED - turn on DataDog loggers and metrics
 * DTAT_DOG_PROTOCOL - (optional) connection protocol: http or https (default: https)
 * DATADOG_URI - (optional) resource URI or connection string with all parameters in it
