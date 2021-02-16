@@ -5,7 +5,7 @@
                 "type": "node",
                 "request": "launch",
                 "name": "Launch service",
-                "program": "${workspaceRoot}/bin/run.js",
+                "program": "${workspaceRoot}/bin/main.js",
                 "sourceMaps": true
             },
             {

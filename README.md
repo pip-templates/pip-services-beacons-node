@@ -1,15 +1,12 @@
 # <img src="https://github.com/pip-services/pip-services/raw/master/design/Logo.png" alt="Pip.Services Logo" style="max-width:30%"> <br/> Beacons microservice
 
-This is the Beacons microservice from the Pip.Templates library. 
-The is simple a microservice that does couple things:
-
-* Store a list of BLE beacons (a.k.a. iBeacons), their unique identifiers, and the positions at which they were installed.
-* Calculate the position of a device, using the beacons it “sees” in its vicinity.
+This microservice stores information about BLE beacons that emit unique device IDs (UDIs) over bluetooth protocol.
+And then it uses that information to triangulate position of users based on UDIs their devices detect around them.
 
 Supported functionality:
 * Deployment platforms: Standalone Process, Docker, AWS Lambda
 * External APIs: HTTP (REST and Commandable), GRPC (Custom and Commandable)
-* Persistence: Memory, Flat Files, MongoDB, PosgreSQL (Relational and NoSQL), SQLServer (Relational and NoSQL), MySql (Relational and NoSQL), Cuchbase
+* Persistence: Memory, Flat Files, MongoDB, PosgreSQL (Relational and NoSQL), SQLServer (Relational and NoSQL), MySql (Relational and NoSQL), Couchbase
 * Health checks: Heartbeat, Status
 * Consolidated logging: ElasticSearch, CloudWatch, DataDog
 * Consolidated metrics: Prometheus, CloudWatch, DataDog
@@ -35,13 +32,13 @@ The contract of the microservice is presented below.
 
 ```javascript
 export class BeaconV1 implements IStringIdentifiable {
-    public id: string;
-    public site_id: string;
-    public type?: string;
-    public udi: string;
-    public label?: string;
-    public center?: any; // GeoJson
-    public radius?: number;
+    public id: string;          // Beacon ID
+    public site_id: string;     // ID of a work site (field installation)
+    public type?: string;       // Beacon type: iBeacon, AltBeacon or Eddystone
+    public udi: string;         // Unique device identifier emitted by the beacon
+    public label?: string;      // Human readable label
+    public center?: any;        // Position of the beacon in GeoJson
+    public radius?: number;     // Detection radius
 }
 
 // GeoJson Example:
@@ -75,15 +72,22 @@ export interface IBeaconsClientV1 {
 
 ```
 
-## Download
+## Get
 
-Right now, the only way to get the microservice is to check it out directly from the GitHub repository
+Get the microservice source from GitHub:
 ```bash
 git clone git@github.com:pip-templates/pip-services-beacons-node.git
 ```
 
-The Pip.Service team is working on implementing packaging, to make stable releases available as zip-downloadable archives.
+Install the microservice as a binary dependency:
+```bash
+npm install pip-services-beacons-node
+```
 
+Get docker image for the microservice:
+```bash
+docker pull pipdevs/pip-services-beacons-node:latest
+```
 ## Run
 
 The microservice can be configured using the environment variables:
@@ -91,12 +95,12 @@ The microservice can be configured using the environment variables:
 * AWS_ACCESS_ID - AWS access/client id
 * AWS_ACCESS_KEY - AWS access/client id
 * CLOUD_WATCH_ENABLED -  turn on CloudWatch loggers and metrics
-* DATA_DOG_ENABLED - turn on DataDog loggers and metrics
+* DATADOG_ENABLED - turn on DataDog loggers and metrics
 * DTAT_DOG_PROTOCOL - (optional) connection protocol: http or https (default: https)
-* DATA_DOG_URI - (optional) resource URI or connection string with all parameters in it
-* DATA_DOG_HOST - (optional) host name or IP address (default: api.datadoghq.com)
-* DATA_DOG_PORT - (optional) port number (default: 443)
-* DATA_DOG_ACCRSS_KEY - DataDog client api key
+* DATADOG_URI - (optional) resource URI or connection string with all parameters in it
+* DATADOG_HOST - (optional) host name or IP address (default: api.datadoghq.com)
+* DATADOG_PORT - (optional) port number (default: 443)
+* DATADOG_ACCRSS_KEY - DataDog client api key
 * ELASTICSEARCH_LOGGING_ENABLED - turn on Elasticsearch logs and metrics
 * ELASTICSEARCH_PROTOCOL - connection protocol: http or https
 * ELASTICSEARCH_SERVICE_URI - resource URI or connection string with all parameters in it
@@ -152,7 +156,7 @@ The microservice can be configured using the environment variables:
 
 Start the microservice as process:
 ```bash
-node ./bin/run.js
+node ./bin/main.js
 ```
 
 Run the microservice in docker:
@@ -168,15 +172,12 @@ docker-compose -f ./docker/docker-compose.yml up
 
 ## Use
 
-The easiest way to work with the microservice is through the client SDK. 
+Install the client NPM package as
+```bash
+npm install pip-clients-beacons-node
+```
 
-If you use node.js, then get references to the required libraries:
-- Pip.Services3.Commons : https://github.com/pip-services3-node/pip-services3-commons-node
-- Pip.Services3.Rpc: 
-https://github.com/pip-services3-node/pip-services3-rpc-node
-
-
-Add classes from the **pip-services3-commons-node** and **pip-services-beacons-node** packages
+Inside your code get the reference to the client SDK
 ```javascript
 import { ConfigParams } from 'pip-services3-commons-node';
 import { FilterParams } from 'pip-services3-commons-node';
@@ -187,7 +188,13 @@ import { BeaconTypeV1 } from 'pip-services-beacons-node';
 import { BeaconsCommandableHttpClientV1 } from 'pip-services-beacons-node';
 ```
 
-Define client configuration parameters that match the configuration of the microservice's external API
+Instantiate the client
+```javascript
+// Create the client instance
+let client = new BeaconsCommandableHttpClientV1();
+```
+
+Define client connection parameters
 ```javascript
 // Client configuration
 var httpConfig = ConfigParams.fromTuples(
@@ -195,16 +202,12 @@ var httpConfig = ConfigParams.fromTuples(
 	"connection.host", "localhost",
 	"connection.port", 8080
 );
-```
-
-Instantiate the client and open a connection to the microservice
-```javascript
-// Create the client instance
-let client = new BeaconsCommandableHttpClientV1();
-
 // Configure the client
 client.configure(httpConfig);
+```
 
+Connect to the microservice
+```javascript
 // Connect to the microservice
 client.open(null, (err) => {
   if (err) {
@@ -216,7 +219,7 @@ client.open(null, (err) => {
 ...
 ```
 
-The client is now ready to perform operations
+Call the microservice using the client API
 ```javascript
 // Define a beacon
 let beacon: BeaconV1 = {

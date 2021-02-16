@@ -1,8 +1,8 @@
 /** @module clients */
 /** @hidden */
-let _ = require("lodash");
+const _ = require("lodash");
 /** @hidden */
-let async = require("async");
+const async = require("async");
 import { FilterParams } from "pip-services3-commons-node";
 import { IdGenerator } from "pip-services3-commons-node";
 import { PagingParams } from "pip-services3-commons-node";

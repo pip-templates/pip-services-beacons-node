@@ -1,5 +1,5 @@
 /** 
- * @module container
+ * @module logic
  * @preferred
  */
 export { IBeaconsController } from './IBeaconsController';

@@ -1,7 +1,7 @@
-let _ = require('lodash');
+const _ = require('lodash');
 let grpc = require('grpc');
 var protoLoader = require('@grpc/proto-loader');
-let async = require('async');
+const async = require('async');
 let assert = require('chai').assert;
 
 import { ConfigParams } from 'pip-services3-commons-node';

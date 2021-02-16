@@ -1,6 +1,6 @@
 /** @module persistence */
 /** @hidden */
-let _ = require('lodash');
+const _ = require('lodash');
 
 import { FilterParams } from 'pip-services3-commons-node';
 import { PagingParams } from 'pip-services3-commons-node';

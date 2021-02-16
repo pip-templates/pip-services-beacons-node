@@ -1,6 +1,6 @@
 /** @module clients */
 /** @hidden */
-let _ = require('lodash');
+const _ = require('lodash');
 /** @hidden */
 let messages = require('../../../../src/protos/beacons_v1_pb');
 

@@ -7,22 +7,26 @@
 # Console logger
 - descriptor: "pip-services:logger:console:default:1.0"
   level: "trace"
-  {{#if CLOUD_WATCH_ENABLED}}
+
+{{#if CLOUD_WATCH_ENABLED}}
+# Cloudwatch logger
+- descriptor: "pip-services:logger:cloudwatch:default:1.0"
+  level: "info"
   region: {{AWS_LAMDBA_ARN}}
   access_id: {{AWS_ACCESS_ID}}
   access_key: {{AWS_ACCESS_KEY}}
-  {{/if}}
+{{/if}}
 
-{{#if DATA_DOG_ENABLED}}
+{{#if DATADOG_ENABLED}}
 # DataDog logger
 - descriptor: "pip-services:logger:datadog:default:1.0"
   connection:
-    protocol: {{DATA_DOG_PROTOCOL}}{{#unless DATA_DOG_PROTOCOL}}https{{/unless}}
-    uri: {{DATA_DOG_URI}}
-    host: {{DATA_DOG_HOST}}{{#unless DATA_DOG_HOST}}"api.datadoghq.com"{{/unless}}
-    port: {{DATA_DOG_PORT}}{{#unless DATA_DOG_PORT}}443{{/unless}}
+    protocol: {{DATADOG_PROTOCOL}}{{#unless DATADOG_PROTOCOL}}https{{/unless}}
+    uri: {{DATADOG_URI}}
+    host: {{DATADOG_HOST}}{{#unless DATADOG_HOST}}"api.datadoghq.com"{{/unless}}
+    port: {{DATADOG_PORT}}{{#unless DATADOG_PORT}}443{{/unless}}
   credential:
-    access_key: {{DATA_DOG_ACCRSS_KEY}}
+    access_key: {{DATADOG_ACCRSS_KEY}}
 {{/if}}
 
 {{#if ELASTICSEARCH_LOGGING_ENABLED}}

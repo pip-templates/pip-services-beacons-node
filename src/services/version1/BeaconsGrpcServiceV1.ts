@@ -1,6 +1,6 @@
 /** @module services */
 /** @hidden */
-let _ = require('lodash');
+const _ = require('lodash');
 /** @hidden */
 let services = require('../../../../src/protos/beacons_v1_grpc_pb');
 /** @hidden */

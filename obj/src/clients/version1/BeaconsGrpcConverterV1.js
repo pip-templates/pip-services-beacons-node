@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BeaconsGrpcConverterV1 = void 0;
 /** @module clients */
 /** @hidden */
-let _ = require('lodash');
+const _ = require('lodash');
 /** @hidden */
 let messages = require('../../../../src/protos/beacons_v1_pb');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");

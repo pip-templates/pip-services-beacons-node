@@ -37,4 +37,4 @@ process.on('exit', function () {
     runner.stop();
     console.log("Goodbye!");
 });
-//# sourceMappingURL=run.js.map
+//# sourceMappingURL=main.js.map

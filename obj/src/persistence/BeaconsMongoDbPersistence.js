@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BeaconsMongoDbPersistence = void 0;
 /** @module persistence */
 /** @hidden */
-let _ = require('lodash');
+const _ = require('lodash');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_mongodb_node_1 = require("pip-services3-mongodb-node");
 class BeaconsMongoDbPersistence extends pip_services3_mongodb_node_1.IdentifiableMongoDbPersistence {

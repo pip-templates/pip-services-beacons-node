@@ -22,4 +22,4 @@ ENV MONGO_SERVICE_PORT=27017
 EXPOSE "8080:8080"
 
 # Specify the command for running the service
-CMD [ "node", "bin/run.js" ]
+CMD [ "node", "bin/main.js" ]

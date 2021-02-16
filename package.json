@@ -4,10 +4,10 @@
   "main": "./obj/src/index.js",
   "typings": "./obj/src/index.d.ts",
   "scripts": {
-    "service": "node ./bin/run.js",
+    "service": "node ./bin/main.js",
     "test": "mocha -t 5000 -R spec -u tdd --recursive ./obj/test",
     "test_30s": "mocha -t 30000 -R spec -u tdd --recursive ./obj/test",
-    "benchmark": "node ./obj/benchmark/run.js",
+    "benchmark": "node ./obj/benchmark/main.js",
     "protogen": "cd src/protos && protoc --plugin=protoc-gen-ts=../../node_modules/.bin/protoc-gen-ts --js_out=import_style=commonjs,binary:./ --ts_out=. --grpc_out=. --plugin=protoc-gen-grpc=../../node_modules/.bin/grpc_tools_node_protoc_plugin beacons_v1.proto",
     "delay_test": "sleep 60 && echo Continue... && mocha -t 30000 -R spec -u tdd --recursive ./obj/test"
   },

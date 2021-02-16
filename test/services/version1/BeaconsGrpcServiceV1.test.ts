@@ -1,7 +1,7 @@
-let _ = require('lodash');
+const _ = require('lodash');
 let grpc = require('grpc');
 var protoLoader = require('@grpc/proto-loader');
-let async = require('async');
+const async = require('async');
 let assert = require('chai').assert;
 
 let services = require('../../../../src/protos/beacons_v1_grpc_pb');

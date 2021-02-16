@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BeaconsRestServiceV1 = void 0;
 /** @module services */
 /** @hidden */
-let _ = require('lodash');
+const _ = require('lodash');
 /** @hidden */
-let async = require('async');
+const async = require('async');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_rpc_node_1 = require("pip-services3-rpc-node");
 class BeaconsRestServiceV1 extends pip_services3_rpc_node_1.RestService {

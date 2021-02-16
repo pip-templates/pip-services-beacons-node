@@ -1,8 +1,8 @@
 /** @module services */
 /** @hidden */
-let _ = require('lodash');
+const _ = require('lodash');
 /** @hidden */
-let async = require('async');
+const async = require('async');
 
 import { IReferences } from "pip-services3-commons-node";
 import { Descriptor } from "pip-services3-commons-node";
