@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeaconsBenchmarkSuite = void 0;
 const async = require('async');
 const _ = require('lodash');
 const pip_benchmark_node_1 = require("pip-benchmark-node");

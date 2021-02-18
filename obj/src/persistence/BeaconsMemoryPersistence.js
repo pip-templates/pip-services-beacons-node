@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeaconsMemoryPersistence = void 0;
 /** @module persistence */
 /** @hidden */
 const _ = require('lodash');

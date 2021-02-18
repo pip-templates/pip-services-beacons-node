@@ -1,7 +1,6 @@
 "use strict";
 /** @module persistence */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeaconsMySqlPersistence = void 0;
 /** @hidden */
 const _ = require('lodash');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");

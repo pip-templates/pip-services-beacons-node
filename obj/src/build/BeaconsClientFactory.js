@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeaconsClientFactory = void 0;
 /** @module build */
 const pip_services3_components_node_1 = require("pip-services3-components-node");
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
@@ -22,7 +21,7 @@ class BeaconsClientFactory extends pip_services3_components_node_1.Factory {
         this.registerAsType(BeaconsClientFactory.RestClientV1Descriptor, BeaconsRestClientV1_1.BeaconsRestClientV1);
         this.registerAsType(BeaconsClientFactory.GrpcClientV1Descriptor, BeaconsGrpcClientV1_1.BeaconsGrpcClientV1);
         this.registerAsType(BeaconsClientFactory.LambdaClientV1Descriptor, BeaconsLambdaClientV1_1.BeaconsLambdaClientV1);
-        this.registerAsType(BeaconsClientFactory.BeaconsMockClientV1, BeaconsMockClientV1_1.BeaconsMockClientV1);
+        this.registerAsType(BeaconsClientFactory.BeaconsMockClientV1Descriptor, BeaconsMockClientV1_1.BeaconsMockClientV1);
     }
 }
 exports.BeaconsClientFactory = BeaconsClientFactory;
@@ -33,5 +32,5 @@ BeaconsClientFactory.CommandableGrpcClientV1Descriptor = new pip_services3_commo
 BeaconsClientFactory.LambdaClientV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'client', 'lambda', 'default', '1.0');
 BeaconsClientFactory.GrpcClientV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'client', 'grpc', '*', '1.0');
 BeaconsClientFactory.RestClientV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'client', 'rest', '*', '1.0');
-BeaconsClientFactory.BeaconsMockClientV1 = new pip_services3_commons_node_1.Descriptor('beacons', 'client', 'mock', '*', '1.0');
+BeaconsClientFactory.BeaconsMockClientV1Descriptor = new pip_services3_commons_node_1.Descriptor('beacons', 'client', 'mock', '*', '1.0');
 //# sourceMappingURL=BeaconsClientFactory.js.map

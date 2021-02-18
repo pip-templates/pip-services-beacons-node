@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeaconsProcess = void 0;
 /** @module container */
 const build_1 = require("pip-services-datadog-node/obj/src/build");
 const build_2 = require("pip-services-elasticsearch-node/obj/src/build");

@@ -20,7 +20,7 @@ export class BeaconsClientFactory extends Factory{
     public static LambdaClientV1Descriptor = new Descriptor('beacons', 'client', 'lambda', 'default', '1.0');
     public static GrpcClientV1Descriptor = new Descriptor('beacons', 'client', 'grpc', '*', '1.0');
     public static RestClientV1Descriptor = new Descriptor('beacons', 'client', 'rest', '*', '1.0');
-    public static BeaconsMockClientV1 = new Descriptor('beacons', 'client', 'mock', '*', '1.0');
+    public static BeaconsMockClientV1Descriptor = new Descriptor('beacons', 'client', 'mock', '*', '1.0');
 
     constructor(){
         super();
@@ -32,6 +32,6 @@ export class BeaconsClientFactory extends Factory{
         this.registerAsType(BeaconsClientFactory.RestClientV1Descriptor, BeaconsRestClientV1);
         this.registerAsType(BeaconsClientFactory.GrpcClientV1Descriptor, BeaconsGrpcClientV1);
         this.registerAsType(BeaconsClientFactory.LambdaClientV1Descriptor, BeaconsLambdaClientV1);
-        this.registerAsType(BeaconsClientFactory.BeaconsMockClientV1, BeaconsMockClientV1);
+        this.registerAsType(BeaconsClientFactory.BeaconsMockClientV1Descriptor, BeaconsMockClientV1);
     }
 }

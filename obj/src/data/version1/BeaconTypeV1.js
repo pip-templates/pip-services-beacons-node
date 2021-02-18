@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeaconTypeV1 = void 0;
 /** @module data */
 class BeaconTypeV1 {
 }

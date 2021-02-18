@@ -54,14 +54,11 @@ export class BeaconsRestClientV1 extends RestClient implements IBeaconsClientV1 
         callback: (err: any, position: any) => void): void {
             let time = this.instrument(correlationId, "beacons.calculate_position")
             this.call(
-                'post', 
-                '/beacons/position',
+                'get', 
+                '/beacons/calculate_position/' + siteId + '/' + udis,
                 correlationId,
                 null,
-                {
-                    udis: udis,
-                    site_id: siteId
-                },
+                null,
                 (err, beacon) => {
                     time.endTiming();
                     if (err == null && beacon != null) {

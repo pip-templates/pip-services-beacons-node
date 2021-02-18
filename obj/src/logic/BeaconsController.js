@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeaconsController = void 0;
 /** @module logic */
 /** @hidden */
 const _ = require('lodash');

@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeaconsRestServiceV1 = void 0;
 /** @module services */
 /** @hidden */
 const _ = require('lodash');
@@ -112,8 +111,8 @@ class BeaconsRestServiceV1 extends pip_services3_rpc_node_1.RestService {
         this.registerRoute('get', '/beacons', null, this.getBeacons);
         this.registerRoute('get', '/beacons/:id', null, this.getBeaconById);
         this.registerRoute('get', '/beacons/udi/:udi', null, this.getBeaconByUdi);
+        this.registerRoute('get', '/beacons/calculate_position/:site_id/:udis', null, this.calculatePosition);
         this.registerRoute('post', '/beacons', null, this.createBeacon);
-        this.registerRoute('post', '/beacons/position', null, this.calculatePosition);
         this.registerRoute('put', '/beacons', null, this.updateBeacon);
         this.registerRoute('del', '/beacons/:id', null, this.deleteBeaconById);
         this.registerOpenApiSpecFromFile("./src/swagger/beacons_v1.yaml");

@@ -4,97 +4,47 @@ info:
   description: 'microservice to demonstrate works with data microservices'
   version: '1'
 paths:
-  /v1/beacons/get_beacons:
-    post:
+  /v1/beacons:
+    get:
       tags:
         - v1/beacons
       operationId: 'get_beacons'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                filter:
-                  type: 'object'
-                paging:
-                  type: 'object'
-              required:
-                - filter
-                - paging
+      description: "Returns the page of Beacons"
+      parameters:
+      - name: "skip"
+        in: "query"
+        description: "amount of records to skip (start of page)"
+        required: false
+        schema:
+          type: 'integer'
+          format: 'int64'
+        
+      - name: "take"
+        in: "query"
+        description: "amount of records to take after skipping (page length)"
+        required: false
+        schema:
+          type: 'integer'
+          format: 'int32'
+          maximum: 100
+        
+      - name: "total"
+        in: "query"
+        description: " whether or not to return the total amount of records present"
+        required: false
+        schema:
+          type: "boolean"
+        
       responses:
         200:
           description: 'Successful response'
           content:
             application/json:
               schema:
-                type: 'object'
-  /v1/beacons/get_beacon_by_id:
-    post:
-      tags:
-        - v1/beacons
-      operationId: 'get_beacon_by_id'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                beacon_id:
-                  type: 'string'
-              required:
-                - beacon_id
-      responses:
-        200:
-          description: 'Successful response'
-          content:
-            application/json:
-              schema:
-                type: 'object'
-  /v1/beacons/get_beacon_by_udi:
-    post:
-      tags:
-        - v1/beacons
-      operationId: 'get_beacon_by_udi'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                udi:
-                  type: 'string'
-              required:
-                - udi
-      responses:
-        200:
-          description: 'Successful response'
-          content:
-            application/json:
-              schema:
-                type: 'object'
-  /v1/beacons/calculate_position:
-    post:
-      tags:
-        - v1/beacons
-      operationId: 'calculate_position'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                site_id:
-                  type: 'string'
-                udis:
-                  type: 'object'
-              required:
-                - site_id
-                - udis
-      responses:
-        200:
-          description: 'Successful response'
-          content:
-            application/json:
-              schema:
-                type: 'object'
-  /v1/beacons/create_beacon:
+                type: 'array'
+                items:
+                  $ref: "#/definitions/beacon"
+                
     post:
       tags:
         - v1/beacons
@@ -105,7 +55,7 @@ paths:
             schema:
               properties:
                 beacon:
-                  type: 'object'
+                  $ref: "#/definitions/beacon"
               required:
                 - beacon
       responses:
@@ -114,9 +64,9 @@ paths:
           content:
             application/json:
               schema:
-                type: 'object'
-  /v1/beacons/update_beacon:
-    post:
+                $ref: "#/definitions/beacon"
+                
+    put:
       tags:
         - v1/beacons
       operationId: 'update_beacon'
@@ -126,7 +76,7 @@ paths:
             schema:
               properties:
                 beacon:
-                  type: 'object'
+                  $ref: "#/definitions/beacon"
               required:
                 - beacon
       responses:
@@ -135,25 +85,136 @@ paths:
           content:
             application/json:
               schema:
-                type: 'object'
-  /v1/beacons/delete_beacon_by_id:
-    post:
+                $ref: "#/definitions/beacon"
+      
+      
+  /v1/beacons/{id}:
+    get:
       tags:
         - v1/beacons
-      operationId: 'delete_beacon_by_id'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                beacon_id:
-                  type: 'string'
-              required:
-                - beacon_id
+      operationId: 'get_beacon_by_id'
+      description: "Returns the Beacon by id"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id of the Beacon"
+        required: true
+        schema:
+          type: 'string'
+      
       responses:
         200:
           description: 'Successful response'
           content:
             application/json:
               schema:
-                type: 'object'
+                $ref: "#/definitions/beacon"
+                
+  /v1/beacons/udi/{beacon_udi}:
+    get:
+      tags:
+        - v1/beacons
+      operationId: 'get_beacon_by_udi'
+      description: "Returns the Beacon by udi"
+      parameters:
+      - name: "beacon_udi"
+        in: "path"
+        description: "udi of the Beacon"
+        required: true
+        schema:
+          type: 'string'
+      
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/beacon"
+
+  /v1/beacons/calculate_position/{site_id}/{beacon_udi}:
+    get:
+      tags:
+        - v1/beacons
+      operationId: 'calculate_position'
+      parameters:
+      - name: "site_id"
+        in: "path"
+        description: "site_id of the Beacon"
+        required: true
+        schema:
+          type: 'string'
+          
+      - name: "beacon_udi"
+        in: "path"
+        description: "udi of the Beacon"
+        required: true
+        schema:
+          type: 'string'
+          
+      responses:
+        200:
+          description: 'Calculated beacons'
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  type:
+                    type: "string"
+                  coordinates:
+                    type: "array"
+                    items:
+                      type: "number"
+                              
+                            
+  /v1/beascon/{beacon_id}:
+    delete:
+      tags:
+        - v1/beacons
+      operationId: 'delete_beacon'
+      parameters:
+      - name: "beacon_id"
+        in: "path"
+        description: "id of the Beacon"
+        required: true
+        schema:
+          type: 'string'
+          
+      responses:
+        200:
+          description: 'Successful delete'
+          content:
+            application/json:
+              schema:
+               $ref: "#/definitions/beacon"
+                
+definitions:
+  beacon:
+    description: 'json instance of beacon'
+    type: 'object'
+    properties:
+      id:
+        type: 'string'
+        required: false
+      site_id:
+        type: 'string'
+        required: true
+      type:
+        type: 'string'
+        required: false
+      udi:
+        type: 'string'
+        required: true
+      label:
+        type: 'string'
+        required: false
+      center:
+        type: 'array'
+        items:
+          type: 'integer'
+        required: false
+      radius:
+        type: 'number'
+        required: false
+    

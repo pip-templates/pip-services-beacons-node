@@ -1,7 +1,6 @@
 "use strict";
 /** @module container */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handler = exports.BeaconsLambdaFunction = void 0;
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_aws_node_1 = require("pip-services3-aws-node");
 const BeaconsServiceFactory_1 = require("../build/BeaconsServiceFactory");

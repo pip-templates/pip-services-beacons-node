@@ -9,6 +9,6 @@ export declare class BeaconsClientFactory extends Factory {
     static LambdaClientV1Descriptor: Descriptor;
     static GrpcClientV1Descriptor: Descriptor;
     static RestClientV1Descriptor: Descriptor;
-    static BeaconsMockClientV1: Descriptor;
+    static BeaconsMockClientV1Descriptor: Descriptor;
     constructor();
 }

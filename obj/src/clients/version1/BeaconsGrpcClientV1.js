@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeaconsGrpcClientV1 = void 0;
 /** @module clients */
 /** @hidden */
 const _ = require('lodash');

@@ -1,7 +1,6 @@
 "use strict";
 /** @module clients */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeaconsRestClientV1 = void 0;
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_rpc_node_1 = require("pip-services3-rpc-node");
 class BeaconsRestClientV1 extends pip_services3_rpc_node_1.RestClient {
@@ -33,10 +32,7 @@ class BeaconsRestClientV1 extends pip_services3_rpc_node_1.RestClient {
     }
     calculatePosition(correlationId, siteId, udis, callback) {
         let time = this.instrument(correlationId, "beacons.calculate_position");
-        this.call('post', '/beacons/position', correlationId, null, {
-            udis: udis,
-            site_id: siteId
-        }, (err, beacon) => {
+        this.call('get', '/beacons/calculate_position/' + siteId + '/' + udis, correlationId, null, null, (err, beacon) => {
             time.endTiming();
             if (err == null && beacon != null) {
                 callback(err, beacon);

@@ -157,11 +157,7 @@ suite('BeaconsRestServiceV1', ()=> {
             },
             // Calculate position for one beacon
             (callback) => {
-                rest.post('/v1/beacons/beacons/position',
-                    {
-                        site_id: '1',
-                        udis: ['00001']
-                    },
+                rest.get('/v1/beacons/beacons/calculate_position/1/00001',
                     (err, req, res, position) => {
                         assert.isNull(err);
 
